@@ -11,6 +11,34 @@
     </head>
     <body class="cv-page template-{{ template_cv }}">
 
+        {% macro sezione(title, value, classe='') -%}
+        {% if value %}<section class="cv-section {{ classe }}"><h2>{{ title }}</h2><p>{{ value }}</p></section>{% endif %}
+        {%- endmacro %}
+
+        {% macro esperienza_professionale(classe='') -%}
+        {% if dati.ultimo_ruolo %}
+        <section class="cv-section {{ classe }}">
+            <h2>Esperienza Professionale</h2>
+            <p>{{ dati.ultimo_ruolo }} · {{ dati.azienda }} ({{ dati.periodo_lavoro }}){% if dati.settore_lavoro %} · {{ dati.settore_lavoro }}{% endif %}</p>
+            {% if dati.descrizione_lavoro %}
+            <p style="margin-top: 8px">{{ dati.descrizione_lavoro }}</p>
+            {% endif %}
+            {% if dati.risultati_raggiunti %}
+            <p style="margin-top: 8px"><strong>Risultati raggiunti:</strong> {{ dati.risultati_raggiunti }}</p>
+            {% endif %}
+        </section>
+        {% endif %}
+        {%- endmacro %}
+
+        {% macro istruzione() -%}
+        {% if dati.titolo_studio %}
+        <section class="cv-section">
+            <h2>Istruzione</h2>
+            <p>{{ dati.titolo_studio|join(', ') }} — {{ dati.anno_diploma }}{% if dati.istituto_formazione %} · {{ dati.istituto_formazione }}{% endif %}{% if dati.voto_formazione %} · Voto: {{ dati.voto_formazione }}{% endif %}{% if dati.tesi_titolo %} · Tesi: {{ dati.tesi_titolo }}{% endif %}</p>
+        </section>
+        {% endif %}
+        {%- endmacro %}
+
         {# ── Executive: layout con sidebar ────────────────────────────── #}
         {% if template_cv == 'executive' %}
         <main class="cv-card">
@@ -26,11 +54,17 @@
                     {% if dati.indirizzo %}<span>{{ dati.indirizzo }}</span>{% endif %}
                     {% if dati.linkedin %}<span>{{ dati.linkedin }}</span>{% endif %}
                     {% if dati.portfolio %}<span>{{ dati.portfolio }}</span>{% endif %}
+                    {% if dati.github %}<span>{{ dati.github }}</span>{% endif %}
                 </div>
 
                 {% if dati.competenze_tecniche %}
                 <h2>Competenze Tecniche</h2>
                 <p>{{ dati.competenze_tecniche }}</p>
+                {% endif %}
+
+                {% if dati.strumenti_software %}
+                <h2>Strumenti e Software</h2>
+                <p>{{ dati.strumenti_software }}</p>
                 {% endif %}
 
                 {% if dati.competenze_trasversali %}
@@ -48,9 +82,9 @@
                 <p>{{ dati.patente }}</p>
                 {% endif %}
 
-                {% if dati.disponibilita %}
-                <h2>Disponibilità</h2>
-                <p>{{ dati.disponibilita }}</p>
+                {% if dati.anni_esperienza or dati.contratto_desiderato or dati.disponibilita_immediata or dati.codice_fiscale %}
+                <h2>Altre Informazioni</h2>
+                <p>{{ [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata, dati.codice_fiscale]|select|join(' · ') }}</p>
                 {% endif %}
             </aside>
 
@@ -69,15 +103,9 @@
                 </section>
                 {% endif %}
 
-                {% if dati.ultimo_ruolo %}
-                <section class="cv-section">
-                    <h2>Esperienza Professionale</h2>
-                    <p>{{ dati.ultimo_ruolo }} · {{ dati.azienda }} ({{ dati.periodo_lavoro }})</p>
-                    {% if dati.descrizione_lavoro %}
-                    <p style="margin-top: 8px">{{ dati.descrizione_lavoro }}</p>
-                    {% endif %}
-                </section>
-                {% endif %}
+                {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
+
+                {{ esperienza_professionale() }}
 
                 {% if dati.esperienze_precedenti %}
                 <section class="cv-section">
@@ -93,12 +121,7 @@
                 </section>
                 {% endif %}
 
-                {% if dati.titolo_studio %}
-                <section class="cv-section">
-                    <h2>Istruzione</h2>
-                    <p>{{ dati.titolo_studio|join(', ') }} — {{ dati.anno_diploma }}{% if dati.istituto_formazione %} · {{ dati.istituto_formazione }}{% endif %}{% if dati.voto_formazione %} · Voto: {{ dati.voto_formazione }}{% endif %}</p>
-                </section>
-                {% endif %}
+                {{ istruzione() }}
 
                 {% if dati.corsi_certificazioni %}
                 <section class="cv-section">
@@ -150,16 +173,10 @@
             </section>
             {% endif %}
 
+            {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
+
             <div class="cv-sections-grid">
-                {% if dati.ultimo_ruolo %}
-                <section class="cv-section cv-section-full">
-                    <h2>Esperienza Professionale</h2>
-                    <p>{{ dati.ultimo_ruolo }} · {{ dati.azienda }} ({{ dati.periodo_lavoro }})</p>
-                    {% if dati.descrizione_lavoro %}
-                    <p style="margin-top: 8px">{{ dati.descrizione_lavoro }}</p>
-                    {% endif %}
-                </section>
-                {% endif %}
+                {{ esperienza_professionale('cv-section-full') }}
 
                 {% if dati.esperienze_precedenti %}
                 <section class="cv-section cv-section-full">
@@ -168,12 +185,7 @@
                 </section>
                 {% endif %}
 
-                {% if dati.titolo_studio %}
-                <section class="cv-section">
-                    <h2>Istruzione</h2>
-                    <p>{{ dati.titolo_studio|join(', ') }} — {{ dati.anno_diploma }}{% if dati.istituto_formazione %} · {{ dati.istituto_formazione }}{% endif %}{% if dati.voto_formazione %} · Voto: {{ dati.voto_formazione }}{% endif %}</p>
-                </section>
-                {% endif %}
+                {{ istruzione() }}
 
                 {% if dati.corsi_certificazioni %}
                 <section class="cv-section">
@@ -193,6 +205,13 @@
                 <section class="cv-section">
                     <h2>Competenze Trasversali</h2>
                     <p>{{ dati.competenze_trasversali }}</p>
+                </section>
+                {% endif %}
+
+                {% if dati.strumenti_software %}
+                <section class="cv-section">
+                    <h2>Strumenti e Software</h2>
+                    <p>{{ dati.strumenti_software }}</p>
                 </section>
                 {% endif %}
 
@@ -218,7 +237,7 @@
                 {% endif %}
             </div>
 
-            {% set extra = [dati.patente, dati.disponibilita, dati.hobby, dati.referenze, dati.indirizzo, dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.linkedin, dati.portfolio]|select|join(' · ') %}
+            {% set extra = [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata, dati.codice_fiscale, dati.patente, dati.hobby, dati.referenze, dati.indirizzo, dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.linkedin, dati.portfolio, dati.github]|select|join(' · ') %}
             {% if extra %}
             <section class="cv-section">
                 <h2>Altre Informazioni</h2>
@@ -244,6 +263,10 @@
                         <span>{{ dati.email }}</span>
                         <span>{{ dati.prefisso }} {{ dati.telefono }}</span>
                         <span>{{ dati.citta }}</span>
+                        {% if dati.indirizzo %}<span>{{ dati.indirizzo }}</span>{% endif %}
+                        {% if dati.linkedin %}<span>{{ dati.linkedin }}</span>{% endif %}
+                        {% if dati.portfolio %}<span>{{ dati.portfolio }}</span>{% endif %}
+                        {% if dati.github %}<span>{{ dati.github }}</span>{% endif %}
                     </div>
                 </div>
             </header>
@@ -255,15 +278,9 @@
             </section>
             {% endif %}
 
-            {% if dati.ultimo_ruolo %}
-            <section class="cv-section">
-                <h2>Esperienza Professionale</h2>
-                <p>{{ dati.ultimo_ruolo }} · {{ dati.azienda }} ({{ dati.periodo_lavoro }})</p>
-                {% if dati.descrizione_lavoro %}
-                <p style="margin-top: 8px">{{ dati.descrizione_lavoro }}</p>
-                {% endif %}
-            </section>
-            {% endif %}
+            {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
+
+            {{ esperienza_professionale() }}
 
             {% if dati.esperienze_precedenti %}
             <section class="cv-section">
@@ -272,12 +289,7 @@
             </section>
             {% endif %}
 
-            {% if dati.titolo_studio %}
-            <section class="cv-section">
-                <h2>Istruzione</h2>
-                <p>{{ dati.titolo_studio|join(', ') }} — {{ dati.anno_diploma }}{% if dati.istituto_formazione %} · {{ dati.istituto_formazione }}{% endif %}{% if dati.voto_formazione %} · Voto: {{ dati.voto_formazione }}{% endif %}</p>
-            </section>
-            {% endif %}
+            {{ istruzione() }}
 
             {% if dati.corsi_certificazioni %}
             <section class="cv-section">
@@ -300,6 +312,8 @@
             </section>
             {% endif %}
 
+            {{ sezione('Strumenti e Software', dati.strumenti_software) }}
+
             {% if dati.lingue %}
             <section class="cv-section">
                 <h2>Lingue</h2>
@@ -321,7 +335,7 @@
             </section>
             {% endif %}
 
-            {% set extra = [dati.patente, dati.disponibilita, dati.hobby, dati.referenze, dati.indirizzo, dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.linkedin, dati.portfolio]|select|join(' · ') %}
+            {% set extra = [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata, dati.codice_fiscale, dati.patente, dati.hobby, dati.referenze, dati.indirizzo, dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.linkedin, dati.portfolio, dati.github]|select|join(' · ') %}
             {% if extra %}
             <section class="cv-section">
                 <h2>Altre Informazioni</h2>
@@ -343,6 +357,10 @@
                         <span>{{ dati.email }}</span>
                         <span>{{ dati.prefisso }} {{ dati.telefono }}</span>
                         <span>{{ dati.citta }}</span>
+                        {% if dati.indirizzo %}<span>{{ dati.indirizzo }}</span>{% endif %}
+                        {% if dati.linkedin %}<span>{{ dati.linkedin }}</span>{% endif %}
+                        {% if dati.portfolio %}<span>{{ dati.portfolio }}</span>{% endif %}
+                        {% if dati.github %}<span>{{ dati.github }}</span>{% endif %}
                     </div>
                 </div>
                 {% if dati.foto_profilo %}
@@ -357,15 +375,9 @@
             </section>
             {% endif %}
 
-            {% if dati.ultimo_ruolo %}
-            <section class="cv-section">
-                <h2>Esperienza Professionale</h2>
-                <p>{{ dati.ultimo_ruolo }} · {{ dati.azienda }} ({{ dati.periodo_lavoro }})</p>
-                {% if dati.descrizione_lavoro %}
-                <p style="margin-top: 8px">{{ dati.descrizione_lavoro }}</p>
-                {% endif %}
-            </section>
-            {% endif %}
+            {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
+
+            {{ esperienza_professionale() }}
 
             {% if dati.esperienze_precedenti %}
             <section class="cv-section">
@@ -374,12 +386,7 @@
             </section>
             {% endif %}
 
-            {% if dati.titolo_studio %}
-            <section class="cv-section">
-                <h2>Istruzione</h2>
-                <p>{{ dati.titolo_studio|join(', ') }} — {{ dati.anno_diploma }}{% if dati.istituto_formazione %} · {{ dati.istituto_formazione }}{% endif %}{% if dati.voto_formazione %} · Voto: {{ dati.voto_formazione }}{% endif %}</p>
-            </section>
-            {% endif %}
+            {{ istruzione() }}
 
             {% if dati.corsi_certificazioni %}
             <section class="cv-section">
@@ -394,6 +401,8 @@
                 <p>{{ dati.competenze_tecniche }}</p>
             </section>
             {% endif %}
+
+            {{ sezione('Strumenti e Software', dati.strumenti_software) }}
 
             {% if dati.competenze_trasversali %}
             <section class="cv-section">
@@ -423,7 +432,7 @@
             </section>
             {% endif %}
 
-            {% set extra = [dati.patente, dati.disponibilita, dati.hobby, dati.referenze, dati.indirizzo, dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.linkedin, dati.portfolio]|select|join(' · ') %}
+            {% set extra = [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata, dati.codice_fiscale, dati.patente, dati.hobby, dati.referenze, dati.indirizzo, dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.linkedin, dati.portfolio, dati.github]|select|join(' · ') %}
             {% if extra %}
             <section class="cv-section">
                 <h2>Altre Informazioni</h2>
@@ -460,7 +469,9 @@
             </section>
             {% endif %}
 
-            {% set contact_info = [dati.indirizzo, dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.linkedin, dati.portfolio]|select|join(' · ') %}
+            {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
+
+            {% set contact_info = [dati.indirizzo, dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.codice_fiscale, dati.github, dati.linkedin, dati.portfolio]|select|join(' · ') %}
             {% if contact_info %}
             <section class="cv-section">
                 <h2>Contatti e Informazioni Personali</h2>
@@ -468,12 +479,7 @@
             </section>
             {% endif %}
 
-            {% if dati.titolo_studio %}
-            <section class="cv-section">
-                <h2>Istruzione</h2>
-                <p>{{ dati.titolo_studio|join(', ') }} — {{ dati.anno_diploma }}{% if dati.istituto_formazione %} · {{ dati.istituto_formazione }}{% endif %}{% if dati.voto_formazione %} · Voto: {{ dati.voto_formazione }}{% endif %}</p>
-            </section>
-            {% endif %}
+            {{ istruzione() }}
 
             {% if dati.corsi_certificazioni %}
             <section class="cv-section">
@@ -482,15 +488,7 @@
             </section>
             {% endif %}
 
-            {% if dati.ultimo_ruolo %}
-            <section class="cv-section">
-                <h2>Esperienza Professionale</h2>
-                <p>{{ dati.ultimo_ruolo }} · {{ dati.azienda }} ({{ dati.periodo_lavoro }})</p>
-                {% if dati.descrizione_lavoro %}
-                <p style="margin-top: 8px">{{ dati.descrizione_lavoro }}</p>
-                {% endif %}
-            </section>
-            {% endif %}
+            {{ esperienza_professionale() }}
 
             {% if dati.esperienze_precedenti %}
             <section class="cv-section">
@@ -520,6 +518,8 @@
             </section>
             {% endif %}
 
+            {{ sezione('Strumenti e Software', dati.strumenti_software) }}
+
             {% if dati.competenze_trasversali %}
             <section class="cv-section">
                 <h2>Competenze Trasversali</h2>
@@ -534,7 +534,7 @@
             </section>
             {% endif %}
 
-            {% set extra = [dati.patente, dati.disponibilita, dati.hobby, dati.referenze]|select|join(' · ') %}
+            {% set extra = [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata, dati.patente, dati.hobby, dati.referenze]|select|join(' · ') %}
             {% if extra %}
             <section class="cv-section">
                 <h2>Altre Informazioni</h2>

@@ -24,8 +24,8 @@
     color-scheme: dark;
     --ink: #e5e5e5;
     --muted: #9ca3af;
-    --accent: #d4a0a0;
-    --accent-hover: #e8b4b4;
+    --accent: #7fb8b0;
+    --accent-hover: #98c9c3;
     --surface: #1e1e2a;
     --bg: #121218;
     --border: #2d2d3d;
@@ -47,7 +47,7 @@
 
 body {
     margin: 0;
-    padding: 48px 20px;
+    padding: 48px max(20px, env(safe-area-inset-right)) 48px max(20px, env(safe-area-inset-left));
     color: var(--ink);
     background: var(--bg);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -57,6 +57,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
     transition: background 0.3s ease, color 0.3s ease;
     min-height: 100vh;
+    overflow-x: hidden;
+    overflow-wrap: anywhere;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -71,8 +73,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .theme-toggle {
     position: fixed;
-    bottom: 28px;
-    right: 28px;
+    bottom: max(28px, calc(env(safe-area-inset-bottom) + 8px));
+    right: max(28px, calc(env(safe-area-inset-right) + 8px));
     z-index: 9999;
     width: 48px;
     height: 48px;
@@ -90,7 +92,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .theme-toggle:hover {
-    transform: scale(1.05);
+    transform: scale(1.12);
     border-color: var(--accent);
 }
 
@@ -112,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .page-header,
 form {
-    width: min(780px, 100%);
+    width: min(1280px, 100%);
     margin: 0 auto;
 }
 
@@ -163,6 +165,7 @@ fieldset {
 
 fieldset:hover {
     border-color: var(--border-strong);
+    box-shadow: var(--shadow-sm);
 }
 
 legend {
@@ -188,6 +191,14 @@ legend {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
+}
+
+.form-grid .campo-pieno {
+    grid-column: 1 / -1;
+}
+
+.form-grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
 }
 
 label {
@@ -220,15 +231,27 @@ textarea {
     color: var(--ink);
     background: var(--surface);
     font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
+    font-size: 16px;
     line-height: 1.5;
+    min-height: 44px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea {
+    line-height: 1.5;
 }
 
 input:hover,
 select:hover,
 textarea:hover {
     border-color: var(--border-strong);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+}
+
+:root[data-theme="dark"] input:hover,
+:root[data-theme="dark"] select:hover,
+:root[data-theme="dark"] textarea:hover {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.06);
 }
 
 input:focus,
@@ -242,7 +265,7 @@ textarea:focus {
 :root[data-theme="dark"] input:focus,
 :root[data-theme="dark"] select:focus,
 :root[data-theme="dark"] textarea:focus {
-    box-shadow: 0 0 0 3px rgba(212, 160, 160, 0.15);
+    box-shadow: 0 0 0 3px rgba(127, 184, 176, 0.15);
 }
 
 textarea {
@@ -271,6 +294,17 @@ select {
     margin-top: 6px;
 }
 
+.lingue-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.lingue-container input {
+    margin: 0;
+}
+
 /* ==========================================================================
    Checkboxes
    ========================================================================== */
@@ -290,41 +324,50 @@ select {
     gap: 10px;
     align-items: center;
     margin: 4px 0;
-    padding: 8px 10px;
+    padding: 10px 12px;
     border-radius: var(--radius-sm);
     transition: background 0.2s ease;
+    min-height: 44px;
+    cursor: pointer;
 }
 
 .checkbox-container div:hover {
-    background: rgba(139, 26, 26, 0.04);
+    background: rgba(139, 26, 26, 0.07);
 }
 
 :root[data-theme="dark"] .checkbox-container div:hover {
-    background: rgba(212, 160, 160, 0.08);
+    background: rgba(127, 184, 176, 0.14);
 }
 
 .checkbox-container input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     margin: 0;
     border: 1.5px solid var(--border-strong);
-    border-radius: 4px;
+    border-radius: 2px;
     background: var(--surface);
     cursor: pointer;
     display: grid;
     place-content: center;
     transition: all 0.2s ease;
     flex-shrink: 0;
+    position: relative;
+}
+
+.checkbox-container input[type="checkbox"]::after {
+    content: "";
+    position: absolute;
+    inset: -11px;
 }
 
 .checkbox-container input[type="checkbox"]::before {
     content: "";
-    width: 10px;
-    height: 6px;
-    border-left: 2px solid #fff;
-    border-bottom: 2px solid #fff;
+    width: 7px;
+    height: 4.5px;
+    border-left: 1.5px solid #fff;
+    border-bottom: 1.5px solid #fff;
     transform: scale(0) rotate(-45deg);
     transition: transform 0.15s ease;
 }
@@ -361,29 +404,109 @@ select {
     letter-spacing: 0;
 }
 
-.photo-upload span {
+.photo-upload .foto-hint {
+    display: block;
     color: var(--muted);
     font-weight: 400;
     font-size: 0.85rem;
+}
+
+.upload-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+    padding: 14px 20px;
+    border: 1.5px dashed var(--border-strong);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    min-height: 48px;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    user-select: none;
+}
+
+.upload-button:hover {
+    border-color: var(--accent);
+    background: var(--bg);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+:root[data-theme="dark"] .upload-button:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.upload-button:focus-within {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139, 26, 26, 0.1);
+}
+
+:root[data-theme="dark"] .upload-button:focus-within {
+    box-shadow: 0 0 0 3px rgba(127, 184, 176, 0.15);
+}
+
+.upload-button.upload-active {
+    border-color: var(--accent);
+    border-style: solid;
+    background: var(--bg);
+}
+
+.upload-button input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    pointer-events: none;
+}
+
+.upload-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--accent);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.upload-error {
+    margin-top: 10px;
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 500;
 }
 
 .image-preview {
     display: flex;
     gap: 16px;
     align-items: center;
-    margin-top: 12px;
-    padding: 12px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
+    margin-top: 16px;
     width: fit-content;
 }
 
+.image-preview[hidden] {
+    display: none;
+}
+
 .image-preview img {
-    width: 64px;
-    height: 64px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
-    border-radius: var(--radius-sm);
+    border-radius: 50%;
 }
 
 /* ==========================================================================
@@ -408,7 +531,7 @@ select {
 .link-button:hover,
 .cv-back:hover {
     border-color: var(--accent);
-    background: rgba(139, 26, 26, 0.04);
+    background: rgba(139, 26, 26, 0.08);
 }
 
 button[type="submit"] {
@@ -429,8 +552,8 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background: var(--accent-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(139, 26, 26, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 26, 26, 0.30);
 }
 
 /* ==========================================================================
@@ -438,27 +561,30 @@ button[type="submit"]:hover {
    ========================================================================== */
 
 .template-options {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 12px;
 }
 
 .template-option {
     position: relative;
     margin: 0;
-    padding: 14px 10px;
+    padding: 14px 12px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     text-align: center;
     cursor: pointer;
     background: var(--surface);
     transition: all 0.2s ease;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .template-option:hover {
     border-color: var(--border-strong);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
 }
 
 .template-option input {
@@ -480,6 +606,9 @@ button[type="submit"]:hover {
     font-size: 0.78rem;
     font-weight: 600;
     margin-top: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .template-swatch {
@@ -519,13 +648,14 @@ button[type="submit"]:hover {
 }
 
 .cv-card {
-    width: min(820px, 100%);
+    width: min(1280px, 100%);
     margin: auto;
     padding: 56px;
     border-radius: var(--radius-lg);
     background: var(--surface);
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--border);
+    overflow: hidden;
 }
 
 /* ==========================================================================
@@ -574,6 +704,7 @@ button[type="submit"]:hover {
     gap: 6px 16px;
     color: var(--muted);
     font-size: 0.85rem;
+    overflow-wrap: anywhere;
 }
 
 .cv-section {
@@ -598,6 +729,7 @@ button[type="submit"]:hover {
     color: var(--ink);
     font-size: 0.92rem;
     line-height: 1.65;
+    overflow-wrap: anywhere;
 }
 
 .cv-back {
@@ -673,6 +805,7 @@ button[type="submit"]:hover {
     background: var(--ink);
     color: #ffffff;
     padding: 40px 28px;
+    overflow-wrap: anywhere;
 }
 
 .template-executive .cv-sidebar .cv-photo {
@@ -831,12 +964,36 @@ button[type="submit"]:hover {
 }
 
 /* ==========================================================================
-   Responsive
+   Responsive — Tablet Landscape & Laptop Piccoli (≤ 1024px)
    ========================================================================== */
 
-@media (max-width: 720px) {
+@media (max-width: 1024px) {
+    .cv-card {
+        padding: 48px 40px;
+    }
+
+    .template-executive .cv-card {
+        grid-template-columns: 200px 1fr;
+    }
+
+    .template-creative .cv-head {
+        margin: -48px -40px 0;
+        padding: 36px 40px;
+    }
+
+    .cv-section p,
+    .cv-meta {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   Responsive — Tablet Portrait & Phone Landscape (≤ 768px)
+   ========================================================================== */
+
+@media (max-width: 768px) {
     body {
-        padding: 24px 12px;
+        padding: 28px max(20px, env(safe-area-inset-right)) 28px max(20px, env(safe-area-inset-left));
     }
 
     fieldset {
@@ -851,8 +1008,12 @@ button[type="submit"]:hover {
         grid-template-columns: 1fr;
     }
 
+    .telefono-container {
+        grid-template-columns: 100px 1fr;
+    }
+
     .template-options {
-        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
     }
 
     .cv-head {
@@ -860,17 +1021,34 @@ button[type="submit"]:hover {
         gap: 16px;
     }
 
-    .cv-photo {
-        width: 96px;
-        height: 96px;
+    .cv-identity {
+        width: 100%;
     }
 
+    .cv-photo {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Executive: sidebar in alto, full-width */
     .template-executive .cv-card {
         grid-template-columns: 1fr;
     }
 
     .template-executive .cv-sidebar {
         padding: 28px 24px;
+    }
+
+    .template-executive .cv-sidebar .cv-photo {
+        width: 96px;
+        height: 96px;
+        aspect-ratio: 1;
+        margin: 0 auto 20px;
+        display: block;
+    }
+
+    .template-executive .cv-sidebar .cv-meta {
+        text-align: center;
     }
 
     .template-executive .cv-main {
@@ -890,19 +1068,312 @@ button[type="submit"]:hover {
     .template-editorial .cv-head h1 {
         font-size: 2rem;
     }
+
+    .template-editorial .cv-photo {
+        width: 88px;
+        height: 88px;
+    }
+
+    .template-minimal .cv-head h1 {
+        font-size: 1.7rem;
+    }
+
+    .theme-toggle {
+        width: 44px;
+        height: 44px;
+    }
 }
 
+/* ==========================================================================
+   Responsive — Smartphone (≤ 480px)
+   ========================================================================== */
+
 @media (max-width: 480px) {
+    body {
+        padding: 20px max(16px, env(safe-area-inset-right)) 20px max(16px, env(safe-area-inset-left));
+    }
+
+    fieldset {
+        margin-bottom: 16px;
+        padding: 20px 14px;
+    }
+
+    legend {
+        padding: 0 8px;
+        font-size: 1.05rem;
+    }
+
     .template-options {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .template-option {
+        padding: 12px 8px;
+    }
+
+    .template-swatch {
+        height: 44px;
+        padding: 6px;
     }
 
     .cv-card {
         padding: 24px 16px;
+        border-radius: var(--radius);
     }
 
+    .cv-section {
+        margin-top: 20px;
+    }
+
+    .cv-section p {
+        font-size: 0.9rem;
+    }
+
+    .cv-head h1 {
+        font-size: 1.7rem;
+    }
+
+    .cv-photo {
+        width: 84px;
+        height: 84px;
+    }
+
+    .cv-meta {
+        font-size: 0.82rem;
+    }
+
+    .image-preview {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .image-preview img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .telefono-container {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .telefono-container select {
+        margin-bottom: 12px;
+    }
+
+    /* Executive su mobile */
+    .template-executive .cv-sidebar {
+        padding: 24px 18px;
+    }
+
+    .template-executive .cv-main {
+        padding: 24px 18px;
+    }
+
+    .template-executive .cv-head h1 {
+        font-size: 1.5rem;
+    }
+
+    /* Creative su mobile */
     .template-creative .cv-head {
         margin: -24px -16px 0;
         padding: 24px 16px;
+        border-radius: 0;
+        gap: 16px;
+    }
+
+    .template-creative .cv-head h1 {
+        font-size: 1.7rem;
+    }
+
+    .template-creative .cv-section:nth-child(even) {
+        margin-left: -10px;
+        margin-right: -10px;
+        padding: 14px;
+    }
+
+    /* Editorial su mobile */
+    .template-editorial .cv-head h1 {
+        font-size: 1.6rem;
+    }
+
+    /* Minimal su mobile */
+    .template-minimal .cv-head h1 {
+        font-size: 1.5rem;
+    }
+
+    .cv-back {
+        display: block;
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   Responsive — Schermi Molto Piccoli (≤ 360px)
+   ========================================================================== */
+
+@media (max-width: 360px) {
+    .page-header h1 {
+        font-size: 1.7rem;
+    }
+
+    fieldset {
+        padding: 18px 12px;
+    }
+
+    .cv-card {
+        padding: 20px 14px;
+    }
+
+    .template-options {
+        gap: 6px;
+    }
+
+    .template-option {
+        padding: 12px 8px;
+    }
+
+    .cv-photo {
+        width: 72px;
+        height: 72px;
+    }
+
+    .cv-head h1 {
+        font-size: 1.4rem;
+    }
+
+    button[type="submit"] {
+        padding: 14px 18px;
+        margin-bottom: 40px;
+    }
+}
+
+/* ==========================================================================
+   Dispositivi Touch — Rimuovi hover states
+   ========================================================================== */
+
+@media (hover: none) and (pointer: coarse) {
+    .theme-toggle:hover,
+    .template-option:hover,
+    .link-button:hover,
+    .cv-back:hover,
+    button[type="submit"]:hover,
+    input:hover,
+    select:hover,
+    textarea:hover,
+    .checkbox-container div:hover {
+        transform: none;
+        border-color: inherit;
+        box-shadow: none;
+        background: inherit;
+    }
+
+    button[type="submit"]:hover {
+        background: var(--accent);
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+/* ==========================================================================
+   Print Styles — CV stampabile / PDF
+   ========================================================================== */
+
+@media print {
+    @page {
+        margin: 14mm;
+        size: A4;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    html[data-theme],
+    :root {
+        color-scheme: light;
+        --ink: #1a1a2e !important;
+        --muted: #555 !important;
+        --accent: #8b1a1a !important;
+        --accent-hover: #8b1a1a !important;
+        --surface: #ffffff !important;
+        --bg: #ffffff !important;
+        --border: #ddd !important;
+        --border-strong: #aaa !important;
+        --shadow-sm: none !important;
+        --shadow: none !important;
+        --shadow-lg: none !important;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+        background: #ffffff;
+        font-size: 11pt;
+        line-height: 1.45;
+        overflow: visible;
+    }
+
+    .theme-toggle,
+    .cv-back {
+        display: none !important;
+    }
+
+    .cv-page {
+        padding: 0;
+        background: #ffffff;
+    }
+
+    .cv-card {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+    }
+
+    .cv-section {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .cv-head {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .template-executive .cv-card {
+        grid-template-columns: 30mm 1fr;
+        width: 100%;
+    }
+
+    .template-executive .cv-sidebar {
+        padding: 6mm 4mm;
+        background: #1a1a2e;
+    }
+
+    .template-executive .cv-main {
+        padding: 6mm 8mm;
+    }
+
+    .template-creative .cv-head {
+        margin: 0;
+        padding: 8mm 0;
+        border-radius: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .template-creative .cv-section:nth-child(even) {
+        margin-left: -6mm;
+        margin-right: -6mm;
+        padding: 4mm 6mm;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 }
