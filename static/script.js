@@ -39,6 +39,36 @@ if (inputCitta && dataList) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const imageInput = document.getElementById('foto_profilo');
+    const imagePreview = document.getElementById('image-preview');
+    const imagePreviewImg = document.getElementById('image-preview-img');
+    const removeImage = document.getElementById('remove-image');
+
+    if (imageInput && imagePreview && imagePreviewImg) {
+        imageInput.addEventListener('change', () => {
+            const file = imageInput.files[0];
+            if (!file) {
+                imagePreview.hidden = true;
+                imagePreviewImg.removeAttribute('src');
+                return;
+            }
+            if (!file.type.startsWith('image/')) {
+                imageInput.value = '';
+                return;
+            }
+            imagePreviewImg.src = URL.createObjectURL(file);
+            imagePreview.hidden = false;
+        });
+    }
+
+    if (removeImage) {
+        removeImage.addEventListener('click', () => {
+            imageInput.value = '';
+            imagePreview.hidden = true;
+            imagePreviewImg.removeAttribute('src');
+        });
+    }
+
     // Gestione campo "Altro" per Titolo Professionale
     const selectTitolo = document.getElementById('titolo_professionale');
     const boxAltro = document.getElementById('box_altro');

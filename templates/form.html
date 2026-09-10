@@ -8,12 +8,20 @@
     </head>
 
     <body>
-        <form action="/genera_cv" method="POST">
+        <header class="page-header">
+            <p class="eyebrow">CV CREATOR</p>
+            <h1>Costruiamo il tuo prossimo passo</h1>
+            <p>Compila il profilo con le informazioni che vuoi valorizzare nel tuo curriculum.</p>
+        </header>
+
+        <form action="{{ url_for('genera_cv') }}" method="POST" enctype="multipart/form-data">
             <fieldset>
                 <legend>Dati Anagrafici e Contatti</legend>
-                <input type="text" name="nome" placeholder="Nome" required /> <br />
-                <input type="text" name="cognome" placeholder="Cognome" required /> <br />
-                <input type="email" name="email" placeholder="eMail" required /> <br />
+                <div class="form-grid">
+                    <label>Nome<input type="text" name="nome" placeholder="Es. Giulia" required /></label>
+                    <label>Cognome<input type="text" name="cognome" placeholder="Es. Rossi" required /></label>
+                    <label>Email<input type="email" name="email" placeholder="nome@email.it" required /></label>
+                </div>
                 <div class="telefono-container">
                     <select name="prefisso" id="prefisso" class="prefisso-select" required>
                         <option value="+1">+1</option>
@@ -57,8 +65,23 @@
                     <input type="tel" id="telefono" name="telefono" placeholder="Cellulare" required />
                 </div>
 
-                <input type="text" id="citta" name="citta" placeholder="Inizia a digitare un comune o paese..." autocomplete="off" list="citta-list" required />
-                <datalist id="citta-list"></datalist>
+                <div class="form-grid">
+                    <label>Città<input type="text" id="citta" name="citta" placeholder="Inizia a digitare un comune o paese..." autocomplete="off" list="citta-list" required /><datalist id="citta-list"></datalist></label>
+                    <label>Indirizzo<input type="text" name="indirizzo" placeholder="Via e numero civico" /></label>
+                    <label>Data di nascita<input type="date" name="data_nascita" /></label>
+                    <label>Luogo di nascita<input type="text" name="luogo_nascita" placeholder="Città, Paese" /></label>
+                    <label>Nazionalità<input type="text" name="nazionalita" placeholder="Es. Italiana" /></label>
+                    <label>LinkedIn<input type="url" name="linkedin" placeholder="https://linkedin.com/in/..." /></label>
+                    <label>Portfolio / sito web<input type="url" name="portfolio" placeholder="https://..." /></label>
+                </div>
+                <div class="photo-upload">
+                    <label for="foto_profilo">Foto profilo <span>(facoltativa, max 5 MB)</span></label>
+                    <input type="file" id="foto_profilo" name="foto_profilo" accept="image/*" />
+                    <div id="image-preview" class="image-preview" hidden>
+                        <img id="image-preview-img" alt="Anteprima della foto profilo" />
+                        <button type="button" id="remove-image" class="link-button">Rimuovi foto</button>
+                    </div>
+                </div>
             </fieldset>
 
             <fieldset>
@@ -114,8 +137,7 @@
                     <input type="text" id="titolo_altro" name="titolo_altro" placeholder="Specifica la tua professione..." />
                 </div>
 
-                <br /><br />
-                <textarea name="descrizione" placeholder="Breve descrizione del tuo profilo professionale..." required></textarea>
+                <label>Profilo professionale<textarea name="descrizione" placeholder="Breve descrizione del tuo profilo professionale..." required></textarea></label>
             </fieldset>
 
             <fieldset>
@@ -134,23 +156,38 @@
                     <input type="text" id="titolo_studio_altro" name="titolo_studio_altro" placeholder="Specifica altro titolo di studio..." />
                 </div>
 
-                <br />
-                <input type="text" name="anno_diploma" placeholder="Anno di conseguimento / svolgimento" required />
+                <div class="form-grid">
+                    <label>Anno di conseguimento<input type="text" name="anno_diploma" placeholder="Es. 2022" required /></label>
+                    <label>Istituto / università<input type="text" name="istituto_formazione" placeholder="Nome dell'istituto" /></label>
+                    <label>Voto / valutazione<input type="text" name="voto_formazione" placeholder="Es. 105/110" /></label>
+                </div>
+                <label>Corsi, certificazioni e formazione aggiuntiva<textarea name="corsi_certificazioni" placeholder="Una voce per riga..."></textarea></label>
             </fieldset>
 
             <fieldset>
                 <legend>Esperienze Lavorative</legend>
-                <input type="text" name="ultimo_ruolo" placeholder="Ultimo ruolo ricoperto" required /><br />
-                <input type="text" name="azienda" placeholder="Azienda" required /><br />
-                <input type="text" name="periodo_lavoro" placeholder="Periodo (es. 2021 - Presente)" required /><br />
-                <textarea name="descrizione_lavoro" placeholder="Descrizione delle mansioni svolte..." required></textarea>
+                <div class="form-grid">
+                    <label>Ultimo ruolo ricoperto<input type="text" name="ultimo_ruolo" placeholder="Es. Product Designer" required /></label>
+                    <label>Azienda<input type="text" name="azienda" placeholder="Nome azienda" required /></label>
+                    <label>Periodo<input type="text" name="periodo_lavoro" placeholder="Es. 2021 - Presente" required /></label>
+                </div>
+                <label>Descrizione delle mansioni<textarea name="descrizione_lavoro" placeholder="Responsabilità e risultati ottenuti..." required></textarea></label>
+                <label>Esperienze precedenti<textarea name="esperienze_precedenti" placeholder="Ruolo, azienda, periodo e principali attività..."></textarea></label>
+                <label>Progetti rilevanti<textarea name="progetti" placeholder="Descrivi progetti personali o professionali..."></textarea></label>
+                <label>Volontariato e associazioni<textarea name="volontariato" placeholder="Attività, organizzazione e periodo..."></textarea></label>
             </fieldset>
 
             <fieldset>
                 <legend>Competenze e Altre Informazioni</legend>
-                <input type="text" name="competenze_tecniche" placeholder="Competenze Tecniche (es. Python, SQL, Excel)" required /><br />
-                <input type="text" name="lingue" placeholder="Lingue conosciute (es. Italiano C2, Inglese B2)" required /><br />
-                <input type="text" name="hobby" placeholder="Hobby e Interessi" required />
+                <label>Competenze tecniche<input type="text" name="competenze_tecniche" placeholder="Es. Python, SQL, Excel" required /></label>
+                <label>Competenze trasversali<input type="text" name="competenze_trasversali" placeholder="Es. leadership, problem solving, team working" /></label>
+                <label>Lingue conosciute<input type="text" name="lingue" placeholder="Es. Italiano C2, Inglese B2" required /></label>
+                <div class="form-grid">
+                    <label>Patente<input type="text" name="patente" placeholder="Es. B" /></label>
+                    <label>Disponibilità<input type="text" name="disponibilita" placeholder="Es. Full-time, trasferte" /></label>
+                </div>
+                <label>Hobby e interessi<input type="text" name="hobby" placeholder="Es. fotografia, trekking" required /></label>
+                <label>Referenze<textarea name="referenze" placeholder="Nome, ruolo e contatto (facoltativo)..."></textarea></label>
             </fieldset>
 
             <button type="submit">Genera CV</button>

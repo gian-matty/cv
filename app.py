@@ -1,3 +1,4 @@
+import base64
 import os
 from flask import Flask, render_template, request, redirect, url_for
 from dotenv import load_dotenv
@@ -5,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 GEOAPIFY_KEY = os.getenv('GEOAPIFY_API_KEY')
 
 TITOLI_STUDIO = [
@@ -168,37 +170,72 @@ def genera_cv():
         if altro_titolo:
             titoli_selezionati.append(altro_titolo)
 
+    foto = request.files.get('foto_profilo')
+    foto_profilo = None
+    if foto and foto.filename:
+        if not foto.mimetype or not foto.mimetype.startswith('image/'):
+            return redirect(url_for('home'))
+        foto_profilo = (
+            f"data:{foto.mimetype};base64,"
+            f"{base64.b64encode(foto.read()).decode('ascii')}"
+        )
+
+    def campo(nome):
+        return request.form.get(nome, '').strip()
+
     dati_cv = {
         # --- Dati Anagrafici e Contatti ---
-        'nome': request.form.get('nome', '').strip(),
-        'cognome': request.form.get('cognome', '').strip(),
-        'email': request.form.get('email', '').strip(),
-        'prefisso': request.form.get('prefisso', '').strip(),
-        'telefono': request.form.get('telefono', '').strip(),
-        'citta': request.form.get('citta', '').strip(),
+        'nome': campo('nome'),
+        'cognome': campo('cognome'),
+        'email': campo('email'),
+        'prefisso': campo('prefisso'),
+        'telefono': campo('telefono'),
+        'citta': campo('citta'),
+        'indirizzo': campo('indirizzo'),
+        'data_nascita': campo('data_nascita'),
+        'luogo_nascita': campo('luogo_nascita'),
+        'nazionalita': campo('nazionalita'),
+        'linkedin': campo('linkedin'),
+        'portfolio': campo('portfolio'),
 
         # --- Profilo Personale ---
         'titolo_professionale': titolo,
-        'descrizione': request.form.get('descrizione', '').strip(),
+        'descrizione': campo('descrizione'),
 
         # --- Istruzione e Formazione ---
         'titolo_studio': titoli_selezionati,
-        'anno_diploma': request.form.get('anno_diploma', '').strip(),
+        'anno_diploma': campo('anno_diploma'),
+        'istituto_formazione': campo('istituto_formazione'),
+        'voto_formazione': campo('voto_formazione'),
+        'corsi_certificazioni': campo('corsi_certificazioni'),
 
         # --- Esperienze Lavorative ---
-        'ultimo_ruolo': request.form.get('ultimo_ruolo', '').strip(),
-        'azienda': request.form.get('azienda', '').strip(),
-        'periodo_lavoro': request.form.get('periodo_lavoro', '').strip(),
-        'descrizione_lavoro': request.form.get('descrizione_lavoro', '').strip(),
+        'ultimo_ruolo': campo('ultimo_ruolo'),
+        'azienda': campo('azienda'),
+        'periodo_lavoro': campo('periodo_lavoro'),
+        'descrizione_lavoro': campo('descrizione_lavoro'),
+        'esperienze_precedenti': campo('esperienze_precedenti'),
+        'progetti': campo('progetti'),
+        'volontariato': campo('volontariato'),
 
         # --- Competenze e Lingue ---
-        'competenze_tecniche': request.form.get('competenze_tecniche', '').strip(), 
-        'lingue': request.form.get('lingue', '').strip(),
-        'hobby': request.form.get('hobby', '').strip()
+        'competenze_tecniche': campo('competenze_tecniche'),
+        'competenze_trasversali': campo('competenze_trasversali'),
+        'lingue': campo('lingue'),
+        'patente': campo('patente'),
+        'disponibilita': campo('disponibilita'),
+        'hobby': campo('hobby'),
+        'referenze': campo('referenze'),
+        'foto_profilo': foto_profilo
     }
     
-    # Se un campo richiesto o la lista dei titoli è vuota, torna alla home
-    if not titoli_selezionati or any(v == '' for k, v in dati_cv.items() if k != 'titolo_studio'):
+    campi_obbligatori = (
+        'nome', 'cognome', 'email', 'telefono', 'citta',
+        'titolo_professionale', 'descrizione', 'anno_diploma',
+        'ultimo_ruolo', 'azienda', 'periodo_lavoro',
+        'descrizione_lavoro', 'competenze_tecniche', 'lingue', 'hobby'
+    )
+    if not titoli_selezionati or any(not dati_cv[campo_nome] for campo_nome in campi_obbligatori):
         return redirect(url_for('home'))
 
     return render_template('cv.html', dati=dati_cv)
