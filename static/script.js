@@ -1,6 +1,5 @@
 const inputCitta = document.getElementById('citta');
 const dataList = document.getElementById('citta-list');
-const API_KEY = "{{ geoapify_key }}";
 
 let timerDebounce;
 

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Curriculum Vitae - {{ nome }} {{ cognome }}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    </head>
+    <body>
+        <div class="cv-actions no-print">
+            <button onclick="window.print()" class="btn-print">Stampa / Salva in PDF</button>
+            <a href="/" class="btn-back">Torna al Form</a>
+        </div>
+
+        <div class="cv-container">
+            <!-- Sidebar Sinistra: Contatti, Anagrafica Avanzata, Social, Competenze, Lingue, Patenti -->
+            <aside class="cv-sidebar">
+                <div class="cv-header-mobile">
+                    <h1>{{ nome }} {{ cognome }}</h1>
+                    <h2>{{ titolo_professionale }}</h2>
+                </div>
+
+                <div class="cv-section">
+                    <h3>Contatti</h3>
+                    <ul class="cv-contact-list">
+                        {% if email %}
+                        <li><strong>Email:</strong> {{ email }}</li>
+                        {% endif %} {% if telefono %}
+                        <li><strong>Telefono:</strong> {{ prefisso }} {{ telefono }}</li>
+                        {% endif %} {% if citta %}
+                        <li><strong>Città:</strong> {{ citta }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                <div class="cv-section">
+                    <h3>Dati Anagrafici</h3>
+                    <ul class="cv-contact-list">
+                        {% if codice_fiscale %}
+                        <li><strong>C.F.:</strong> {{ codice_fiscale }}</li>
+                        {% endif %} {% if data_nascita %}
+                        <li><strong>Nascita:</strong> {{ data_nascita }}</li>
+                        {% endif %} {% if sesso %}
+                        <li><strong>Genere:</strong> {{ sesso }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                {% if linkedin or github or instagram or facebook %}
+                <div class="cv-section">
+                    <h3>Social & Web</h3>
+                    <ul class="cv-contact-list">
+                        {% if linkedin %}
+                        <li><strong>LinkedIn:</strong> <a href="{{ linkedin }}" target="_blank" style="color: #60a5fa; text-decoration: none">Profilo</a></li>
+                        {% endif %} {% if github %}
+                        <li><strong>GitHub/Portfolio:</strong> <a href="{{ github }}" target="_blank" style="color: #60a5fa; text-decoration: none">Link</a></li>
+                        {% endif %} {% if instagram %}
+                        <li><strong>Instagram:</strong> {{ instagram }}</li>
+                        {% endif %} {% if facebook %}
+                        <li><strong>Facebook:</strong> {{ facebook }}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+                {% endif %} {% if competenze_tecniche %}
+                <div class="cv-section">
+                    <h3>Competenze</h3>
+                    <p>{{ competenze_tecniche }}</p>
+                </div>
+                {% endif %} {% if lingue %}
+                <div class="cv-section">
+                    <h3>Lingue</h3>
+                    <p>{{ lingue }}</p>
+                </div>
+                {% endif %} {% if patenti %}
+                <div class="cv-section">
+                    <h3>Patenti</h3>
+                    <p>{{ patenti }}</p>
+                </div>
+                {% endif %} {% if certificazioni %}
+                <div class="cv-section">
+                    <h3>Certificazioni</h3>
+                    <p>{{ certificazioni }}</p>
+                </div>
+                {% endif %} {% if hobby %}
+                <div class="cv-section">
+                    <h3>Interessi & Hobby</h3>
+                    <p>{{ hobby }}</p>
+                </div>
+                {% endif %}
+            </aside>
+
+            <!-- Contenuto Principale -->
+            <main class="cv-main">
+                <header class="cv-header-desktop" style="display: flex; align-items: center; justify-content: space-between; gap: 20px">
+                    <div>
+                        <h1>{{ nome }} {{ cognome }}</h1>
+                        <h2>{{ titolo_professionale }}</h2>
+                    </div>
+                    {% if foto_b64 %}
+                    <img src="data:image/jpeg;base64,{{ foto_b64 }}" alt="Foto {{ nome }}" style="width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 2px solid #4f46e5" />
+                    {% endif %}
+                </header>
+
+                {% if descrizione %}
+                <section class="cv-main-section">
+                    <h3>Profilo Professionale</h3>
+                    <p>{{ descrizione }}</p>
+                </section>
+                {% endif %} {% if ultimo_ruolo or azienda %}
+                <section class="cv-main-section">
+                    <h3>Esperienza Lavorativa</h3>
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h4>{{ ultimo_ruolo }}</h4>
+                            <span class="cv-date">{{ periodo_lavoro }}</span>
+                        </div>
+                        <div class="cv-company">{{ azienda }}</div>
+                        <p class="cv-item-desc">{{ descrizione_lavoro }}</p>
+                    </div>
+                </section>
+                {% endif %} {% if titoli_selezionati or anno_diploma %}
+                <section class="cv-main-section">
+                    <h3>Istruzione e Formazione</h3>
+                    <div class="cv-item">
+                        <div class="cv-item-header">
+                            <h4>{% if titoli_selezionati %} {{ titoli_selezionati | join(', ') }} {% else %} Istruzione {% endif %}</h4>
+                            <span class="cv-date">{{ anno_diploma }}</span>
+                        </div>
+                    </div>
+                </section>
+                {% endif %}
+            </main>
+        </div>
+    </body>
+</html>

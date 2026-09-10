@@ -8,155 +8,180 @@
     </head>
 
     <body>
-        <form action="/genera_cv" method="POST">
-            <fieldset>
-                <legend>Dati Anagrafici e Contatti</legend>
-                <input type="text" name="nome" placeholder="Nome" required /> <br />
-                <input type="text" name="cognome" placeholder="Cognome" required /> <br />
-                <input type="email" name="email" placeholder="eMail" required /> <br />
-                <div class="telefono-container">
-                    <select name="prefisso" id="prefisso" class="prefisso-select" required>
-                        <option value="+1">+1</option>
-                        <option value="+20">+20</option>
-                        <option value="+30">+30</option>
-                        <option value="+31">+31</option>
-                        <option value="+32">+32</option>
-                        <option value="+33">+33</option>
-                        <option value="+34">+34</option>
-                        <option value="+39" selected>+39</option>
-                        <option value="+40">+40</option>
-                        <option value="+41">+41</option>
-                        <option value="+43">+43</option>
-                        <option value="+44">+44</option>
-                        <option value="+45">+45</option>
-                        <option value="+46">+46</option>
-                        <option value="+47">+47</option>
-                        <option value="+48">+48</option>
-                        <option value="+49">+49</option>
-                        <option value="+52">+52</option>
-                        <option value="+54">+54</option>
-                        <option value="+55">+55</option>
-                        <option value="+61">+61</option>
-                        <option value="+81">+81</option>
-                        <option value="+86">+86</option>
-                        <option value="+90">+90</option>
-                        <option value="+91">+91</option>
-                        <option value="+212">+212</option>
-                        <option value="+216">+216</option>
-                        <option value="+351">+351</option>
-                        <option value="+353">+353</option>
-                        <option value="+355">+355</option>
-                        <option value="+356">+356</option>
-                        <option value="+357">+357</option>
-                        <option value="+358">+358</option>
-                        <option value="+380">+380</option>
-                        <option value="+381">+381</option>
-                        <option value="+385">+385</option>
-                        <option value="+971">+971</option>
-                    </select>
-                    <input type="tel" id="telefono" name="telefono" placeholder="Cellulare" required />
-                </div>
-
-                <input type="text" id="citta" name="citta" placeholder="Inizia a digitare un comune o paese..." autocomplete="off" list="citta-list" required />
-                <datalist id="citta-list"></datalist>
-            </fieldset>
-
-            <fieldset>
-                <legend>Profilo Personale</legend>
-                <select name="titolo_professionale" id="titolo_professionale" required>
-                    <option value="" disabled selected>Seleziona la tua professione...</option>
-
-                    <!-- Tecnologia & IT -->
-                    <option value="Sviluppatore Software / Software Engineer">Sviluppatore Software / Software Engineer</option>
-                    <option value="Web Developer (Front-end / Back-end / Full-stack)">Web Developer (Front-end / Back-end / Full-stack)</option>
-                    <option value="Data Analyst / Data Scientist">Data Analyst / Data Scientist</option>
-                    <option value="DevOps Engineer">DevOps Engineer</option>
-                    <option value="Cybersecurity Specialist">Cybersecurity Specialist</option>
-                    <option value="UI/UX Designer">UI/UX Designer</option>
-                    <option value="System Administrator / Sistemista">System Administrator / Sistemista</option>
-
-                    <!-- Economia, Amministrazione & Business -->
-                    <option value="Contabile / Impiegato Amministrativo">Contabile / Impiegato Amministrativo</option>
-                    <option value="Project Manager">Project Manager</option>
-                    <option value="Consulente Aziendale">Consulente Aziendale</option>
-                    <option value="Responsabile Risorse Umane (HR Manager)">Responsabile Risorse Umane (HR Manager)</option>
-                    <option value="Commerciale / Sales Account">Commerciale / Sales Account</option>
-                    <option value="Business Analyst">Business Analyst</option>
-
-                    <!-- Marketing & Comunicazione -->
-                    <option value="Digital Marketing Specialist">Digital Marketing Specialist</option>
-                    <option value="Social Media Manager">Social Media Manager</option>
-                    <option value="Content Creator / Copywriter">Content Creator / Copywriter</option>
-                    <option value="Graphic Designer">Graphic Designer</option>
-                    <option value="PR & Communication Specialist">PR & Communication Specialist</option>
-                    <option value="SEO/SEM Specialist">SEO/SEM Specialist</option>
-
-                    <!-- Logistica, Produzione & Artigianato -->
-                    <option value="Magazziniere / Responsabile Logistica">Magazziniere / Responsabile Logistica</option>
-                    <option value="Operaio Specializzato">Operaio Specializzato</option>
-                    <option value="Tecnico Elettricista / Idraulico">Tecnico Elettricista / Idraulico</option>
-                    <option value="Controllo Qualità">Controllo Qualità</option>
-
-                    <!-- Vendite & Servizi al Pubblico -->
-                    <option value="Addetto alle Vendite / Commesso">Addetto alle Vendite / Commesso</option>
-                    <option value="Cameriere / Barman">Cameriere / Barman</option>
-                    <option value="Cuoco / Chef">Cuoco / Chef</option>
-                    <option value="Receptionist / Addetto all'Accoglienza">Receptionist / Addetto all'Accoglienza</option>
-                    <option value="Operatore Customer Care / Call Center">Operatore Customer Care / Call Center</option>
-
-                    <!-- Altro -->
-                    <option value="Studente / Neolaureato">Studente / Neolaureato</option>
-                    <option value="Freelancer / Libero Professionista">Freelancer / Libero Professionista</option>
-                    <option value="Altro">Altro</option>
-                </select>
-
-                <div id="box_altro" style="display: none; margin-top: 10px">
-                    <input type="text" id="titolo_altro" name="titolo_altro" placeholder="Specifica la tua professione..." />
-                </div>
-
-                <br /><br />
-                <textarea name="descrizione" placeholder="Breve descrizione del tuo profilo professionale..." required></textarea>
-            </fieldset>
-
-            <fieldset>
-                <legend>Istruzione e Formazione</legend>
-                <label>Seleziona i titoli di studio posseduti:</label>
-                <div class="checkbox-container">
-                    {% for titolo in titoli_studio %}
-                    <div>
-                        <input type="checkbox" name="titolo_studio" value="{{ titolo }}" id="titolo_{{ loop.index }}" />
-                        <label for="titolo_{{ loop.index }}">{{ titolo }}</label>
+        <div class="form-container">
+            <h1>Generatore di Curriculum Vitae</h1>
+            <form action="/genera_cv" method="POST" enctype="multipart/form-data">
+                <fieldset>
+                    <legend>Dati Anagrafici, Foto e Contatti</legend>
+                    
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 600;">Foto Profilo:</label>
+                        <label for="foto" class="custom-file-upload">
+                            📷 Scegli la tua foto
+                        </label>
+                        <input type="file" id="foto" name="foto" accept="image/*" onchange="updateFileName(this)">
+                        <span id="file-name">Nessun file selezionato</span>
                     </div>
-                    {% endfor %}
-                </div>
 
-                <div id="box_altro_titolo" style="display: none; margin-top: 10px">
-                    <input type="text" id="titolo_studio_altro" name="titolo_studio_altro" placeholder="Specifica altro titolo di studio..." />
-                </div>
+                    <input type="text" name="nome" placeholder="Nome" required /> <br />
+                    <input type="text" name="cognome" placeholder="Cognome" required /> <br />
+                    <input type="text" name="codice_fiscale" placeholder="Codice Fiscale" required style="text-transform: uppercase;" /> <br />
+                    
+                    <label for="data_nascita" style="font-size: 0.9rem; color: #a0aec0; display: block; margin-top: 5px;">Data di Nascita:</label>
+                    <input type="date" id="data_nascita" name="data_nascita" required /> <br />
 
-                <br />
-                <input type="text" name="anno_diploma" placeholder="Anno di conseguimento / svolgimento" required />
-            </fieldset>
+                    <select name="sesso" id="sesso" required style="margin-bottom: 15px;">
+                        <option value="" disabled selected>Seleziona Sesso / Genere...</option>
+                        <option value="Maschio">Maschio</option>
+                        <option value="Femmina">Femmina</option>
+                        <option value="Altro">Altro / Preferisco non specificare</option>
+                    </select> <br />
 
-            <fieldset>
-                <legend>Esperienze Lavorative</legend>
-                <input type="text" name="ultimo_ruolo" placeholder="Ultimo ruolo ricoperto" required /><br />
-                <input type="text" name="azienda" placeholder="Azienda" required /><br />
-                <input type="text" name="periodo_lavoro" placeholder="Periodo (es. 2021 - Presente)" required /><br />
-                <textarea name="descrizione_lavoro" placeholder="Descrizione delle mansioni svolte..." required></textarea>
-            </fieldset>
+                    <input type="email" name="email" placeholder="eMail" required /> <br />
 
-            <fieldset>
-                <legend>Competenze e Altre Informazioni</legend>
-                <input type="text" name="competenze_tecniche" placeholder="Competenze Tecniche (es. Python, SQL, Excel)" required /><br />
-                <input type="text" name="lingue" placeholder="Lingue conosciute (es. Italiano C2, Inglese B2)" required /><br />
-                <input type="text" name="hobby" placeholder="Hobby e Interessi" required />
-            </fieldset>
+                    <div class="telefono-container">
+                        <select name="prefisso" id="prefisso" class="prefisso-select" required>
+                            <option value="+1">+1</option>
+                            <option value="+20">+20</option>
+                            <option value="+30">+30</option>
+                            <option value="+31">+31</option>
+                            <option value="+32">+32</option>
+                            <option value="+33">+33</option>
+                            <option value="+34">+34</option>
+                            <option value="+39" selected>+39</option>
+                            <option value="+40">+40</option>
+                            <option value="+41">+41</option>
+                            <option value="+43">+43</option>
+                            <option value="+44">+44</option>
+                            <option value="+45">+45</option>
+                            <option value="+46">+46</option>
+                            <option value="+47">+47</option>
+                            <option value="+48">+48</option>
+                            <option value="+49">+49</option>
+                            <option value="+52">+52</option>
+                            <option value="+54">+54</option>
+                            <option value="+55">+55</option>
+                            <option value="+61">+61</option>
+                            <option value="+81">+81</option>
+                            <option value="+86">+86</option>
+                            <option value="+90">+90</option>
+                            <option value="+91">+91</option>
+                            <option value="+212">+212</option>
+                            <option value="+216">+216</option>
+                            <option value="+351">+351</option>
+                            <option value="+353">+353</option>
+                            <option value="+355">+355</option>
+                            <option value="+356">+356</option>
+                            <option value="+357">+357</option>
+                            <option value="+358">+358</option>
+                            <option value="+380">+380</option>
+                            <option value="+381">+381</option>
+                            <option value="+385">+385</option>
+                            <option value="+971">+971</option>
+                        </select>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Cellulare" required />
+                    </div>
 
-            <button type="submit">Genera CV</button>
-        </form>
+                    <input type="text" id="citta" name="citta" placeholder="Città di residenza" autocomplete="off" list="citta-list" required />
+                    <datalist id="citta-list"></datalist>
+                </fieldset>
 
-        <script></script>
+                <!-- Nuova Sezione Social Media Opzionali -->
+                <fieldset>
+                    <legend>Profili Social & Web (Facoltativi)</legend>
+                    <input type="url" name="linkedin" placeholder="Profilo LinkedIn (es. https://linkedin.com/in/...)" /><br />
+                    <input type="url" name="github" placeholder="Profilo GitHub / Portfolio (es. https://github.com/...)" /><br />
+                    <input type="text" name="instagram" placeholder="Instagram (es. @username)" /><br />
+                    <input type="text" name="facebook" placeholder="Facebook (es. nome.cognome)" />
+                </fieldset>
+
+                <fieldset>
+                    <legend>Profilo Personale</legend>
+                    <select name="titolo_professionale" id="titolo_professionale" required>
+                        <option value="" disabled selected>Seleziona la tua professione...</option>
+                        <option value="Sviluppatore Software / Software Engineer">Sviluppatore Software / Software Engineer</option>
+                        <option value="Web Developer (Front-end / Back-end / Full-stack)">Web Developer (Front-end / Back-end / Full-stack)</option>
+                        <option value="Data Analyst / Data Scientist">Data Analyst / Data Scientist</option>
+                        <option value="DevOps Engineer">DevOps Engineer</option>
+                        <option value="Cybersecurity Specialist">Cybersecurity Specialist</option>
+                        <option value="UI/UX Designer">UI/UX Designer</option>
+                        <option value="System Administrator / Sistemista">System Administrator / Sistemista</option>
+                        <option value="Contabile / Impiegato Amministrativo">Contabile / Impiegato Amministrativo</option>
+                        <option value="Project Manager">Project Manager</option>
+                        <option value="Consulente Aziendale">Consulente Aziendale</option>
+                        <option value="Responsabile Risorse Umane (HR Manager)">Responsabile Risorse Umane (HR Manager)</option>
+                        <option value="Commerciale / Sales Account">Commerciale / Sales Account</option>
+                        <option value="Digital Marketing Specialist">Digital Marketing Specialist</option>
+                        <option value="Magazziniere / Responsabile Logistica">Magazziniere / Responsabile Logistica</option>
+                        <option value="Addetto alle Vendite / Commesso">Addetto alle Vendite / Commesso</option>
+                        <option value="Altro">Altro</option>
+                    </select>
+
+                    <div id="box_altro" style="display: none; margin-top: 10px">
+                        <input type="text" id="titolo_altro" name="titolo_altro" placeholder="Specifica la tua professione..." />
+                    </div>
+
+                    <br /><br />
+                    <textarea name="descrizione" placeholder="Breve descrizione del tuo profilo professionale..." required></textarea>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Istruzione e Formazione</legend>
+                    <label>Seleziona i titoli di studio posseduti:</label>
+                    <div class="checkbox-container">
+                        {% for categoria, titoli in titoli_studio.items() %} {% set cat_index = loop.index %}
+                        <div class="categoria-titolo">{{ categoria }}</div>
+                        {% for titolo in titoli %}
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="titolo_studio" value="{{ titolo }}" id="titolo_{{ cat_index }}_{{ loop.index }}" />
+                            <label for="titolo_{{ cat_index }}_{{ loop.index }}">{{ titolo }}</label>
+                        </div>
+                        {% endfor %} {% endfor %}
+                    </div>
+
+                    <div id="box_altro_titolo" style="display: none; margin-top: 10px">
+                        <input type="text" id="titolo_studio_altro" name="titolo_studio_altro" placeholder="Specifica altro titolo di studio..." />
+                    </div>
+
+                    <br />
+                    <input type="text" name="anno_diploma" placeholder="Anno di conseguimento / svolgimento" required />
+                </fieldset>
+
+                <fieldset>
+                    <legend>Esperienze Lavorative</legend>
+                    <input type="text" name="ultimo_ruolo" placeholder="Ultimo ruolo ricoperto" required /><br />
+                    <input type="text" name="azienda" placeholder="Azienda" required /><br />
+                    <input type="text" name="periodo_lavoro" placeholder="Periodo (es. 2021 - Presente)" required /><br />
+                    <textarea name="descrizione_lavoro" placeholder="Descrizione delle mansioni svolte..." required></textarea>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Competenze, Patenti e Extra</legend>
+                    <input type="text" name="competenze_tecniche" placeholder="Competenze Tecniche (es. Python, SQL, Excel)" required /><br />
+                    <input type="text" name="lingue" placeholder="Lingue conosciute (es. Italiano C2, Inglese B2)" required /><br />
+                    <input type="text" name="patenti" placeholder="Patenti di guida (es. Patente B, Patentino Muletto)" /><br />
+                    <textarea name="certificazioni" placeholder="Certificazioni e Corsi Extra (es. Corso Sicurezza, Attestato B2)"></textarea><br />
+                    <input type="text" name="hobby" placeholder="Hobby e Interessi" required />
+                </fieldset>
+
+                <button type="submit">Genera CV</button>
+            </form>
+        </div>
+
+        <script>
+            const API_KEY = "{{ geoapify_key }}";
+
+            function updateFileName(input) {
+                const fileNameSpan = document.getElementById('file-name');
+                if (input.files && input.files[0]) {
+                    fileNameSpan.textContent = input.files[0].name;
+                    fileNameSpan.style.color = '#e2e8f0';
+                } else {
+                    fileNameSpan.textContent = 'Nessun file selezionato';
+                    fileNameSpan.style.color = '#a0aec0';
+                }
+            }
+        </script>
         <script src="{{ url_for('static', filename='script.js') }}"></script>
     </body>
 </html>
