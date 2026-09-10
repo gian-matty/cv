@@ -1,8 +1,6 @@
 const inputCitta = document.getElementById('citta');
 const dataList = document.getElementById('citta-list');
-
-// Sostituisci con la tua API Key Geoapify
-const API_KEY = '17da1441495b4bc895f8c734bcaa2400'; 
+const API_KEY = "{{ geoapify_key }}";
 
 let timerDebounce;
 
@@ -10,7 +8,6 @@ if (inputCitta && dataList) {
     inputCitta.addEventListener('input', function() {
         const query = this.value;
 
-        // Annulla il timer precedente ad ogni nuovo carattere digitato
         clearTimeout(timerDebounce);
 
         if (query.length < 3) {
@@ -18,7 +15,6 @@ if (inputCitta && dataList) {
             return;
         }
 
-        // Attende 400 millisecondi prima di inviare la richiesta API
         timerDebounce = setTimeout(async () => {
             const url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(query)}&filter=countrycode:it&type=city&apiKey=${API_KEY}`;
 
@@ -26,7 +22,7 @@ if (inputCitta && dataList) {
                 const response = await fetch(url);
                 const data = await response.json();
                 
-                dataList.innerHTML = ''; // Svuota i vecchi suggerimenti
+                dataList.innerHTML = ''; 
                 
                 if (data.features) {
                     data.features.forEach(feature => {
@@ -38,11 +34,12 @@ if (inputCitta && dataList) {
             } catch (error) {
                 console.error("Errore nel recupero città con Geoapify:", error);
             }
-        }, 400); // 0,4 secondi di attesa
+        }, 400);
     });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Gestione campo "Altro" per Titolo Professionale
     const selectTitolo = document.getElementById('titolo_professionale');
     const boxAltro = document.getElementById('box_altro');
     const inputAltro = document.getElementById('titolo_altro');
@@ -59,4 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Gestione checkbox "Altro" per Titolo di Studio
+    const checkboxes = document.querySelectorAll('input[name="titolo_studio"]');
+    const boxAltroTitolo = document.getElementById('box_altro_titolo');
+    const inputAltroTitolo = document.getElementById('titolo_studio_altro');
+
+    checkboxes.forEach(cb => {
+        if (cb.value === 'Altro') {
+            cb.addEventListener('change', () => {
+                if (cb.checked) {
+                    boxAltroTitolo.style.display = 'block';
+                    inputAltroTitolo.required = true;
+                } else {
+                    boxAltroTitolo.style.display = 'none';
+                    inputAltroTitolo.required = false;
+                    inputAltroTitolo.value = '';
+                }
+            });
+        }
+    });
 });

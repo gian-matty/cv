@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Form</title>
+        <title>Compilazione CV</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     </head>
 
@@ -11,11 +11,11 @@
         <form action="/genera_cv" method="POST">
             <fieldset>
                 <legend>Dati Anagrafici e Contatti</legend>
-                <input type="text" name="nome" placeholder="Nome" /> <br />
-                <input type="text" name="cognome" placeholder="Cognome" /> <br />
-                <input type="email" name="email" placeholder="eMail" /> <br />
+                <input type="text" name="nome" placeholder="Nome" required /> <br />
+                <input type="text" name="cognome" placeholder="Cognome" required /> <br />
+                <input type="email" name="email" placeholder="eMail" required /> <br />
                 <div class="telefono-container">
-                    <select name="prefisso" id="prefisso" class="prefisso-select">
+                    <select name="prefisso" id="prefisso" class="prefisso-select" required>
                         <option value="+1">+1</option>
                         <option value="+20">+20</option>
                         <option value="+30">+30</option>
@@ -54,16 +54,16 @@
                         <option value="+385">+385</option>
                         <option value="+971">+971</option>
                     </select>
-                    <input type="tel" id="telefono" name="telefono" placeholder="Cellulare" />
+                    <input type="tel" id="telefono" name="telefono" placeholder="Cellulare" required />
                 </div>
 
-                <input type="text" id="citta" name="citta" placeholder="Inizia a digitare un comune o paese..." autocomplete="off" list="citta-list" />
+                <input type="text" id="citta" name="citta" placeholder="Inizia a digitare un comune o paese..." autocomplete="off" list="citta-list" required />
                 <datalist id="citta-list"></datalist>
             </fieldset>
 
             <fieldset>
                 <legend>Profilo Personale</legend>
-                <select name="titolo_professionale" id="titolo_professionale">
+                <select name="titolo_professionale" id="titolo_professionale" required>
                     <option value="" disabled selected>Seleziona la tua professione...</option>
 
                     <!-- Tecnologia & IT -->
@@ -109,21 +109,54 @@
                     <option value="Freelancer / Libero Professionista">Freelancer / Libero Professionista</option>
                     <option value="Altro">Altro</option>
                 </select>
+
                 <div id="box_altro" style="display: none; margin-top: 10px">
                     <input type="text" id="titolo_altro" name="titolo_altro" placeholder="Specifica la tua professione..." />
                 </div>
+
+                <br /><br />
+                <textarea name="descrizione" placeholder="Breve descrizione del tuo profilo professionale..." required></textarea>
             </fieldset>
 
             <fieldset>
                 <legend>Istruzione e Formazione</legend>
-                
-            </fieldset>
-        
+                <label>Seleziona i titoli di studio posseduti:</label>
+                <div class="checkbox-container">
+                    {% for titolo in titoli_studio %}
+                    <div>
+                        <input type="checkbox" name="titolo_studio" value="{{ titolo }}" id="titolo_{{ loop.index }}" />
+                        <label for="titolo_{{ loop.index }}">{{ titolo }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
 
+                <div id="box_altro_titolo" style="display: none; margin-top: 10px">
+                    <input type="text" id="titolo_studio_altro" name="titolo_studio_altro" placeholder="Specifica altro titolo di studio..." />
+                </div>
+
+                <br />
+                <input type="text" name="anno_diploma" placeholder="Anno di conseguimento / svolgimento" required />
+            </fieldset>
+
+            <fieldset>
+                <legend>Esperienze Lavorative</legend>
+                <input type="text" name="ultimo_ruolo" placeholder="Ultimo ruolo ricoperto" required /><br />
+                <input type="text" name="azienda" placeholder="Azienda" required /><br />
+                <input type="text" name="periodo_lavoro" placeholder="Periodo (es. 2021 - Presente)" required /><br />
+                <textarea name="descrizione_lavoro" placeholder="Descrizione delle mansioni svolte..." required></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>Competenze e Altre Informazioni</legend>
+                <input type="text" name="competenze_tecniche" placeholder="Competenze Tecniche (es. Python, SQL, Excel)" required /><br />
+                <input type="text" name="lingue" placeholder="Lingue conosciute (es. Italiano C2, Inglese B2)" required /><br />
+                <input type="text" name="hobby" placeholder="Hobby e Interessi" required />
+            </fieldset>
 
             <button type="submit">Genera CV</button>
         </form>
 
+        <script></script>
         <script src="{{ url_for('static', filename='script.js') }}"></script>
     </body>
 </html>
