@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Curriculum di {{ dati.nome }} {{ dati.cognome }}" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>" />
         <title>CV di {{ dati.nome }} {{ dati.cognome }}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,6 +38,15 @@
             <h2>Istruzione</h2>
             <p>{{ dati.titolo_studio|join(', ') }} — {{ dati.anno_diploma }}{% if dati.istituto_formazione %} · {{ dati.istituto_formazione }}{% endif %}{% if dati.voto_formazione %} · Voto: {{ dati.voto_formazione }}{% endif %}{% if dati.tesi_titolo %} · Tesi: {{ dati.tesi_titolo }}{% endif %}</p>
         </section>
+        {% endif %}
+        {%- endmacro %}
+
+        {% macro sezione_gruppo(etichetta, valori, in_sidebar=false) -%}
+        {% set presenti = valori|select|list %}
+        {% if presenti %}
+        {% if in_sidebar %}<h2>{{ etichetta }}</h2><p>{{ presenti|join(', ') }}</p>
+        {% else %}<section class="cv-section"><h2>{{ etichetta }}</h2><p>{{ presenti|join(', ') }}</p></section>
+        {% endif %}
         {% endif %}
         {%- endmacro %}
 
@@ -82,10 +93,8 @@
                 <p>{{ dati.patente }}</p>
                 {% endif %}
 
-                {% if dati.anni_esperienza or dati.contratto_desiderato or dati.disponibilita_immediata or dati.codice_fiscale %}
-                <h2>Altre Informazioni</h2>
-                <p>{{ [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata, dati.codice_fiscale]|select|join(' · ') }}</p>
-                {% endif %}
+                {{ sezione_gruppo('Dati Personali', [dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.codice_fiscale], true) }}
+                {{ sezione_gruppo('Disponibilità', [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata], true) }}
             </aside>
 
             <div class="cv-main">
@@ -237,13 +246,12 @@
                 {% endif %}
             </div>
 
-            {% set extra = [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata, dati.codice_fiscale, dati.patente, dati.hobby, dati.referenze, dati.indirizzo, dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.linkedin, dati.portfolio, dati.github]|select|join(' · ') %}
-            {% if extra %}
-            <section class="cv-section">
-                <h2>Altre Informazioni</h2>
-                <p>{{ extra }}</p>
-            </section>
-            {% endif %}
+            {{ sezione_gruppo('Dati Personali', [dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.codice_fiscale, dati.indirizzo]) }}
+            {{ sezione_gruppo('Disponibilità', [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata]) }}
+            {{ sezione_gruppo('Patente', [dati.patente]) }}
+            {{ sezione_gruppo('Hobby e Interessi', [dati.hobby]) }}
+            {{ sezione_gruppo('Referenze', [dati.referenze]) }}
+            {{ sezione_gruppo('Contatti Online', [dati.linkedin, dati.portfolio, dati.github]) }}
 
             <a class="cv-back" href="{{ url_for('home') }}">&#8592; Modifica il CV</a>
         </main>
@@ -335,13 +343,12 @@
             </section>
             {% endif %}
 
-            {% set extra = [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata, dati.codice_fiscale, dati.patente, dati.hobby, dati.referenze, dati.indirizzo, dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.linkedin, dati.portfolio, dati.github]|select|join(' · ') %}
-            {% if extra %}
-            <section class="cv-section">
-                <h2>Altre Informazioni</h2>
-                <p>{{ extra }}</p>
-            </section>
-            {% endif %}
+            {{ sezione_gruppo('Dati Personali', [dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.codice_fiscale, dati.indirizzo]) }}
+            {{ sezione_gruppo('Disponibilità', [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata]) }}
+            {{ sezione_gruppo('Patente', [dati.patente]) }}
+            {{ sezione_gruppo('Hobby e Interessi', [dati.hobby]) }}
+            {{ sezione_gruppo('Referenze', [dati.referenze]) }}
+            {{ sezione_gruppo('Contatti Online', [dati.linkedin, dati.portfolio, dati.github]) }}
 
             <a class="cv-back" href="{{ url_for('home') }}">&#8592; Modifica il CV</a>
         </main>
@@ -432,13 +439,12 @@
             </section>
             {% endif %}
 
-            {% set extra = [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata, dati.codice_fiscale, dati.patente, dati.hobby, dati.referenze, dati.indirizzo, dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.linkedin, dati.portfolio, dati.github]|select|join(' · ') %}
-            {% if extra %}
-            <section class="cv-section">
-                <h2>Altre Informazioni</h2>
-                <p>{{ extra }}</p>
-            </section>
-            {% endif %}
+            {{ sezione_gruppo('Dati Personali', [dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.codice_fiscale, dati.indirizzo]) }}
+            {{ sezione_gruppo('Disponibilità', [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata]) }}
+            {{ sezione_gruppo('Patente', [dati.patente]) }}
+            {{ sezione_gruppo('Hobby e Interessi', [dati.hobby]) }}
+            {{ sezione_gruppo('Referenze', [dati.referenze]) }}
+            {{ sezione_gruppo('Contatti Online', [dati.linkedin, dati.portfolio, dati.github]) }}
 
             <a class="cv-back" href="{{ url_for('home') }}">&#8592; Modifica il CV</a>
         </main>
@@ -470,14 +476,6 @@
             {% endif %}
 
             {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
-
-            {% set contact_info = [dati.indirizzo, dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.codice_fiscale, dati.github, dati.linkedin, dati.portfolio]|select|join(' · ') %}
-            {% if contact_info %}
-            <section class="cv-section">
-                <h2>Contatti e Informazioni Personali</h2>
-                <p>{{ contact_info }}</p>
-            </section>
-            {% endif %}
 
             {{ istruzione() }}
 
@@ -534,13 +532,12 @@
             </section>
             {% endif %}
 
-            {% set extra = [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata, dati.patente, dati.hobby, dati.referenze]|select|join(' · ') %}
-            {% if extra %}
-            <section class="cv-section">
-                <h2>Altre Informazioni</h2>
-                <p>{{ extra }}</p>
-            </section>
-            {% endif %}
+            {{ sezione_gruppo('Dati Personali', [dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.codice_fiscale, dati.indirizzo]) }}
+            {{ sezione_gruppo('Disponibilità', [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata]) }}
+            {{ sezione_gruppo('Patente', [dati.patente]) }}
+            {{ sezione_gruppo('Hobby e Interessi', [dati.hobby]) }}
+            {{ sezione_gruppo('Referenze', [dati.referenze]) }}
+            {{ sezione_gruppo('Contatti Online', [dati.linkedin, dati.portfolio, dati.github]) }}
 
             <a class="cv-back" href="{{ url_for('home') }}">&#8592; Modifica il CV</a>
         </main>

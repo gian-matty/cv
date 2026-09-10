@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Compila un unico form e genera il tuo curriculum in 5 template professionali." />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>" />
         <title>Compilazione CV</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -145,21 +147,25 @@
                 <label>Obiettivo professionale<textarea name="obiettivo_professionale" placeholder="Quale posizione cerchi e dove vuoi arrivare (facoltativo)"></textarea></label>
                 <div class="form-grid">
                     <label>Anni di esperienza<input type="text" name="anni_esperienza" placeholder="Es. 5" /></label>
-                    <label>Tipo di contratto desiderato<select name="contratto_desiderato">
-                        <option value="" selected>Seleziona...</option>
-                        <option>Tempo indeterminato</option>
-                        <option>Tempo determinato</option>
-                        <option>Part-time</option>
-                        <option>Freelance / Consulenza</option>
-                        <option>Tirocinio / Stage</option>
-                        <option>Collaborazione / Progetto</option>
-                    </select></label>
-                    <label>Disponibilità ad iniziare<select name="disponibilita_immediata">
-                        <option value="" selected>Seleziona...</option>
-                        <option>Immediata</option>
-                        <option>Dopo preavviso</option>
-                        <option>Da concordare</option>
-                    </select></label>
+                    <label
+                        >Tipo di contratto desiderato<select name="contratto_desiderato">
+                            <option value="" selected>Seleziona...</option>
+                            <option>Tempo indeterminato</option>
+                            <option>Tempo determinato</option>
+                            <option>Part-time</option>
+                            <option>Freelance / Consulenza</option>
+                            <option>Tirocinio / Stage</option>
+                            <option>Collaborazione / Progetto</option>
+                        </select></label
+                    >
+                    <label
+                        >Disponibilità ad iniziare<select name="disponibilita_immediata">
+                            <option value="" selected>Seleziona...</option>
+                            <option>Immediata</option>
+                            <option>Dopo preavviso</option>
+                            <option>Da concordare</option>
+                        </select></label
+                    >
                 </div>
             </fieldset>
 
@@ -231,9 +237,7 @@
                     {% for key, name in template_options.items() %}
                     <label class="template-option">
                         <input type="radio" name="template_cv" value="{{ key }}" {% if loop.first %}checked{% endif %} />
-                        <span class="template-swatch template-{{ key }}">
-                            <span></span><span></span><span></span>
-                        </span>
+                        <span class="template-swatch template-{{ key }}"> <span></span><span></span><span></span> </span>
                         <strong>{{ name }}</strong>
                     </label>
                     {% endfor %}

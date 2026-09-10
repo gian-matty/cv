@@ -121,6 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadError = document.getElementById('upload-error');
 
     const MAX_FOTO = 5 * 1024 * 1024;
+    const MAX_DIM = 900;
+    const QUALITA_JPEG = 0.82;
 
     const mostraErroreFoto = (msg) => {
         if (!uploadError) return;
@@ -132,30 +134,70 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const mostraAnteprima = (file) => {
-        mostraErroreFoto(null);
-        if (!file) {
+    const sostituisciFile = (file) => {
+        if (!window.DataTransfer) return;
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        imageInput.files = dt.files;
+    };
+
+    const mostraAnteprima = (blob) => {
+        if (!blob) {
             imagePreview.hidden = true;
             imagePreviewImg.removeAttribute('src');
             return;
         }
+        imagePreviewImg.src = URL.createObjectURL(blob);
+        imagePreview.hidden = false;
+    };
+
+    const elaboraFotoHq = async (file) => {
+        mostraErroreFoto(null);
+        if (!file) {
+            if (imageInput) imageInput.value = '';
+            mostraAnteprima(null);
+            return;
+        }
         if (!file.type.startsWith('image/')) {
-            imageInput.value = '';
+            if (imageInput) imageInput.value = '';
             mostraErroreFoto('Formato non supportato: carica un\'immagine (JPG, PNG, WebP).');
             return;
         }
         if (file.size > MAX_FOTO) {
-            imageInput.value = '';
+            if (imageInput) imageInput.value = '';
             mostraErroreFoto('File troppo grande: massimo 5 MB.');
             return;
         }
-        imagePreviewImg.src = URL.createObjectURL(file);
-        imagePreview.hidden = false;
+        try {
+            const bitmap = await createImageBitmap(file);
+            const scala = Math.min(1, MAX_DIM / Math.max(bitmap.width, bitmap.height));
+            const larghezza = Math.max(1, Math.round(bitmap.width * scala));
+            const altezza = Math.max(1, Math.round(bitmap.height * scala));
+            const canvas = document.createElement('canvas');
+            canvas.width = larghezza;
+            canvas.height = altezza;
+            canvas.getContext('2d').drawImage(bitmap, 0, 0, larghezza, altezza);
+            bitmap.close();
+            canvas.toBlob((blob) => {
+                if (!blob) {
+                    mostraErroreFoto('Impossibile elaborare l\'immagine: riprova.');
+                    return;
+                }
+                const nome = file.name.replace(/\.[^.]+$/, '') + '.jpg';
+                const compresso = new File([blob], nome, { type: 'image/jpeg', lastModified: Date.now() });
+                if (imageInput) sostituisciFile(compresso);
+                mostraAnteprima(blob);
+            }, 'image/jpeg', QUALITA_JPEG);
+        } catch (error) {
+            console.error('Impossibile decodificare l\'immagine:', error);
+            if (imageInput) imageInput.value = '';
+            mostraErroreFoto('Formato non supportato: carica un\'immagine (JPG, PNG, WebP).');
+        }
     };
 
     if (imageInput && imagePreview && imagePreviewImg) {
         imageInput.addEventListener('change', () => {
-            mostraAnteprima(imageInput.files[0]);
+            elaboraFotoHq(imageInput.files[0]);
         });
     }
 
@@ -177,8 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
         uploadZone.addEventListener('drop', (e) => {
             const file = e.dataTransfer.files && e.dataTransfer.files[0];
             if (!file) return;
-            imageInput.files = e.dataTransfer.files;
-            mostraAnteprima(file);
+            elaboraFotoHq(file);
         });
     }
 
