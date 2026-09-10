@@ -4,17 +4,21 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Compilazione CV</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     </head>
 
     <body>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cambia modalità tema">
+            <span class="theme-icon">☾</span>
+        </button>
+
         <header class="page-header">
             <p class="eyebrow">CV CREATOR</p>
             <h1>Costruiamo il tuo prossimo passo</h1>
             <p>Compila il profilo con le informazioni che vuoi valorizzare nel tuo curriculum.</p>
-            <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">
-                <span class="theme-icon">☾</span> Modalità scura
-            </button>
         </header>
 
         <form action="{{ url_for('genera_cv') }}" method="POST" enctype="multipart/form-data">
@@ -91,8 +95,6 @@
                 <legend>Profilo Personale</legend>
                 <select name="titolo_professionale" id="titolo_professionale" required>
                     <option value="" disabled selected>Seleziona la tua professione...</option>
-
-                    <!-- Tecnologia & IT -->
                     <option value="Sviluppatore Software / Software Engineer">Sviluppatore Software / Software Engineer</option>
                     <option value="Web Developer (Front-end / Back-end / Full-stack)">Web Developer (Front-end / Back-end / Full-stack)</option>
                     <option value="Data Analyst / Data Scientist">Data Analyst / Data Scientist</option>
@@ -100,37 +102,27 @@
                     <option value="Cybersecurity Specialist">Cybersecurity Specialist</option>
                     <option value="UI/UX Designer">UI/UX Designer</option>
                     <option value="System Administrator / Sistemista">System Administrator / Sistemista</option>
-
-                    <!-- Economia, Amministrazione & Business -->
                     <option value="Contabile / Impiegato Amministrativo">Contabile / Impiegato Amministrativo</option>
                     <option value="Project Manager">Project Manager</option>
                     <option value="Consulente Aziendale">Consulente Aziendale</option>
                     <option value="Responsabile Risorse Umane (HR Manager)">Responsabile Risorse Umane (HR Manager)</option>
                     <option value="Commerciale / Sales Account">Commerciale / Sales Account</option>
                     <option value="Business Analyst">Business Analyst</option>
-
-                    <!-- Marketing & Comunicazione -->
                     <option value="Digital Marketing Specialist">Digital Marketing Specialist</option>
                     <option value="Social Media Manager">Social Media Manager</option>
                     <option value="Content Creator / Copywriter">Content Creator / Copywriter</option>
                     <option value="Graphic Designer">Graphic Designer</option>
                     <option value="PR & Communication Specialist">PR & Communication Specialist</option>
                     <option value="SEO/SEM Specialist">SEO/SEM Specialist</option>
-
-                    <!-- Logistica, Produzione & Artigianato -->
                     <option value="Magazziniere / Responsabile Logistica">Magazziniere / Responsabile Logistica</option>
                     <option value="Operaio Specializzato">Operaio Specializzato</option>
                     <option value="Tecnico Elettricista / Idraulico">Tecnico Elettricista / Idraulico</option>
                     <option value="Controllo Qualità">Controllo Qualità</option>
-
-                    <!-- Vendite & Servizi al Pubblico -->
                     <option value="Addetto alle Vendite / Commesso">Addetto alle Vendite / Commesso</option>
                     <option value="Cameriere / Barman">Cameriere / Barman</option>
                     <option value="Cuoco / Chef">Cuoco / Chef</option>
                     <option value="Receptionist / Addetto all'Accoglienza">Receptionist / Addetto all'Accoglienza</option>
                     <option value="Operatore Customer Care / Call Center">Operatore Customer Care / Call Center</option>
-
-                    <!-- Altro -->
                     <option value="Studente / Neolaureato">Studente / Neolaureato</option>
                     <option value="Freelancer / Libero Professionista">Freelancer / Libero Professionista</option>
                     <option value="Altro">Altro</option>
@@ -212,7 +204,9 @@
             <button type="submit">Genera CV</button>
         </form>
 
-        <script></script>
+        <script>
+            const API_KEY = "{{ geoapify_key }}";
+        </script>
         <script src="{{ url_for('static', filename='script.js') }}"></script>
     </body>
 </html>

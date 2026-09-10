@@ -170,12 +170,10 @@ def home():
 
 @app.route('/genera_cv', methods=['POST'])
 def genera_cv():
-    # Gestione 'Altro' per il titolo professionale
     titolo = request.form.get('titolo_professionale', '').strip()
     if titolo == 'Altro':
         titolo = request.form.get('titolo_altro', '').strip()
 
-    # Gestione titoli di studio multipli
     titoli_selezionati = request.form.getlist('titolo_studio')
     if 'Altro' in titoli_selezionati:
         titoli_selezionati.remove('Altro')
@@ -197,7 +195,6 @@ def genera_cv():
         return request.form.get(nome, '').strip()
 
     dati_cv = {
-        # --- Dati Anagrafici e Contatti ---
         'nome': campo('nome'),
         'cognome': campo('cognome'),
         'email': campo('email'),
@@ -210,19 +207,13 @@ def genera_cv():
         'nazionalita': campo('nazionalita'),
         'linkedin': campo('linkedin'),
         'portfolio': campo('portfolio'),
-
-        # --- Profilo Personale ---
         'titolo_professionale': titolo,
         'descrizione': campo('descrizione'),
-
-        # --- Istruzione e Formazione ---
         'titolo_studio': titoli_selezionati,
         'anno_diploma': campo('anno_diploma'),
         'istituto_formazione': campo('istituto_formazione'),
         'voto_formazione': campo('voto_formazione'),
         'corsi_certificazioni': campo('corsi_certificazioni'),
-
-        # --- Esperienze Lavorative ---
         'ultimo_ruolo': campo('ultimo_ruolo'),
         'azienda': campo('azienda'),
         'periodo_lavoro': campo('periodo_lavoro'),
@@ -230,8 +221,6 @@ def genera_cv():
         'esperienze_precedenti': campo('esperienze_precedenti'),
         'progetti': campo('progetti'),
         'volontariato': campo('volontariato'),
-
-        # --- Competenze e Lingue ---
         'competenze_tecniche': campo('competenze_tecniche'),
         'competenze_trasversali': campo('competenze_trasversali'),
         'lingue': campo('lingue'),

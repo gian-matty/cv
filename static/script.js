@@ -40,20 +40,32 @@ if (inputCitta && dataList) {
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('cv-theme');
-    const applyTheme = (theme) => {
+
+    const applyTheme = (theme, animate = false) => {
         document.documentElement.dataset.theme = theme;
         if (themeToggle) {
             const dark = theme === 'dark';
             themeToggle.setAttribute('aria-pressed', String(dark));
-            themeToggle.innerHTML = `<span class="theme-icon">${dark ? '☀' : '☾'}</span> ${dark ? 'Modalità chiara' : 'Modalità scura'}`;
+            
+            if (animate) {
+                themeToggle.classList.add('animate');
+                setTimeout(() => {
+                    themeToggle.querySelector('.theme-icon').textContent = dark ? '☀' : '☾';
+                    themeToggle.classList.remove('animate');
+                }, 250);
+            } else {
+                themeToggle.querySelector('.theme-icon').textContent = dark ? '☀' : '☾';
+            }
         }
     };
-    applyTheme(savedTheme === 'dark' ? 'dark' : 'light');
+
+    applyTheme(savedTheme === 'dark' ? 'dark' : 'light', false);
+
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
             localStorage.setItem('cv-theme', nextTheme);
-            applyTheme(nextTheme);
+            applyTheme(nextTheme, true);
         });
     }
 
@@ -87,7 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Gestione campo "Altro" per Titolo Professionale
     const selectTitolo = document.getElementById('titolo_professionale');
     const boxAltro = document.getElementById('box_altro');
     const inputAltro = document.getElementById('titolo_altro');
@@ -105,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Gestione checkbox "Altro" per Titolo di Studio
     const checkboxes = document.querySelectorAll('input[name="titolo_studio"]');
     const boxAltroTitolo = document.getElementById('box_altro_titolo');
     const inputAltroTitolo = document.getElementById('titolo_studio_altro');
