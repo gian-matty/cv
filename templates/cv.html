@@ -5,30 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CV di {{ dati.nome }} {{ dati.cognome }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-    <style>
-        .cv-card { width: min(900px, 100%); margin: auto; padding: 42px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(31,41,55,.08); }
-        .cv-head { display: flex; gap: 24px; align-items: center; padding-bottom: 28px; border-bottom: 2px solid #eceef4; }
-        .cv-photo { width: 130px; height: 130px; object-fit: cover; border-radius: 18px; }
-        .cv-head h1 { margin-bottom: 4px; }
-        .cv-head p { margin: 4px 0; color: #667085; }
-        .cv-section { margin-top: 28px; }
-        .cv-section h2 { margin: 0 0 10px; color: #4b43d1; font-size: 1rem; text-transform: uppercase; letter-spacing: .08em; }
-        .cv-section p { white-space: pre-line; }
-        .cv-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; color: #667085; }
-        .cv-back { display: inline-block; margin-top: 30px; color: #4b43d1; }
-        @media (max-width: 620px) { .cv-card { padding: 24px 18px; } .cv-head { align-items: flex-start; flex-direction: column-reverse; } }
-    </style>
 </head>
-<body>
+<body class="cv-page template-{{ template_cv }}">
     <main class="cv-card">
         <header class="cv-head">
-            <div>
-                <p class="eyebrow">CURRICULUM VITAE</p>
+            <div class="cv-identity">
+                <p class="eyebrow">CURRICULUM VITAE · {{ template_name|upper }}</p>
                 <h1>{{ dati.nome }} {{ dati.cognome }}</h1>
-                <p>{{ dati.titolo_professionale }}</p>
-                <div class="cv-meta">
-                    <span>{{ dati.email }}</span><span>{{ dati.prefisso }} {{ dati.telefono }}</span><span>{{ dati.citta }}</span>
-                </div>
+                <p class="cv-role">{{ dati.titolo_professionale }}</p>
+                <div class="cv-meta"><span>{{ dati.email }}</span><span>{{ dati.prefisso }} {{ dati.telefono }}</span><span>{{ dati.citta }}</span></div>
             </div>
             {% if dati.foto_profilo %}<img class="cv-photo" src="{{ dati.foto_profilo }}" alt="Foto di {{ dati.nome }} {{ dati.cognome }}" />{% endif %}
         </header>

@@ -150,10 +150,23 @@ TITOLI_STUDIO = [
     "Altro"
 ]
 
+TEMPLATE_OPTIONS = {
+    'aurora': 'Aurora',
+    'editorial': 'Editorial',
+    'executive': 'Executive',
+    'creative': 'Creative',
+    'minimal': 'Minimal'
+}
+
 
 @app.route('/')
 def home():
-    return render_template('form.html', geoapify_key=GEOAPIFY_KEY, titoli_studio=TITOLI_STUDIO)
+    return render_template(
+        'form.html',
+        geoapify_key=GEOAPIFY_KEY,
+        titoli_studio=TITOLI_STUDIO,
+        template_options=TEMPLATE_OPTIONS
+    )
 
 @app.route('/genera_cv', methods=['POST'])
 def genera_cv():
@@ -228,6 +241,9 @@ def genera_cv():
         'referenze': campo('referenze'),
         'foto_profilo': foto_profilo
     }
+    template_cv = request.form.get('template_cv', 'aurora')
+    if template_cv not in TEMPLATE_OPTIONS:
+        template_cv = 'aurora'
     
     campi_obbligatori = (
         'nome', 'cognome', 'email', 'telefono', 'citta',
@@ -238,7 +254,12 @@ def genera_cv():
     if not titoli_selezionati or any(not dati_cv[campo_nome] for campo_nome in campi_obbligatori):
         return redirect(url_for('home'))
 
-    return render_template('cv.html', dati=dati_cv)
+    return render_template(
+        'cv.html',
+        dati=dati_cv,
+        template_cv=template_cv,
+        template_name=TEMPLATE_OPTIONS[template_cv]
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)

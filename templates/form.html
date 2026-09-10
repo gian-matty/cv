@@ -12,6 +12,9 @@
             <p class="eyebrow">CV CREATOR</p>
             <h1>Costruiamo il tuo prossimo passo</h1>
             <p>Compila il profilo con le informazioni che vuoi valorizzare nel tuo curriculum.</p>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">
+                <span class="theme-icon">☾</span> Modalità scura
+            </button>
         </header>
 
         <form action="{{ url_for('genera_cv') }}" method="POST" enctype="multipart/form-data">
@@ -188,6 +191,22 @@
                 </div>
                 <label>Hobby e interessi<input type="text" name="hobby" placeholder="Es. fotografia, trekking" required /></label>
                 <label>Referenze<textarea name="referenze" placeholder="Nome, ruolo e contatto (facoltativo)..."></textarea></label>
+            </fieldset>
+
+            <fieldset class="template-picker">
+                <legend>Scegli il template del tuo CV</legend>
+                <p class="field-hint">Potrai cambiare stile senza modificare i contenuti.</p>
+                <div class="template-options">
+                    {% for key, name in template_options.items() %}
+                    <label class="template-option">
+                        <input type="radio" name="template_cv" value="{{ key }}" {% if loop.first %}checked{% endif %} />
+                        <span class="template-swatch template-{{ key }}">
+                            <span></span><span></span><span></span>
+                        </span>
+                        <strong>{{ name }}</strong>
+                    </label>
+                    {% endfor %}
+                </div>
             </fieldset>
 
             <button type="submit">Genera CV</button>
