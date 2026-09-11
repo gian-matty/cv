@@ -1,0 +1,1119 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Cursus\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Cursus\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "(facoltativa)"
+msgstr "(optional)"
+
+msgid "(facoltativa, max 5 MB)"
+msgstr "(optional, max. 5 MB)"
+
+msgid "+1"
+msgstr "+1"
+
+msgid "+20"
+msgstr "+20"
+
+msgid "+212"
+msgstr "+212"
+
+msgid "+216"
+msgstr "+216"
+
+msgid "+30"
+msgstr "+30"
+
+msgid "+31"
+msgstr "+31"
+
+msgid "+32"
+msgstr "+32"
+
+msgid "+33"
+msgstr "+33"
+
+msgid "+34"
+msgstr "+34"
+
+msgid "+351"
+msgstr "+351"
+
+msgid "+353"
+msgstr "+353"
+
+msgid "+355"
+msgstr "+355"
+
+msgid "+356"
+msgstr "+356"
+
+msgid "+357"
+msgstr "+357"
+
+msgid "+358"
+msgstr "+358"
+
+msgid "+380"
+msgstr "+380"
+
+msgid "+381"
+msgstr "+381"
+
+msgid "+385"
+msgstr "+385"
+
+msgid "+39"
+msgstr "+39"
+
+msgid "+40"
+msgstr "+40"
+
+msgid "+41"
+msgstr "+41"
+
+msgid "+43"
+msgstr "+43"
+
+msgid "+44"
+msgstr "+44"
+
+msgid "+45"
+msgstr "+45"
+
+msgid "+46"
+msgstr "+46"
+
+msgid "+47"
+msgstr "+47"
+
+msgid "+48"
+msgstr "+48"
+
+msgid "+49"
+msgstr "+49"
+
+msgid "+52"
+msgstr "+52"
+
+msgid "+54"
+msgstr "+54"
+
+msgid "+55"
+msgstr "+55"
+
+msgid "+61"
+msgstr "+61"
+
+msgid "+81"
+msgstr "+81"
+
+msgid "+86"
+msgstr "+86"
+
+msgid "+90"
+msgstr "+90"
+
+msgid "+91"
+msgstr "+91"
+
+msgid "+971"
+msgstr "+971"
+
+msgid "Accedi"
+msgstr "Anmelden"
+
+msgid "Accedi a Cursus"
+msgstr "Bei Cursus anmelden"
+
+msgid "Accedi al tuo spazio Cursus per gestire i tuoi curriculum."
+msgstr "Melde dich in deinem Cursus-Bereich an, um deine Lebensläufe zu verwalten."
+
+msgid "Addetto alle Vendite / Commesso"
+msgstr "Verkaufsmitarbeiter / Verkäufer"
+
+msgid "Altro"
+msgstr "Sonstiges"
+
+msgid "Ancora niente"
+msgstr "Noch nichts"
+
+msgid "Anni di esperienza"
+msgstr "Jahre Berufserfahrung"
+
+msgid "Anno di conseguimento"
+msgstr "Abschlussjahr"
+
+msgid "Anteprima"
+msgstr "Vorschau"
+
+msgid "Anteprima del CV"
+msgstr "Lebenslauf-Vorschau"
+
+msgid "Anteprima della foto profilo"
+msgstr "Vorschau des Profilfotos"
+
+msgid "Attività, organizzazione e periodo..."
+msgstr "Tätigkeiten, Organisation und Zeitraum..."
+
+msgid "Azienda"
+msgstr "Unternehmen"
+
+msgid "Bentornato"
+msgstr "Willkommen zurück"
+
+msgid "Breve descrizione del tuo profilo professionale..."
+msgstr "Kurze Beschreibung deines beruflichen Profils..."
+
+msgid "Business Analyst"
+msgstr "Business-Analyst"
+
+msgid "CAP"
+msgstr "Postleitzahl"
+
+msgid "CV di"
+msgstr "Lebenslauf von"
+
+msgid "Cambia lingua"
+msgstr "Sprache wechseln"
+
+msgid "Cambia modalità tema"
+msgstr "Design wechseln"
+
+msgid "Cameriere / Barman"
+msgstr "Kellner / Barkeeper"
+
+msgid "Carica una foto o trascinala qui"
+msgstr "Lade ein Foto hoch oder ziehe es hierher"
+
+msgid "Cellulare"
+msgstr "Mobiltelefon"
+
+msgid "Cerca il tuo titolo di studio..."
+msgstr "Suche deinen Studienabschluss..."
+
+msgid "Chiudi anteprima"
+msgstr "Vorschau schließen"
+
+msgid "Cinque template professionali, un solo form. Fatti per essere letti."
+msgstr "Fünf professionelle Vorlagen, nur ein Formular. Gemacht, um gelesen zu werden."
+
+msgid "Città"
+msgstr "Stadt"
+
+msgid "Città, Paese"
+msgstr "Stadt, Land"
+
+msgid "Codice fiscale"
+msgstr "Steuernummer"
+
+msgid "Cognome"
+msgstr "Nachname"
+
+msgid "Collaborazione / Progetto"
+msgstr "Zusammenarbeit / Projekt"
+
+msgid "Commerciale / Sales Account"
+msgstr "Vertrieb / Sales Account"
+
+msgid "Competenze Tecniche"
+msgstr "Fachliche Kompetenzen"
+
+msgid "Competenze Trasversali"
+msgstr "Soft Skills"
+
+msgid "Competenze e Altre Informazioni"
+msgstr "Kompetenzen und weitere Informationen"
+
+msgid "Competenze tecniche"
+msgstr "Fachliche Kompetenzen"
+
+msgid "Competenze trasversali"
+msgstr "Soft Skills"
+
+msgid "Compila i dati e scegli uno dei 5 template: il tuo primo CV è a pochi passi."
+msgstr "Fülle die Daten aus und wähle eines der 5 Templates: Dein erster Lebenslauf ist nur wenige Schritte entfernt."
+
+msgid "Compila il profilo con le informazioni che vuoi valorizzare nel tuo curriculum."
+msgstr "Fülle das Profil mit den Informationen, die du in deinem Lebenslauf hervorheben möchtest."
+
+msgid "Compila un unico form e genera il tuo curriculum in 5 template professionali."
+msgstr "Fülle ein einziges Formular aus und erstelle deinen Lebenslauf in 5 professionellen Templates."
+
+msgid "Compila una volta, scegli tra cinque template studiati per la stampa e"
+msgstr "Fülle einmal aus, wähle zwischen fünf für den Druck entwickelten Templates und"
+
+msgid "Compilazione CV"
+msgstr "Lebenslauf-Erstellung"
+
+msgid "Conferma password"
+msgstr "Passwort bestätigen"
+
+msgid "Consulente Aziendale"
+msgstr "Unternehmensberater"
+
+msgid "Contabile / Impiegato Amministrativo"
+msgstr "Buchhalter / Verwaltungsangestellter"
+
+msgid "Content Creator / Copywriter"
+msgstr "Content Creator / Copywriter"
+
+msgid "Controllo Qualità"
+msgstr "Qualitätskontrolle"
+
+msgid "Corsi e Certificazioni"
+msgstr "Kurse und Zertifizierungen"
+
+msgid "Corsi, certificazioni e formazione aggiuntiva"
+msgstr "Kurse, Zertifizierungen und zusätzliche Ausbildung"
+
+msgid "Costruiamo il tuo prossimo passo"
+msgstr "Wir gestalten deinen nächsten Schritt"
+
+msgid "Crea il tuo account"
+msgstr "Erstelle dein Konto"
+
+msgid "Crea il tuo primo CV"
+msgstr "Erstelle deinen ersten Lebenslauf"
+
+msgid "Crea un account Cursus e inizia a costruire il tuo curriculum."
+msgstr "Erstelle ein Cursus-Konto und beginne, deinen Lebenslauf zu gestalten."
+
+msgid "Crea un curriculum professionale in cinque template pronti per la stampa."
+msgstr "Erstelle einen professionellen Lebenslauf in fünf druckfertigen Templates."
+
+msgid "Crea un nuovo curriculum o modifica uno di quelli già compilati."
+msgstr "Erstelle einen neuen Lebenslauf oder bearbeite einen bereits erstellten."
+
+msgid "Cuoco / Chef"
+msgstr "Koch / Küchenchef"
+
+msgid "Curricula fatti per essere letti"
+msgstr "Lebensläufe, die zum Lesen gemacht sind"
+
+msgid "Curriculum di"
+msgstr "Lebenslauf von"
+
+msgid "Cybersecurity Specialist"
+msgstr "Cybersicherheitsspezialist"
+
+msgid "Da concordare"
+msgstr "Nach Absprache"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Data Analyst / Data Scientist"
+msgstr "Data Analyst / Data Scientist"
+
+msgid "Data di nascita"
+msgstr "Geburtsdatum"
+
+msgid "Dati Anagrafici e Contatti"
+msgstr "Persönliche Daten und Kontakt"
+
+msgid "Demo:"
+msgstr "Demo:"
+
+msgid "Descrivi progetti personali o professionali..."
+msgstr "Beschreibe persönliche oder berufliche Projekte..."
+
+msgid "Descrizione delle mansioni"
+msgstr "Beschreibung der Aufgaben"
+
+msgid "DevOps Engineer"
+msgstr "DevOps Engineer"
+
+msgid "Digital Marketing Specialist"
+msgstr "Digital Marketing Specialist"
+
+msgid "Diploma AFAM (Alta Formazione Artistica, Musicale e Coreutica)"
+msgstr "AFAM-Abschluss (Höhere künstlerische, musikalische und tänzerische Ausbildung)"
+
+msgid "Diploma ITS (Istituto Tecnico Superiore - Formazione Terziaria)"
+msgstr "ITS-Abschluss (Höheres Technisches Institut - Tertiäre Bildung)"
+
+msgid "Diploma Istituto Tecnico - Agraria, Agroalimentare e Agroindustria"
+msgstr "Fachabitur - Agrarwirtschaft, Lebensmittel und Agroindustrie"
+
+msgid "Diploma Istituto Tecnico - Amministrazione, Finanza e Marketing (AFM)"
+msgstr "Fachabitur - Verwaltung, Finanzen und Marketing (AFM)"
+
+msgid "Diploma Istituto Tecnico - Chimica, Materiali e Biotecnologie"
+msgstr "Fachabitur - Chemie, Materialien und Biotechnologien"
+
+msgid "Diploma Istituto Tecnico - Costruzioni, Ambiente e Territorio (Geometra)"
+msgstr "Fachabitur - Bauwesen, Umwelt und Territorium (Geometer)"
+
+msgid "Diploma Istituto Tecnico - Elettronica ed Elettrotecnica"
+msgstr "Fachabitur - Elektronik und Elektrotechnik"
+
+msgid "Diploma Istituto Tecnico - Grafica e Comunicazione"
+msgstr "Fachabitur - Grafik und Kommunikation"
+
+msgid "Diploma Istituto Tecnico - Informatica e Telecomunicazioni"
+msgstr "Fachabitur - Informatik und Telekommunikation"
+
+msgid "Diploma Istituto Tecnico - Meccanica, Meccatronica ed Energia"
+msgstr "Fachabitur - Mechanik, Mechatronik und Energie"
+
+msgid "Diploma Istituto Tecnico - Relazioni Internazionali per il Marketing (RIM)"
+msgstr "Fachabitur - Internationale Beziehungen für das Marketing (RIM)"
+
+msgid "Diploma Istituto Tecnico - Sistema Moda"
+msgstr "Fachabitur - Modewirtschaft"
+
+msgid "Diploma Istituto Tecnico - Sistemi Informativi Aziendali (SIA)"
+msgstr "Fachabitur - Betriebliche Informationssysteme (SIA)"
+
+msgid "Diploma Istituto Tecnico - Trasporti e Logistica"
+msgstr "Fachabitur - Verkehr und Logistik"
+
+msgid "Diploma Istituto Tecnico - Turismo"
+msgstr "Fachabitur - Tourismus"
+
+msgid "Diploma Liceo Artistico"
+msgstr "Abitur - Kunstgymnasium"
+
+msgid "Diploma Liceo Classico"
+msgstr "Abitur - Klassisches Gymnasium"
+
+msgid "Diploma Liceo Linguistico"
+msgstr "Abitur - Sprachliches Gymnasium"
+
+msgid "Diploma Liceo Musicale e Coreutico"
+msgstr "Abitur - Musik- und Tanzgymnasium"
+
+msgid "Diploma Liceo Scientifico"
+msgstr "Abitur - Naturwissenschaftliches Gymnasium"
+
+msgid "Diploma Liceo Scientifico - Opzione Scienze Applicate"
+msgstr "Abitur - Naturwissenschaftliches Gymnasium (Option angewandte Naturwissenschaften)"
+
+msgid "Diploma Liceo Scientifico - Sezione ad Indirizzo Sportivo"
+msgstr "Abitur - Naturwissenschaftliches Gymnasium (Sportzweig)"
+
+msgid "Diploma Liceo delle Scienze Umane"
+msgstr "Abitur - Gymnasium für Humanwissenschaften"
+
+msgid "Diploma Liceo delle Scienze Umane - Opzione Economico-Sociale"
+msgstr "Abitur - Gymnasium für Humanwissenschaften (Option Wirtschaft und Soziales)"
+
+msgid "Diploma di Tecnico Professionale (IeFP - 4 anni)"
+msgstr "Berufsfachschulabschluss (IeFP - 4 Jahre)"
+
+msgid "Disponibilità ad iniziare"
+msgstr "Verfügbarkeit zum Start"
+
+msgid "Dopo preavviso"
+msgstr "Nach Kündigungsfrist"
+
+msgid "Dottorato di Ricerca (Ph.D.)"
+msgstr "Promotion (Ph.D.)"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Entra"
+msgstr "Einloggen"
+
+msgid "Es. 105/110"
+msgstr "z. B. 105/110"
+
+msgid "Es. 20100"
+msgstr "z. B. 20100"
+
+msgid "Es. 2021 - Presente"
+msgstr "z. B. 2021 - heute"
+
+msgid "Es. 2022"
+msgstr "z. B. 2022"
+
+msgid "Es. 5"
+msgstr "z. B. 5"
+
+msgid "Es. B"
+msgstr "z. B. B"
+
+msgid "Es. Figma, Photoshop, SAP, Office"
+msgstr "z. B. Figma, Photoshop, SAP, Office"
+
+msgid "Es. Giulia"
+msgstr "z. B. Giulia"
+
+msgid "Es. IT, Sanità, Retail"
+msgstr "z. B. IT, Gesundheitswesen, Einzelhandel"
+
+msgid "Es. Italiana"
+msgstr "z. B. Italienisch"
+
+msgid "Es. Italiano C2"
+msgstr "z. B. Italienisch C2"
+
+msgid "Es. Product Designer"
+msgstr "z. B. Product Designer"
+
+msgid "Es. Python, SQL, Excel"
+msgstr "z. B. Python, SQL, Excel"
+
+msgid "Es. Riduzione costi del 20%, lancio di 3 prodotti..."
+msgstr "z. B. Kostensenkung um 20 %, Einführung von 3 Produkten..."
+
+msgid "Es. Rossi"
+msgstr "z. B. Rossi"
+
+msgid "Es. fotografia, trekking"
+msgstr "z. B. Fotografie, Trekking"
+
+msgid "Es. leadership, problem solving, team working"
+msgstr "z. B. Führungsstärke, Problemlösung, Teamarbeit"
+
+msgid "Esci"
+msgstr "Abmelden"
+
+msgid "Esperienza Professionale"
+msgstr "Berufserfahrung"
+
+msgid "Esperienze Lavorative"
+msgstr "Berufliche Erfahrungen"
+
+msgid "Esperienze Precedenti"
+msgstr "Frühere Erfahrungen"
+
+msgid "Esperienze precedenti"
+msgstr "Frühere Erfahrungen"
+
+msgid "Esplora"
+msgstr "Entdecken"
+
+msgid "Foto di"
+msgstr "Foto von"
+
+msgid "Foto profilo"
+msgstr "Profilfoto"
+
+msgid "Freelance / Consulenza"
+msgstr "Freelance / Beratung"
+
+msgid "Freelancer / Libero Professionista"
+msgstr "Freelancer / Freiberufler"
+
+msgid "Genera CV"
+msgstr "Lebenslauf erstellen"
+
+msgid "Gestisci i tuoi curriculum in cinque template professionali."
+msgstr "Verwalte deine Lebensläufe in fünf professionellen Templates."
+
+msgid "Graphic Designer"
+msgstr "Grafikdesigner"
+
+msgid "Hai già un account?"
+msgstr "Hast du bereits ein Konto?"
+
+msgid "Ho già un account"
+msgstr "Ich habe bereits ein Konto"
+
+msgid "Hobby e Interessi"
+msgstr "Hobbys und Interessen"
+
+msgid "Hobby e interessi"
+msgstr "Hobbys und Interessen"
+
+
+msgid "Home"
+msgstr "Startseite"
+
+msgid "I tuoi curriculum"
+msgstr "Deine Lebensläufe"
+
+msgid "Il tuo curriculum,"
+msgstr "Dein Lebenslauf,"
+
+msgid "Il tuo curriculum, con stile"
+msgstr "Dein Lebenslauf, mit Stil"
+
+msgid "Immediata"
+msgstr "Sofort"
+
+msgid "In 30 secondi sei dentro. I tuoi CV resteranno solo tuoi."
+msgstr "In 30 Sekunden bist du drin. Deine Lebensläufe bleiben nur deine."
+
+msgid "Indirizzo"
+msgstr "Adresse"
+
+msgid "Inizia a digitare un comune o paese..."
+msgstr "Beginne, eine Gemeinde oder ein Land zu tippen..."
+
+msgid "Interessi"
+msgstr "Interessen"
+
+msgid "Istituto / università"
+msgstr "Institut / Universität"
+
+msgid "Istruzione"
+msgstr "Ausbildung"
+
+msgid "Istruzione e Formazione"
+msgstr "Bildung und Ausbildung"
+
+msgid "La tua area di lavoro"
+msgstr "Dein Arbeitsbereich"
+
+msgid "Laurea Magistrale a Ciclo Unico in Architettura e Ingegneria Edile-Architettura (LM-4 c.u.)"
+msgstr "Staatsexamen in Architektur und Bauingenieurwesen-Architektur (LM-4 c.u.)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Chimica e Tecnologia Farmaceutiche - CTF (LM-13 c.u.)"
+msgstr "Staatsexamen in Pharmazeutischer Chemie und Technologie - CTF (LM-13 c.u.)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Conservazione e Restauro dei Beni Culturali (LMR/02)"
+msgstr "Staatsexamen in Konservierung und Restaurierung von Kulturgütern (LMR/02)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Farmacia (LM-13 c.u.)"
+msgstr "Staatsexamen in Pharmazie (LM-13 c.u.)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Giurisprudenza (LMG/01)"
+msgstr "Staatsexamen in Rechtswissenschaften (LMG/01)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Medicina Veterinaria (LM-42)"
+msgstr "Staatsexamen in Tiermedizin (LM-42)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Medicina e Chirurgia (LM-41)"
+msgstr "Staatsexamen in Medizin und Chirurgie (LM-41)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Odontoiatria e Protesi Dentaria (LM-46)"
+msgstr "Staatsexamen in Zahnmedizin und Zahntechnik (LM-46)"
+
+msgid "Laurea Magistrale in Antropologia ed Etnologia (LM-1)"
+msgstr "Master-Abschluss in Anthropologie und Ethnologie (LM-1)"
+
+msgid "Laurea Magistrale in Archeologia (LM-2)"
+msgstr "Master-Abschluss in Archäologie (LM-2)"
+
+msgid "Laurea Magistrale in Biologia (LM-6)"
+msgstr "Master-Abschluss in Biologie (LM-6)"
+
+msgid "Laurea Magistrale in Biotecnologie Mediche, Veterinarie e Farmaceutiche (LM-9)"
+msgstr "Master-Abschluss in Medizinischer, Veterinär- und Pharmazeutischer Biotechnologie (LM-9)"
+
+msgid "Laurea Magistrale in Data Science e Gestione dell'Informazione (LM-91)"
+msgstr "Master-Abschluss in Data Science und Informationsmanagement (LM-91)"
+
+msgid "Laurea Magistrale in Economia e Management / Scienze Economico-Aziendali (LM-77)"
+msgstr "Master-Abschluss in Wirtschaft und Management / Wirtschaftswissenschaften (LM-77)"
+
+msgid "Laurea Magistrale in Finance / Finanza (LM-16)"
+msgstr "Master-Abschluss in Finance / Finanzen (LM-16)"
+
+msgid "Laurea Magistrale in Fisica e Astrofisica (LM-17)"
+msgstr "Master-Abschluss in Physik und Astrophysik (LM-17)"
+
+msgid "Laurea Magistrale in Informatica (LM-18)"
+msgstr "Master-Abschluss in Informatik (LM-18)"
+
+msgid "Laurea Magistrale in Ingegneria Aerospaziale e Astronautica (LM-20)"
+msgstr "Master-Abschluss in Luft- und Raumfahrttechnik (LM-20)"
+
+msgid "Laurea Magistrale in Ingegneria Biomedica (LM-21)"
+msgstr "Master-Abschluss in Biomedizintechnik (LM-21)"
+
+msgid "Laurea Magistrale in Ingegneria Chimica (LM-22)"
+msgstr "Master-Abschluss in Chemieingenieurwesen (LM-22)"
+
+msgid "Laurea Magistrale in Ingegneria Civile (LM-23)"
+msgstr "Master-Abschluss in Bauingenieurwesen (LM-23)"
+
+msgid "Laurea Magistrale in Ingegneria Elettrica (LM-28)"
+msgstr "Master-Abschluss in Elektrotechnik (LM-28)"
+
+msgid "Laurea Magistrale in Ingegneria Elettronica (LM-29)"
+msgstr "Master-Abschluss in Elektronik (LM-29)"
+
+msgid "Laurea Magistrale in Ingegneria Gestionale (LM-31)"
+msgstr "Master-Abschluss in Wirtschaftsingenieurwesen (LM-31)"
+
+msgid "Laurea Magistrale in Ingegneria Informatica (LM-32)"
+msgstr "Master-Abschluss in Informationstechnik (LM-32)"
+
+msgid "Laurea Magistrale in Ingegneria Meccanica (LM-33)"
+msgstr "Master-Abschluss in Maschinenbau (LM-33)"
+
+msgid "Laurea Magistrale in Ingegneria Meccatronica (LM-33)"
+msgstr "Master-Abschluss in Mechatronik (LM-33)"
+
+msgid "Laurea Magistrale in Ingegneria Navale (LM-34)"
+msgstr "Master-Abschluss in Schiffstechnik (LM-34)"
+
+msgid "Laurea Magistrale in Ingegneria Nucleare (LM-36)"
+msgstr "Master-Abschluss in Kerntechnik (LM-36)"
+
+msgid "Laurea Magistrale in Ingegneria dei Materiali (LM-53)"
+msgstr "Master-Abschluss in Materialwissenschaft und Werkstofftechnik (LM-53)"
+
+msgid "Laurea Magistrale in Ingegneria delle Telecomunicazioni (LM-27)"
+msgstr "Master-Abschluss in Nachrichtentechnik (LM-27)"
+
+msgid "Laurea Magistrale in Intelligenza Artificiale / AI & Robotics (LM-18 / LM-32)"
+msgstr "Master-Abschluss in Künstlicher Intelligenz / KI & Robotik (LM-18 / LM-32)"
+
+msgid "Laurea Magistrale in Lingue e Letterature Moderne (LM-37)"
+msgstr "Master-Abschluss in Moderne Sprachen und Literaturen (LM-37)"
+
+msgid "Laurea Magistrale in Matematica (LM-40)"
+msgstr "Master-Abschluss in Mathematik (LM-40)"
+
+msgid "Laurea Magistrale in Psicologia (LM-51)"
+msgstr "Master-Abschluss in Psychologie (LM-51)"
+
+msgid "Laurea Magistrale in Relazioni Internazionali (LM-52)"
+msgstr "Master-Abschluss in Internationalen Beziehungen (LM-52)"
+
+msgid "Laurea Magistrale in Scienze Chimiche (LM-54)"
+msgstr "Master-Abschluss in Chemie (LM-54)"
+
+msgid "Laurea Magistrale in Scienze Economiche (LM-56)"
+msgstr "Master-Abschluss in Wirtschaftswissenschaften (LM-56)"
+
+msgid "Laurea Magistrale in Scienze Filosofiche (LM-78)"
+msgstr "Master-Abschluss in Philosophie (LM-78)"
+
+msgid "Laurea Magistrale in Scienze Politiche (LM-62)"
+msgstr "Master-Abschluss in Politikwissenschaft (LM-62)"
+
+msgid "Laurea Magistrale in Scienze Storiche (LM-84)"
+msgstr "Master-Abschluss in Geschichtswissenschaften (LM-84)"
+
+msgid "Laurea Magistrale in Scienze della Comunicazione Pubblica, d'Impresa e Pubblicità (LM-59)"
+msgstr "Master-Abschluss in Öffentlicher Kommunikation, Unternehmenskommunikation und Werbung (LM-59)"
+
+msgid "Laurea Magistrale in Scienze della Formazione Continua (LM-57)"
+msgstr "Master-Abschluss in Weiterbildungswissenschaften (LM-57)"
+
+msgid "Laurea Magistrale in Scienze delle Pubbliche Amministrazioni (LM-63)"
+msgstr "Master-Abschluss in Verwaltungswissenschaften (LM-63)"
+
+msgid "Laurea Magistrale in Sicurezza Informatica / Cybersecurity (LM-66)"
+msgstr "Master-Abschluss in IT-Sicherheit / Cybersicherheit (LM-66)"
+
+msgid "Laurea Magistrale in Statistica (LM-82)"
+msgstr "Master-Abschluss in Statistik (LM-82)"
+
+msgid "Laurea Magistrale in Traduzione Specialistica ed Interpretariato (LM-94)"
+msgstr "Master-Abschluss in Fachübersetzen und Dolmetschen (LM-94)"
+
+msgid "Laurea Triennale in Architettura / Scienze dell'Architettura (L-17)"
+msgstr "Bachelor-Abschluss in Architektur / Architekturwissenschaften (L-17)"
+
+msgid "Laurea Triennale in Beni Culturali (L-1)"
+msgstr "Bachelor-Abschluss in Kulturerbe (L-1)"
+
+msgid "Laurea Triennale in Biotecnologie (L-2)"
+msgstr "Bachelor-Abschluss in Biotechnologie (L-2)"
+
+msgid "Laurea Triennale in Design (L-4)"
+msgstr "Bachelor-Abschluss in Design (L-4)"
+
+msgid "Laurea Triennale in Discipline delle Arti, della Musica e dello Spettacolo - DAMS (L-3)"
+msgstr "Bachelor-Abschluss in Kunst-, Musik- und Theaterwissenschaften - DAMS (L-3)"
+
+msgid "Laurea Triennale in Filosofia (L-5)"
+msgstr "Bachelor-Abschluss in Philosophie (L-5)"
+
+msgid "Laurea Triennale in Fisica (L-30)"
+msgstr "Bachelor-Abschluss in Physik (L-30)"
+
+msgid "Laurea Triennale in Geografia (L-6)"
+msgstr "Bachelor-Abschluss in Geographie (L-6)"
+
+msgid "Laurea Triennale in Giurisprudenza / Scienze dei Servizi Giuridici (L-14)"
+msgstr "Bachelor-Abschluss in Rechtswissenschaften / Rechtsdienstleistungen (L-14)"
+
+msgid "Laurea Triennale in Informatica / Scienze e Tecnologie Informatiche (L-31)"
+msgstr "Bachelor-Abschluss in Informatik / Informatikwissenschaft und -technologie (L-31)"
+
+msgid "Laurea Triennale in Ingegneria Civile e Ambientale (L-7)"
+msgstr "Bachelor-Abschluss in Bau- und Umweltingenieurwesen (L-7)"
+
+msgid "Laurea Triennale in Ingegneria Industriale (L-9)"
+msgstr "Bachelor-Abschluss in Industriellem Ingenieurwesen (L-9)"
+
+msgid "Laurea Triennale in Ingegneria dell'Informazione (L-8)"
+msgstr "Bachelor-Abschluss in Informationstechnik (L-8)"
+
+msgid "Laurea Triennale in Lettere / Lettere e Filosofia (L-10)"
+msgstr "Bachelor-Abschluss in Literatur / Literatur und Philosophie (L-10)"
+
+msgid "Laurea Triennale in Lingue e Culture Moderne (L-11)"
+msgstr "Bachelor-Abschluss in Moderne Sprachen und Kulturen (L-11)"
+
+msgid "Laurea Triennale in Matematica (L-35)"
+msgstr "Bachelor-Abschluss in Mathematik (L-35)"
+
+msgid "Laurea Triennale in Mediazione Linguistica (L-12)"
+msgstr "Bachelor-Abschluss in Sprachmittlung (L-12)"
+
+msgid "Laurea Triennale in Psicologia / Scienze e Tecniche Psicologiche (L-24)"
+msgstr "Bachelor-Abschluss in Psychologie / Psychologische Wissenschaft und Techniken (L-24)"
+
+msgid "Laurea Triennale in Scienza della Formazione Primaria"
+msgstr "Bachelor-Abschluss in Grundschulpädagogik"
+
+msgid "Laurea Triennale in Scienza della Nutrizione / Scienze della Nutrizione (L-26)"
+msgstr "Bachelor-Abschluss in Ernährungswissenschaft (L-26)"
+
+msgid "Laurea Triennale in Scienze Biologiche (L-13)"
+msgstr "Bachelor-Abschluss in Biologie (L-13)"
+
+msgid "Laurea Triennale in Scienze Chimiche (L-27)"
+msgstr "Bachelor-Abschluss in Chemie (L-27)"
+
+msgid "Laurea Triennale in Scienze Economiche (L-33)"
+msgstr "Bachelor-Abschluss in Wirtschaftswissenschaften (L-33)"
+
+msgid "Laurea Triennale in Scienze Geologiche (L-34)"
+msgstr "Bachelor-Abschluss in Geowissenschaften (L-34)"
+
+msgid "Laurea Triennale in Scienze Politiche e delle Relazioni Internazionali (L-36)"
+msgstr "Bachelor-Abschluss in Politikwissenschaft und Internationalen Beziehungen (L-36)"
+
+msgid "Laurea Triennale in Scienze Sociali / Servizio Sociale (L-39)"
+msgstr "Bachelor-Abschluss in Sozialwissenschaften / Soziale Arbeit (L-39)"
+
+msgid "Laurea Triennale in Scienze Statistiche (L-41)"
+msgstr "Bachelor-Abschluss in Statistik (L-41)"
+
+msgid "Laurea Triennale in Scienze dell'Economia e della Gestione Aziendale (L-18)"
+msgstr "Bachelor-Abschluss in Wirtschafts- und Managementwissenschaften (L-18)"
+
+msgid "Laurea Triennale in Scienze dell'Educazione e della Formazione (L-19)"
+msgstr "Bachelor-Abschluss in Erziehungs- und Bildungswissenschaften (L-19)"
+
+msgid "Laurea Triennale in Scienze della Comunicazione (L-20)"
+msgstr "Bachelor-Abschluss in Kommunikationswissenschaft (L-20)"
+
+msgid "Laurea Triennale in Scienze delle Attività Motorie e Sportive (L-22)"
+msgstr "Bachelor-Abschluss in Sport- und Bewegungswissenschaften (L-22)"
+
+msgid "Laurea Triennale in Scienze e Tecnologie Agrarie e Forestali (L-25)"
+msgstr "Bachelor-Abschluss in Agrar- und Forstwissenschaften und -technologien (L-25)"
+
+msgid "Laurea Triennale in Scienze e Tecnologie Alimentari (L-26)"
+msgstr "Bachelor-Abschluss in Lebensmittelwissenschaft und -technologie (L-26)"
+
+msgid "Laurea Triennale in Scienze e Tecnologie Farmaceutiche (L-29)"
+msgstr "Bachelor-Abschluss in Pharmazeutischen Wissenschaften und Technologien (L-29)"
+
+msgid "Laurea Triennale in Scienze e Tecnologie per l'Ambiente e la Natura (L-32)"
+msgstr "Bachelor-Abschluss in Umwelt- und Naturwissenschaften und -technologien (L-32)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Fisioterapia (L/SNT2)"
+msgstr "Bachelor-Abschluss in Gesundheitsberufen - Physiotherapie (L/SNT2)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Igiene Dentale (L/SNT3)"
+msgstr "Bachelor-Abschluss in Gesundheitsberufen - Dentalhygiene (L/SNT3)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Infermieristica (L/SNT1)"
+msgstr "Bachelor-Abschluss in Gesundheitsberufen - Krankenpflege (L/SNT1)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Logopedia (L/SNT2)"
+msgstr "Bachelor-Abschluss in Gesundheitsberufen - Logopädie (L/SNT2)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Ostetricia (L/SNT1)"
+msgstr "Bachelor-Abschluss in Gesundheitsberufen - Hebammenwesen (L/SNT1)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Prevenzione nell'Ambiente e nei Luoghi di Lavoro (L/SNT4)"
+msgstr "Bachelor-Abschluss in Gesundheitsberufen - Prävention in Umwelt und am Arbeitsplatz (L/SNT4)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Radiologia / Tecniche di Radiologia (L/SNT3)"
+msgstr "Bachelor-Abschluss in Gesundheitsberufen - Radiologie / Radiologietechnik (L/SNT3)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Tecniche di Laboratorio (L/SNT3)"
+msgstr "Bachelor-Abschluss in Gesundheitsberufen - Laboratoriumstechnik (L/SNT3)"
+
+msgid "Licenza Media / Scuola Secondaria di Primo Grado"
+msgstr "Mittlere Reife / Sekundarstufe I"
+
+msgid "Lingue"
+msgstr "Sprachen"
+
+msgid "Lingue conosciute"
+msgstr "Sprachkenntnisse"
+
+msgid "Luogo di nascita"
+msgstr "Geburtsort"
+
+msgid "Magazziniere / Responsabile Logistica"
+msgstr "Lagerarbeiter / Logistikleiter"
+
+msgid "Master Universitario di Primo Livello"
+msgstr "Universitätsmaster (1. Stufe)"
+
+msgid "Master Universitario di Secondo Livello"
+msgstr "Universitätsmaster (2. Stufe)"
+
+msgid "Minimo 6 caratteri"
+msgstr "Mindestens 6 Zeichen"
+
+msgid "Modifica"
+msgstr "Bearbeiten"
+
+msgid "Nazionalità"
+msgstr "Staatsangehörigkeit"
+
+msgid "Nome"
+msgstr "Vorname"
+
+msgid "Nome azienda"
+msgstr "Firmenname"
+
+msgid "Nome dell'istituto"
+msgstr "Name der Bildungseinrichtung"
+
+msgid "Nome, ruolo e contatto (facoltativo)..."
+msgstr "Name, Rolle und Kontakt (optional)..."
+
+msgid "Non hai ancora curriculum"
+msgstr "Du hast noch keine Lebensläufe"
+
+msgid "Non hai un account?"
+msgstr "Du hast noch kein Konto?"
+
+msgid "Nuovo CV"
+msgstr "Neuer Lebenslauf"
+
+msgid "Obiettivo professionale"
+msgstr "Berufliches Ziel"
+
+msgid "Operaio Specializzato"
+msgstr "Facharbeiter"
+
+msgid "Operatore Customer Care / Call Center"
+msgstr "Kundendienstmitarbeiter / Call-Center-Agent"
+
+msgid "PR & Communication Specialist"
+msgstr "PR- & Kommunikationsspezialist"
+
+msgid "Part-time"
+msgstr "Teilzeit"
+
+msgid "Password"
+msgstr "Passwort"
+
+msgid "Patente"
+msgstr "Führerschein"
+
+msgid "Periodo"
+msgstr "Zeitraum"
+
+msgid "Portfolio / sito web"
+msgstr "Portfolio / Website"
+
+msgid "Potrai cambiare stile senza modificare i contenuti."
+msgstr "Du kannst den Stil ändern, ohne die Inhalte zu verändern."
+
+msgid "Prima volta qui?"
+msgstr "Zum ersten Mal hier?"
+
+msgid "Profilo"
+msgstr "Profil"
+
+msgid "Profilo Personale"
+msgstr "Persönliches Profil"
+
+msgid "Profilo professionale"
+msgstr "Berufliches Profil"
+
+msgid "Progetti"
+msgstr "Projekte"
+
+msgid "Progetti rilevanti"
+msgstr "Relevante Projekte"
+
+msgid "Project Manager"
+msgstr "Projektmanager"
+
+msgid "Quale posizione cerchi e dove vuoi arrivare (facoltativo)"
+msgstr "Welche Position suchst du und wo möchtest du hin (optional)"
+
+msgid "Pronto a iniziare?"
+msgstr "Bereit loszulegen?"
+
+msgid "Qualifica Professionale triennale (IeFP)"
+msgstr "Dreijährige Berufsqualifikation (IeFP)"
+
+msgid "RSSGLL00A01F205X"
+msgstr "RSSGLL00A01F205X"
+
+msgid "Receptionist / Addetto all'Accoglienza"
+msgstr "Rezeptionist / Empfangskraft"
+
+msgid "Referenze"
+msgstr "Referenzen"
+
+msgid "Registrati"
+msgstr "Registrieren"
+
+msgid "Registrati e inizia"
+msgstr "Registriere dich und leg los"
+
+msgid "Responsabile Risorse Umane (HR Manager)"
+msgstr "Personalleiter (HR Manager)"
+
+msgid "Responsabilità e risultati ottenuti..."
+msgstr "Verantwortlichkeiten und erzielte Ergebnisse..."
+
+msgid "Rimuovi foto"
+msgstr "Foto entfernen"
+
+msgid "Ripeti la password"
+msgstr "Passwort wiederholen"
+
+msgid "Risultati e obiettivi raggiunti"
+msgstr "Erreichte Ergebnisse und Ziele"
+
+msgid "Risultati raggiunti:"
+msgstr "Erreichte Ergebnisse:"
+
+msgid "Ritrova i tuoi curriculum e riprendi da dove avevi lasciato."
+msgstr "Finde deine Lebensläufe wieder und mach weiter, wo du aufgehört hast."
+
+msgid "Ruolo, azienda, periodo e principali attività..."
+msgstr "Rolle, Unternehmen, Zeitraum und Haupttätigkeiten..."
+
+msgid "SEO/SEM Specialist"
+msgstr "SEO/SEM-Spezialist"
+
+msgid "Scarica / Salva PDF"
+msgstr "PDF herunterladen / speichern"
+
+msgid "Scarica PDF"
+msgstr "PDF herunterladen"
+
+msgid "Scegli il template del tuo CV"
+msgstr "Wähle das Template für deinen Lebenslauf"
+
+msgid "Scuola di Specializzazione (Area Medica / Legale / Beni Culturali)"
+msgstr "Spezialisierungsschule (Bereich Medizin / Recht / Kulturerbe)"
+
+msgid "Seleziona i titoli di studio posseduti:"
+msgstr "Wähle deine erworbenen Abschlüsse:"
+
+msgid "Seleziona la tua professione..."
+msgstr "Wähle deinen Beruf..."
+
+msgid "Seleziona..."
+msgstr "Auswählen..."
+
+msgid "Settore / industria"
+msgstr "Branche / Industrie"
+
+msgid "Sito #1 per il tuo CV"
+msgstr "Die #1-Website für deinen Lebenslauf"
+
+msgid "Social Media Manager"
+msgstr "Social-Media-Manager"
+
+msgid "Specifica altro titolo di studio..."
+msgstr "Gib einen anderen Abschluss an..."
+
+msgid "Specifica la tua professione..."
+msgstr "Gib deinen Beruf an..."
+
+msgid "Strumenti e Software"
+msgstr "Werkzeuge und Software"
+
+msgid "Strumenti e software"
+msgstr "Werkzeuge und Software"
+
+msgid "Studente / Neolaureato"
+msgstr "Student / Absolvent"
+
+msgid "Sviluppatore Software / Software Engineer"
+msgstr "Softwareentwickler / Software Engineer"
+
+msgid "System Administrator / Sistemista"
+msgstr "Systemadministrator / Systemtechniker"
+
+msgid "Tecnico Elettricista / Idraulico"
+msgstr "Elektrotechniker / Installateur"
+
+msgid "Telefono"
+msgstr "Telefon"
+
+msgid "Tempo determinato"
+msgstr "Befristeter Vertrag"
+
+msgid "Template"
+msgstr "Vorlagen"
+
+msgid "Tempo indeterminato"
+msgstr "Unbefristeter Vertrag"
+
+msgid "Tesi:"
+msgstr "Abschlussarbeit:"
+
+msgid "Tipo di contratto desiderato"
+msgstr "Gewünschte Vertragsart"
+
+msgid "Tirocinio / Stage"
+msgstr "Praktikum"
+
+msgid "Titolo della tesi (se laureato/a)"
+msgstr "Titel der Abschlussarbeit (falls Hochschulabsolvent/in)"
+
+msgid "Titolo di tesi"
+msgstr "Titel der Abschlussarbeit"
+
+msgid "UI/UX Designer"
+msgstr "UI/UX-Designer"
+
+
+msgid "Torna su"
+msgstr "Nach oben"
+
+msgid "Ultima modifica:"
+msgstr "Zuletzt bearbeitet:"
+
+msgid "Ultimo ruolo ricoperto"
+msgstr "Zuletzt ausgeübte Position"
+
+msgid "Una voce per riga..."
+msgstr "Ein Eintrag pro Zeile..."
+
+msgid "Via e numero civico"
+msgstr "Straße und Hausnummer"
+
+msgid "Volontariato"
+msgstr "Ehrenamt"
+
+msgid "Volontariato e associazioni"
+msgstr "Ehrenamt und Vereine"
+
+msgid "Voto / valutazione"
+msgstr "Note / Bewertung"
+
+msgid "Voto:"
+msgstr "Note:"
+
+msgid "Web Developer (Front-end / Back-end / Full-stack)"
+msgstr "Webentwickler (Front-end / Back-end / Full-stack)"
+
+msgid "carattere"
+msgstr "Zeichen"
+
+msgid "con"
+msgstr "mit"
+
+msgid "nome@email.it"
+msgstr "nome@email.it"
+
+msgid "porta il tuo percorso professionale dove merita."
+msgstr "bringe deinen beruflichen Werdegang dahin, wo er hingehört."
+
+msgid "realizzato con Cursus."
+msgstr "erstellt mit Cursus."

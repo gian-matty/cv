@@ -101,6 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const footerTop = document.getElementById('footer-top');
+    if (footerTop) {
+        footerTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
     const telefonoInput = document.getElementById('telefono');
 
     if (telefonoInput) {
@@ -332,83 +339,44 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', () => { primoInvalido = null; });
     }
 
-    const scena3d = document.getElementById('hero3d-scene');
-    const traccia3d = document.getElementById('hero3d');
+    const track = document.getElementById('browser-track');
+    const browserKey = document.getElementById('browser-key');
+    const tabs = document.querySelectorAll('.btab[data-tpl]');
+    const browser = document.getElementById('hero-browser');
 
-    if (scena3d && traccia3d) {
-        const almenoTouch = matchMedia('(pointer: coarse)').matches;
+    if (track && tabs.length) {
         const riduci = matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (almenoTouch || riduci) {
-            scena3d.style.setProperty('--advance', '-60px');
-            scena3d.style.setProperty('--tilt-x', '8deg');
-            scena3d.style.setProperty('--tilt-y', '-4deg');
-        } else {
-            let progresso = 0;
-            let obiettivo = 0;
-            let raf = null;
+        let timer = null;
+        let idx = 0;
 
-            const aggiorna = () => {
-                const avanzamento = traccia3d.offsetHeight - window.innerHeight;
-                const p = Math.min(1, Math.max(0, (window.scrollY - traccia3d.offsetTop) / (avanzamento || 1)));
-                obiettivo = p;
-
-                progresso += (obiettivo - progresso) * 0.09;
-                if (Math.abs(obiettivo - progresso) > 0.0005) {
-                    scena3d.style.setProperty('--advance', `${-420 + progresso * 1120}px`);
-                    scena3d.style.setProperty('--tilt-x', `${14 - progresso * 17}deg`);
-                    scena3d.style.setProperty('--tilt-y', `${-6 + progresso * 4}deg`);
-                    raf = requestAnimationFrame(aggiorna);
-                } else {
-                    raf = null;
-                }
-            };
-
-            const suScroll = () => {
-                if (raf === null) raf = requestAnimationFrame(aggiorna);
-            };
-
-            window.addEventListener('scroll', suScroll, { passive: true });
-            suScroll();
-        }
-    }
-
-    const anteprimaDialog = document.getElementById('anteprima-dialog');
-    const anteprimaFrame = document.getElementById('anteprima-frame');
-
-    if (anteprimaDialog && anteprimaFrame) {
-        const anteprimaNome = document.getElementById('anteprima-nome');
-        const chiudiAnteprima = () => {
-            if (anteprimaDialog.open) anteprimaDialog.close();
-        };
-
-        document.querySelectorAll('.hero3d-card').forEach(card => {
-            card.addEventListener('click', (e) => {
-                e.preventDefault();
-                anteprimaFrame.src = card.getAttribute('href');
-                if (anteprimaNome) anteprimaNome.textContent = card.dataset.nome || '';
-                anteprimaDialog.showModal();
+        const switchTo = (i) => {
+            tabs.forEach((t, n) => {
+                const attivo = n === i;
+                t.classList.toggle('is-active', attivo);
+                t.setAttribute('aria-selected', attivo ? 'true' : 'false');
             });
-        });
-
-        const stampaAnteprima = () => {
-            if (anteprimaFrame.contentWindow) anteprimaFrame.contentWindow.print();
+            track.style.transform = `translateX(-${i * 20}%)`;
+            if (browserKey) browserKey.textContent = tabs[i].dataset.tpl;
+            idx = i;
         };
 
-        const chiudiBtn = document.getElementById('anteprima-chiudi');
-        if (chiudiBtn) chiudiBtn.addEventListener('click', chiudiAnteprima);
+        const startAutoplay = () => {
+            clearInterval(timer);
+            timer = setInterval(() => switchTo((idx + 1) % tabs.length), 6000);
+        };
 
-        anteprimaDialog.addEventListener('click', (e) => {
-            if (e.target === anteprimaDialog) chiudiAnteprima();
-        });
+        tabs.forEach(tab => tab.addEventListener('click', () => {
+            switchTo([...tabs].indexOf(tab));
+            if (!riduci) startAutoplay();
+        }));
 
-        anteprimaDialog.addEventListener('close', () => {
-            anteprimaFrame.src = 'about:blank';
-        });
+        if (browser) {
+            browser.addEventListener('mouseenter', () => clearInterval(timer));
+            browser.addEventListener('mouseleave', () => { if (!riduci) startAutoplay(); });
+            browser.addEventListener('focusin', () => clearInterval(timer));
+            browser.addEventListener('focusout', () => { if (!riduci) startAutoplay(); });
+        }
 
-        const pdfBtn = document.getElementById('anteprima-pdf');
-        if (pdfBtn) pdfBtn.addEventListener('click', stampaAnteprima);
-
-        const stampaBtn = document.getElementById('anteprima-stampa');
-        if (stampaBtn) stampaBtn.addEventListener('click', stampaAnteprima);
+        if (!riduci) startAutoplay();
     }
 });

@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="it">
+<html lang="{{ get_locale() }}">
     <head>
         {% from '_macros.html' import head %}
-        {{ head('Compilazione CV', 'Compila un unico form e genera il tuo curriculum in 5 template professionali.') }}
+        {{ head(_('Compilazione CV'), _('Compila un unico form e genera il tuo curriculum in 5 template professionali.')) }}
     </head>
 
     <body>
@@ -21,94 +21,94 @@
         {% set patente_lista = (d.get('patente') or '').split(', ') if (d.get('patente') or '').strip() else [] %}
         {% set hobby_lista = (d.get('hobby') or '').split(', ') if (d.get('hobby') or '').strip() else [] %}
 
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cambia modalità tema">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="{{ _('Cambia modalità tema') }}">
             <span class="theme-icon">☾</span>
         </button>
 
         <header class="page-header">
-            <p class="eyebrow">Compilazione CV</p>
-            <h1>Costruiamo il tuo prossimo passo</h1>
-            <p>Compila il profilo con le informazioni che vuoi valorizzare nel tuo curriculum.</p>
+            <p class="eyebrow">{{ _('Compilazione CV') }}</p>
+            <h1>{{ _('Costruiamo il tuo prossimo passo') }}</h1>
+            <p>{{ _('Compila il profilo con le informazioni che vuoi valorizzare nel tuo curriculum.') }}</p>
         </header>
 
-        <form action="{{ url_for('genera_cv') }}" method="POST" enctype="multipart/form-data">
+        <form class="tema-chiaro" action="{{ url_for('genera_cv') }}" method="POST" enctype="multipart/form-data">
             {% if cv_id %}<input type="hidden" name="cv_id" value="{{ cv_id }}" />{% endif %}
             <fieldset>
-                <legend>Dati Anagrafici e Contatti</legend>
+                <legend>{{ _('Dati Anagrafici e Contatti') }}</legend>
                 <div class="form-grid">
-                    <label>Nome<input type="text" name="nome" placeholder="Es. Giulia" required value="{{ d.get('nome','') }}" /></label>
-                    <label>Cognome<input type="text" name="cognome" placeholder="Es. Rossi" required value="{{ d.get('cognome','') }}" /></label>
-                    <label class="campo-pieno">Email<input type="email" name="email" placeholder="nome@email.it" required value="{{ d.get('email','') }}" /></label>
+                    <label>{{ _('Nome') }}<input type="text" name="nome" placeholder="{{ _('Es. Giulia') }}" required value="{{ d.get('nome','') }}" /></label>
+                    <label>{{ _('Cognome') }}<input type="text" name="cognome" placeholder="{{ _('Es. Rossi') }}" required value="{{ d.get('cognome','') }}" /></label>
+                    <label class="campo-pieno">{{ _('Email') }}<input type="email" name="email" placeholder="{{ _('nome@email.it') }}" required value="{{ d.get('email','') }}" /></label>
                 </div>
-                <label for="telefono">Telefono</label>
+                <label for="telefono">{{ _('Telefono') }}</label>
                 <div class="telefono-container">
                     <select name="prefisso" id="prefisso" class="prefisso-select" required>
                         {% for p in prefissi %}
                         <option value="{{ p }}" {% if (d.get('prefisso') or '+39') == p %}selected{% endif %}>{{ p }}</option>
                         {% endfor %}
                     </select>
-                    <input type="tel" id="telefono" name="telefono" placeholder="Cellulare" required value="{{ d.get('telefono','') }}" />
+                    <input type="tel" id="telefono" name="telefono" placeholder="{{ _('Cellulare') }}" required value="{{ d.get('telefono','') }}" />
                 </div>
 
                 <div class="form-grid">
-                    <label>Città<input type="text" id="citta" name="citta" placeholder="Inizia a digitare un comune o paese..." autocomplete="off" list="citta-list" required value="{{ d.get('citta','') }}" /></label>
+                    <label>{{ _('Città') }}<input type="text" id="citta" name="citta" placeholder="{{ _('Inizia a digitare un comune o paese...') }}" autocomplete="off" list="citta-list" required value="{{ d.get('citta','') }}" /></label>
                     <datalist id="citta-list"></datalist>
-                    <label>CAP<input type="text" name="cap" placeholder="Es. 20100" value="{{ d.get('cap','') }}" /></label>
-                    <label>Indirizzo<input type="text" name="indirizzo" placeholder="Via e numero civico" value="{{ d.get('indirizzo','') }}" /></label>
-                    <label>Data di nascita<input type="date" name="data_nascita" value="{{ d.get('data_nascita','') }}" /></label>
-                    <label>Luogo di nascita<input type="text" id="luogo_nascita" name="luogo_nascita" placeholder="Città, Paese" autocomplete="off" list="luogo-list" value="{{ d.get('luogo_nascita','') }}" /></label>
+                    <label>{{ _('CAP') }}<input type="text" name="cap" placeholder="{{ _('Es. 20100') }}" value="{{ d.get('cap','') }}" /></label>
+                    <label>{{ _('Indirizzo') }}<input type="text" name="indirizzo" placeholder="{{ _('Via e numero civico') }}" value="{{ d.get('indirizzo','') }}" /></label>
+                    <label>{{ _('Data di nascita') }}<input type="date" name="data_nascita" value="{{ d.get('data_nascita','') }}" /></label>
+                    <label>{{ _('Luogo di nascita') }}<input type="text" id="luogo_nascita" name="luogo_nascita" placeholder="{{ _('Città, Paese') }}" autocomplete="off" list="luogo-list" value="{{ d.get('luogo_nascita','') }}" /></label>
                     <datalist id="luogo-list"></datalist>
-                    <label>Nazionalità<input type="text" name="nazionalita" placeholder="Es. Italiana" value="{{ d.get('nazionalita','') }}" /></label>
-                    <label>Codice fiscale<input type="text" name="codice_fiscale" placeholder="RSSGLL00A01F205X" value="{{ d.get('codice_fiscale','') }}" /></label>
+                    <label>{{ _('Nazionalità') }}<input type="text" name="nazionalita" placeholder="{{ _('Es. Italiana') }}" value="{{ d.get('nazionalita','') }}" /></label>
+                    <label>{{ _('Codice fiscale') }}<input type="text" name="codice_fiscale" placeholder="{{ _('RSSGLL00A01F205X') }}" value="{{ d.get('codice_fiscale','') }}" /></label>
                     <label>LinkedIn<input type="url" name="linkedin" placeholder="https://linkedin.com/in/..." value="{{ d.get('linkedin','') }}" /></label>
-                    <label>Portfolio / sito web<input type="url" name="portfolio" placeholder="https://..." value="{{ d.get('portfolio','') }}" /></label>
+                    <label>{{ _('Portfolio / sito web') }}<input type="url" name="portfolio" placeholder="https://..." value="{{ d.get('portfolio','') }}" /></label>
                     <label>GitHub<input type="url" name="github" placeholder="https://github.com/..." value="{{ d.get('github','') }}" /></label>
                 </div>
                 <div class="photo-upload">
-                    <label for="foto_profilo">Foto profilo <span class="foto-hint">(facoltativa, max 5 MB)</span></label>
+                    <label for="foto_profilo">{{ _('Foto profilo') }} <span class="foto-hint">{{ _('(facoltativa, max 5 MB)') }}</span></label>
                     <label class="upload-button" for="foto_profilo" id="upload-zone">
                         <input type="file" id="foto_profilo" name="foto_profilo" accept="image/*" />
                         <span class="upload-icon">&#8681;</span>
-                        <span>Carica una foto o trascinala qui</span>
+                        <span>{{ _('Carica una foto o trascinala qui') }}</span>
                     </label>
                     <p class="upload-error" id="upload-error" hidden></p>
                     <div id="image-preview" class="image-preview" {% if not d.get('foto_profilo') %}hidden{% endif %}>
-                        <img id="image-preview-img" src="{% if d.get('foto_profilo') %}{{ d.get('foto_profilo') }}{% else %}data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7{% endif %}" alt="Anteprima della foto profilo" />
-                        <button type="button" id="remove-image" class="link-button">Rimuovi foto</button>
+                        <img id="image-preview-img" src="{% if d.get('foto_profilo') %}{{ d.get('foto_profilo') }}{% else %}data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7{% endif %}" alt="{{ _('Anteprima della foto profilo') }}" />
+                        <button type="button" id="remove-image" class="link-button">{{ _('Rimuovi foto') }}</button>
                     </div>
                 </div>
             </fieldset>
 
             <fieldset>
-                <legend>Profilo Personale</legend>
+                <legend>{{ _('Profilo Personale') }}</legend>
                 <select name="titolo_professionale" id="titolo_professionale" required>
-                    <option value="" disabled {% if not d.get('titolo_professionale') %}selected{% endif %}>Seleziona la tua professione...</option>
+                    <option value="" disabled {% if not d.get('titolo_professionale') %}selected{% endif %}>{{ _('Seleziona la tua professione...') }}</option>
                     {% for p in titoli_professionali %}
-                    <option value="{{ p }}" {% if d.get('titolo_professionale') == p %}selected{% elif p == 'Altro' and custom_titolo %}selected{% endif %}>{{ p }}</option>
+                    <option value="{{ p }}" {% if d.get('titolo_professionale') == p %}selected{% elif p == 'Altro' and custom_titolo %}selected{% endif %}>{{ _(p) }}</option>
                     {% endfor %}
                 </select>
 
                 <div id="box_altro" class="box-altro {% if custom_titolo %}is-open{% endif %}">
-                    <input type="text" id="titolo_altro" name="titolo_altro" placeholder="Specifica la tua professione..." {% if custom_titolo %}value="{{ d.get('titolo_professionale') }}"{% endif %} />
+                    <input type="text" id="titolo_altro" name="titolo_altro" placeholder="{{ _('Specifica la tua professione...') }}" {% if custom_titolo %}value="{{ d.get('titolo_professionale') }}"{% endif %} />
                 </div>
 
-                <label>Profilo professionale<textarea name="descrizione" placeholder="Breve descrizione del tuo profilo professionale..." required>{{ d.get('descrizione','') }}</textarea></label>
-                <label>Obiettivo professionale<textarea name="obiettivo_professionale" placeholder="Quale posizione cerchi e dove vuoi arrivare (facoltativo)">{{ d.get('obiettivo_professionale','') }}</textarea></label>
+                <label>{{ _('Profilo professionale') }}<textarea name="descrizione" placeholder="{{ _('Breve descrizione del tuo profilo professionale...') }}" required>{{ d.get('descrizione','') }}</textarea></label>
+                <label>{{ _('Obiettivo professionale') }}<textarea name="obiettivo_professionale" placeholder="{{ _('Quale posizione cerchi e dove vuoi arrivare (facoltativo)') }}">{{ d.get('obiettivo_professionale','') }}</textarea></label>
                 <div class="form-grid">
-                    <label>Anni di esperienza<input type="text" name="anni_esperienza" placeholder="Es. 5" value="{{ d.get('anni_esperienza','') }}" /></label>
+                    <label>{{ _('Anni di esperienza') }}<input type="text" name="anni_esperienza" placeholder="{{ _('Es. 5') }}" value="{{ d.get('anni_esperienza','') }}" /></label>
                     <label
-                        >Tipo di contratto desiderato<select name="contratto_desiderato">
-                            <option value="" {% if not d.get('contratto_desiderato') %}selected{% endif %}>Seleziona...</option>
+                        >{{ _('Tipo di contratto desiderato') }}<select name="contratto_desiderato">
+                            <option value="" {% if not d.get('contratto_desiderato') %}selected{% endif %}>{{ _('Seleziona...') }}</option>
                             {% for c in contratti %}
-                            <option value="{{ c }}" {% if d.get('contratto_desiderato') == c %}selected{% endif %}>{{ c }}</option>
+                            <option value="{{ c }}" {% if d.get('contratto_desiderato') == c %}selected{% endif %}>{{ _(c) }}</option>
                             {% endfor %}
                         </select></label
                     >
                     <label
-                        >Disponibilità ad iniziare<select name="disponibilita_immediata">
-                            <option value="" {% if not d.get('disponibilita_immediata') %}selected{% endif %}>Seleziona...</option>
+                        >{{ _('Disponibilità ad iniziare') }}<select name="disponibilita_immediata">
+                            <option value="" {% if not d.get('disponibilita_immediata') %}selected{% endif %}>{{ _('Seleziona...') }}</option>
                             {% for o in opzioni_disponibilita %}
-                            <option value="{{ o }}" {% if d.get('disponibilita_immediata') == o %}selected{% endif %}>{{ o }}</option>
+                            <option value="{{ o }}" {% if d.get('disponibilita_immediata') == o %}selected{% endif %}>{{ _(o) }}</option>
                             {% endfor %}
                         </select></label
                     >
@@ -116,104 +116,106 @@
             </fieldset>
 
             <fieldset>
-                <legend>Istruzione e Formazione</legend>
-                <label for="titolo_filtro">Seleziona i titoli di studio posseduti:</label>
-                <input type="search" id="titolo_filtro" placeholder="Cerca il tuo titolo di studio..." />
+                <legend>{{ _('Istruzione e Formazione') }}</legend>
+                <label for="titolo_filtro">{{ _('Seleziona i titoli di studio posseduti:') }}</label>
+                <input type="search" id="titolo_filtro" placeholder="{{ _('Cerca il tuo titolo di studio...') }}" />
                 <div class="checkbox-container" id="titoli_lista">
                     {% for titolo in titoli_studio %}
                     <div data-titolo="{{ titolo|lower }}">
                         <input type="checkbox" name="titolo_studio" value="{{ titolo }}" id="titolo_{{ loop.index }}" {% if (titolo in t_studio) or (titolo == 'Altro' and ha_altro_titolo) %}checked{% endif %} />
-                        <label for="titolo_{{ loop.index }}">{{ titolo }}</label>
+                        <label for="titolo_{{ loop.index }}">{{ _(titolo) }}</label>
                     </div>
                     {% endfor %}
                 </div>
 
                 <div id="box_altro_titolo" class="box-altro {% if ha_altro_titolo %}is-open{% endif %}">
-                    <input type="text" id="titolo_studio_altro" name="titolo_studio_altro" placeholder="Specifica altro titolo di studio..." value="{{ altro_titolo_val }}" />
+                    <input type="text" id="titolo_studio_altro" name="titolo_studio_altro" placeholder="{{ _('Specifica altro titolo di studio...') }}" value="{{ altro_titolo_val }}" />
                 </div>
 
                 <div class="form-grid">
-                    <label>Anno di conseguimento<input type="text" name="anno_diploma" placeholder="Es. 2022" required value="{{ d.get('anno_diploma','') }}" /></label>
-                    <label>Istituto / università<input type="text" name="istituto_formazione" placeholder="Nome dell'istituto" value="{{ d.get('istituto_formazione','') }}" /></label>
-                    <label>Voto / valutazione<input type="text" name="voto_formazione" placeholder="Es. 105/110" value="{{ d.get('voto_formazione','') }}" /></label>
-                    <label>Titolo di tesi<input type="text" name="tesi_titolo" placeholder="Titolo della tesi (se laureato/a)" value="{{ d.get('tesi_titolo','') }}" /></label>
+                    <label>{{ _('Anno di conseguimento') }}<input type="text" name="anno_diploma" placeholder="{{ _('Es. 2022') }}" required value="{{ d.get('anno_diploma','') }}" /></label>
+                    <label>{{ _('Istituto / università') }}<input type="text" name="istituto_formazione" placeholder="{{ _('Nome dell\'istituto') }}" value="{{ d.get('istituto_formazione','') }}" /></label>
+                    <label>{{ _('Voto / valutazione') }}<input type="text" name="voto_formazione" placeholder="{{ _('Es. 105/110') }}" value="{{ d.get('voto_formazione','') }}" /></label>
+                    <label>{{ _('Titolo di tesi') }}<input type="text" name="tesi_titolo" placeholder="{{ _('Titolo della tesi (se laureato/a)') }}" value="{{ d.get('tesi_titolo','') }}" /></label>
                 </div>
-                <label>Corsi, certificazioni e formazione aggiuntiva<textarea name="corsi_certificazioni" placeholder="Una voce per riga...">{{ d.get('corsi_certificazioni','') }}</textarea></label>
+                <label>{{ _('Corsi, certificazioni e formazione aggiuntiva') }}<textarea name="corsi_certificazioni" placeholder="{{ _('Una voce per riga...') }}">{{ d.get('corsi_certificazioni','') }}</textarea></label>
             </fieldset>
 
             <fieldset>
-                <legend>Esperienze Lavorative</legend>
+                <legend>{{ _('Esperienze Lavorative') }}</legend>
                 <div class="form-grid">
-                    <label>Ultimo ruolo ricoperto<input type="text" name="ultimo_ruolo" placeholder="Es. Product Designer" required value="{{ d.get('ultimo_ruolo','') }}" /></label>
-                    <label>Azienda<input type="text" name="azienda" placeholder="Nome azienda" required value="{{ d.get('azienda','') }}" /></label>
-                    <label>Periodo<input type="text" name="periodo_lavoro" placeholder="Es. 2021 - Presente" required value="{{ d.get('periodo_lavoro','') }}" /></label>
-                    <label>Settore / industria<input type="text" name="settore_lavoro" placeholder="Es. IT, Sanità, Retail" value="{{ d.get('settore_lavoro','') }}" /></label>
+                    <label>{{ _('Ultimo ruolo ricoperto') }}<input type="text" name="ultimo_ruolo" placeholder="{{ _('Es. Product Designer') }}" required value="{{ d.get('ultimo_ruolo','') }}" /></label>
+                    <label>{{ _('Azienda') }}<input type="text" name="azienda" placeholder="{{ _('Nome azienda') }}" required value="{{ d.get('azienda','') }}" /></label>
+                    <label>{{ _('Periodo') }}<input type="text" name="periodo_lavoro" placeholder="{{ _('Es. 2021 - Presente') }}" required value="{{ d.get('periodo_lavoro','') }}" /></label>
+                    <label>{{ _('Settore / industria') }}<input type="text" name="settore_lavoro" placeholder="{{ _('Es. IT, Sanità, Retail') }}" value="{{ d.get('settore_lavoro','') }}" /></label>
                 </div>
-                <label>Descrizione delle mansioni<textarea name="descrizione_lavoro" placeholder="Responsabilità e risultati ottenuti..." required>{{ d.get('descrizione_lavoro','') }}</textarea></label>
-                <label>Risultati e obiettivi raggiunti<textarea name="risultati_raggiunti" placeholder="Es. Riduzione costi del 20%, lancio di 3 prodotti...">{{ d.get('risultati_raggiunti','') }}</textarea></label>
-                <label>Esperienze precedenti<textarea name="esperienze_precedenti" placeholder="Ruolo, azienda, periodo e principali attività...">{{ d.get('esperienze_precedenti','') }}</textarea></label>
-                <label>Progetti rilevanti<textarea name="progetti" placeholder="Descrivi progetti personali o professionali...">{{ d.get('progetti','') }}</textarea></label>
-                <label>Volontariato e associazioni<textarea name="volontariato" placeholder="Attività, organizzazione e periodo...">{{ d.get('volontariato','') }}</textarea></label>
+                <label>{{ _('Descrizione delle mansioni') }}<textarea name="descrizione_lavoro" placeholder="{{ _('Responsabilità e risultati ottenuti...') }}" required>{{ d.get('descrizione_lavoro','') }}</textarea></label>
+                <label>{{ _('Risultati e obiettivi raggiunti') }}<textarea name="risultati_raggiunti" placeholder="Es. Riduzione costi del 20%, lancio di 3 prodotti...">{{ d.get('risultati_raggiunti','') }}</textarea></label>
+                <label>{{ _('Esperienze precedenti') }}<textarea name="esperienze_precedenti" placeholder="{{ _('Ruolo, azienda, periodo e principali attività...') }}">{{ d.get('esperienze_precedenti','') }}</textarea></label>
+                <label>{{ _('Progetti rilevanti') }}<textarea name="progetti" placeholder="{{ _('Descrivi progetti personali o professionali...') }}">{{ d.get('progetti','') }}</textarea></label>
+                <label>{{ _('Volontariato e associazioni') }}<textarea name="volontariato" placeholder="{{ _('Attività, organizzazione e periodo...') }}">{{ d.get('volontariato','') }}</textarea></label>
             </fieldset>
 
             <fieldset>
-                <legend>Competenze e Altre Informazioni</legend>
-                <label>Competenze tecniche<input type="text" name="competenze_tecniche" placeholder="Es. Python, SQL, Excel" required value="{{ d.get('competenze_tecniche','') }}" /></label>
-                <label>Strumenti e software<input type="text" name="strumenti_software" placeholder="Es. Figma, Photoshop, SAP, Office" value="{{ d.get('strumenti_software','') }}" /></label>
-                <label>Competenze trasversali<input type="text" name="competenze_trasversali" placeholder="Es. leadership, problem solving, team working" value="{{ d.get('competenze_trasversali','') }}" /></label>
-                <label for="lingue">Lingue conosciute</label>
+                <legend>{{ _('Competenze e Altre Informazioni') }}</legend>
+                <label>{{ _('Competenze tecniche') }}<input type="text" name="competenze_tecniche" placeholder="{{ _('Es. Python, SQL, Excel') }}" required value="{{ d.get('competenze_tecniche','') }}" /></label>
+                <label>{{ _('Strumenti e software') }}<input type="text" name="strumenti_software" placeholder="{{ _('Es. Figma, Photoshop, SAP, Office') }}" value="{{ d.get('strumenti_software','') }}" /></label>
+                <label>{{ _('Competenze trasversali') }}<input type="text" name="competenze_trasversali" placeholder="{{ _('Es. leadership, problem solving, team working') }}" value="{{ d.get('competenze_trasversali','') }}" /></label>
+                <label for="lingue">{{ _('Lingue conosciute') }}</label>
                 <div class="lingue-container" id="lingue-container">
                     {% if lingue_lista %}
                     {% for lingua in lingue_lista %}
-                    <input type="text" name="lingue" placeholder="Es. Italiano C2" {% if loop.first %}id="lingue" required{% endif %} value="{{ lingua }}" />
+                    <input type="text" name="lingue" placeholder="{{ _('Es. Italiano C2') }}" {% if loop.first %}id="lingue" required{% endif %} value="{{ lingua }}" />
                     {% endfor %}
                     {% else %}
-                    <input type="text" id="lingue" name="lingue" placeholder="Es. Italiano C2" required />
+                    <input type="text" id="lingue" name="lingue" placeholder="{{ _('Es. Italiano C2') }}" required />
                     {% endif %}
                 </div>
-                <label>Patente <span class="foto-hint">(facoltativa)</span></label>
+                <label>{{ _('Patente') }} <span class="foto-hint">{{ _('(facoltativa)') }}</span></label>
                 <div class="lingue-container" id="patente-container">
                     {% if patente_lista %}
                     {% for p in patente_lista %}
-                    <input type="text" name="patente" placeholder="Es. B" value="{{ p }}" />
+                    <input type="text" name="patente" placeholder="{{ _('Es. B') }}" value="{{ p }}" />
                     {% endfor %}
                     {% else %}
-                    <input type="text" name="patente" placeholder="Es. B" />
+                    <input type="text" name="patente" placeholder="{{ _('Es. B') }}" />
                     {% endif %}
                 </div>
-                <label for="hobby">Hobby e interessi</label>
+                <label for="hobby">{{ _('Hobby e interessi') }}</label>
                 <div class="lingue-container" id="hobby-container">
                     {% if hobby_lista %}
                     {% for h in hobby_lista %}
-                    <input type="text" name="hobby" placeholder="Es. fotografia, trekking" {% if loop.first %}id="hobby" required{% endif %} value="{{ h }}" />
+                    <input type="text" name="hobby" placeholder="{{ _('Es. fotografia, trekking') }}" {% if loop.first %}id="hobby" required{% endif %} value="{{ h }}" />
                     {% endfor %}
                     {% else %}
-                    <input type="text" id="hobby" name="hobby" placeholder="Es. fotografia, trekking" required />
+                    <input type="text" id="hobby" name="hobby" placeholder="{{ _('Es. fotografia, trekking') }}" required />
                     {% endif %}
                 </div>
-                <label>Referenze<textarea name="referenze" placeholder="Nome, ruolo e contatto (facoltativo)...">{{ d.get('referenze','') }}</textarea></label>
+                <label>{{ _('Referenze') }}<textarea name="referenze" placeholder="{{ _('Nome, ruolo e contatto (facoltativo)...') }}">{{ d.get('referenze','') }}</textarea></label>
             </fieldset>
 
             <fieldset class="template-picker">
-                <legend>Scegli il template del tuo CV</legend>
-                <p class="field-hint">Potrai cambiare stile senza modificare i contenuti.</p>
+                <legend>{{ _('Scegli il template del tuo CV') }}</legend>
+                <p class="field-hint">{{ _('Potrai cambiare stile senza modificare i contenuti.') }}</p>
                 <div class="template-options">
                     {% for key, name in template_options.items() %}
                     <label class="template-option">
                         <input type="radio" name="template_cv" value="{{ key }}" {% if d.get('template_cv') == key %}checked{% elif not d.get('template_cv') and loop.first %}checked{% endif %} />
                         <span class="template-swatch template-{{ key }}"> <span></span><span></span><span></span> </span>
-                        <strong>{{ name }}</strong>
+                        <strong>{{ _(name) }}</strong>
                     </label>
                     {% endfor %}
                 </div>
             </fieldset>
 
-            <button type="submit">Genera CV</button>
+            <button type="submit">{{ _('Genera CV') }}</button>
         </form>
+
+        {% include '_footer.html' %}
 
         <script>
             const API_KEY = "{{ geoapify_key }}";
         </script>
-        <script src="{{ url_for('static', filename='script.js', v=7) }}"></script>
+        <script src="{{ url_for('static', filename='script.js', v=10) }}"></script>
     </body>
 </html>

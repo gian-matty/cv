@@ -3,6 +3,7 @@ import os
 from datetime import date
 from functools import wraps
 from flask import Flask, render_template, request, redirect, url_for, abort, session
+from flask_babel import Babel, gettext
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -12,6 +13,25 @@ app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 app.secret_key = os.getenv('SECRET_KEY', 'cursus-demo-secret')
 GEOAPIFY_KEY = os.getenv('GEOAPIFY_API_KEY')
 SITE_NAME = 'Cursus'
+
+LANGUAGES = ['it', 'en', 'fr', 'de', 'es']
+LANGUAGE_NAMES = {
+    'it': 'Italiano',
+    'en': 'English',
+    'fr': 'Français',
+    'de': 'Deutsch',
+    'es': 'Español',
+}
+
+app.config['BABEL_DEFAULT_LOCALE'] = 'it'
+app.config['BABEL_TRANSLATION_DIRECTORIES'] = 'locale'
+
+
+def seleziona_locale():
+    return session.get('lang', 'it')
+
+
+babel = Babel(app, locale_selector=seleziona_locale)
 
 TITOLI_STUDIO = [
     # --- Scuola dell'Obbligo e Qualifiche Professionali ---
@@ -347,6 +367,27 @@ def senza_cache(resp):
     return resp
 
 
+@app.context_processor
+def inietta_i18n():
+    return {
+        'LANGUAGES': LANGUAGES,
+        'LANGUAGE_NAMES': LANGUAGE_NAMES,
+        'get_locale': seleziona_locale,
+        'template_options': TEMPLATE_OPTIONS,
+        'anno': date.today().year,
+    }
+
+
+@app.route('/set-lang/<lang>')
+def set_lang(lang):
+    if lang in LANGUAGES:
+        session['lang'] = lang
+    prossima = request.args.get('prossima')
+    if prossima and prossima.startswith('/'):
+        return redirect(prossima)
+    return redirect(request.referrer or url_for('index'))
+
+
 def login_richiesto(f):
     @wraps(f)
     def wrapper(*args, **kwargs):
@@ -396,7 +437,7 @@ def login():
             session['utente'] = email
             prossima = request.args.get('prossima')
             return redirect(prossima or url_for('dashboard'))
-        errore = 'Email o password non corretti.'
+        errore = gettext('Email o password non corretti.')
     return render_template('login.html', errore=errore)
 
 
@@ -411,11 +452,11 @@ def register():
         password = request.form.get('password', '')
         conferma = request.form.get('conferma', '')
         if not nome or not email or not password:
-            errore = 'Compila tutti i campi.'
+            errore = gettext('Compila tutti i campi.')
         elif password != conferma:
-            errore = 'Le password non coincidono.'
+            errore = gettext('Le password non coincidono.')
         elif email in USERS:
-            errore = 'Esiste già un account con questa email.'
+            errore = gettext('Esiste già un account con questa email.')
         else:
             USERS[email] = {'nome': nome, 'password': password}
             session['utente'] = email

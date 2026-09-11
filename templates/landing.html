@@ -1,40 +1,44 @@
 <!doctype html>
-<html lang="it">
+<html lang="{{ get_locale() }}">
     <head>
         {% from '_macros.html' import head %}
-        {{ head('Il tuo curriculum, con stile', 'Crea un curriculum professionale in cinque template pronti per la stampa.') }}
+        {{ head(_('Il tuo curriculum, con stile'), _('Crea un curriculum professionale in cinque template pronti per la stampa.')) }}
     </head>
     <body class="landing-page">
 
         {% include '_nav.html' %}
 
         <main class="landing-main">
-            <section class="hero3d" id="hero3d">
-                <div class="hero3d-track">
-                    <div class="hero3d-stick">
-                        <div class="hero3d-copy">
-                            <p class="eyebrow">Sito #1 per il tuo CV</p>
-                            <h1>Il tuo curriculum,<br/>con <span class="hero-accent">carattere</span>.</h1>
-                            <p class="hero-sub">
-                                Compila una volta, scegli tra cinque template studiati per la stampa e
-                                porta il tuo percorso professionale dove merita.
-                            </p>
-                            <div class="hero-actions">
-                                <a class="btn-primary" href="{{ url_for('register') }}">Registrati e inizia</a>
-                                <a class="btn-ghost" href="{{ url_for('login') }}">Ho già un account</a>
-                            </div>
-                        </div>
-                        <div class="hero3d-scene" id="hero3d-scene">
-                            {% set depths = [-260, -120, 0, 140, 280] %}
-                            {% set spins = [-24, -12, 0, 12, 24] %}
+            <section class="hero-center">
+                <div class="hero-center-copy">
+                    <p class="eyebrow">{{ _('Sito #1 per il tuo CV') }}</p>
+                    <h1>{{ _('Il tuo curriculum,') }}<br/>{{ _('con') }} <span class="hero-accent">{{ _('carattere') }}</span>.</h1>
+                    <p class="hero-sub">
+                        {{ _('Compila una volta, scegli tra cinque template studiati per la stampa e') }}
+                        {{ _('porta il tuo percorso professionale dove merita.') }}
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn-primary" href="{{ url_for('register') }}">{{ _('Registrati e inizia') }}</a>
+                        <a class="btn-ghost" href="{{ url_for('login') }}">{{ _('Ho già un account') }}</a>
+                    </div>
+                </div>
+
+                <div class="browser" id="hero-browser">
+                    <div class="browser-chrome">
+                        <span class="browser-dots"><i></i><i></i><i></i></span>
+                        <nav class="browser-tabs" id="browser-tabs" role="tablist" aria-label="{{ _('Template') }}">
                             {% for key, name in template_options.items() %}
-                            {% set persona = esempi[key] %}
-                            <a class="hero3d-card" href="{{ url_for('esempi', template=key) }}" data-nome="{{ persona.nome }}" style="--depth: {{ depths[loop.index0] }}px; --spin: {{ spins[loop.index0] }}deg;">
-                                {% if persona.foto %}<img class="hero3d-photo" src="{{ persona.foto }}" alt="{{ persona.nome }}" loading="lazy">{% endif %}
-                                <span class="template-swatch template-{{ key }}"><span></span><span></span><span></span></span>
-                                <strong>{{ name }}</strong>
-                                <p>{{ persona.nome }}</p>
-                            </a>
+                            <button type="button" class="btab template-{{ key }}{% if loop.first %} is-active{% endif %}" data-tpl="{{ key }}" role="tab" aria-selected="{% if loop.first %}true{% else %}false{% endif %}" title="{{ esempi[key].nome }}">
+                                <i class="tdot" aria-hidden="true"></i>{{ _(name) }}
+                            </button>
+                            {% endfor %}
+                        </nav>
+                        <span class="browser-url">cursus.it/esempi/<strong id="browser-key">aurora</strong></span>
+                    </div>
+                    <div class="browser-body">
+                        <div class="browser-track" id="browser-track">
+                            {% for key, name in template_options.items() %}
+                            <iframe class="bslide" src="/esempi/{{ key }}" title="cursus.it/esempi/{{ key }}"></iframe>
                             {% endfor %}
                         </div>
                     </div>
@@ -42,25 +46,11 @@
             </section>
         </main>
 
-        <footer class="site-footer">
-            <p>Cursus · Curricula fatti per essere letti</p>
-        </footer>
+        {% include '_footer.html' %}
 
-        <dialog class="anteprima" id="anteprima-dialog">
-            <div class="anteprima-head">
-                <span class="anteprima-title">Anteprima — <strong id="anteprima-nome"></strong></span>
-                <span class="anteprima-actions">
-                    <button type="button" class="btn-ghost btn-badge" id="anteprima-pdf" title="Apre la finestra di stampa: scegli 'Salva come PDF' per scaricare">Scarica PDF</button>
-                    <button type="button" class="btn-ghost btn-badge" id="anteprima-stampa">Stampa</button>
-                    <button type="button" class="btn-close" id="anteprima-chiudi" aria-label="Chiudi anteprima">✕</button>
-                </span>
-            </div>
-            <iframe id="anteprima-frame" title="Anteprima del CV" src="about:blank"></iframe>
-        </dialog>
-
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cambia modalità tema">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="{{ _('Cambia modalità tema') }}">
             <span class="theme-icon">☾</span>
         </button>
-        <script src="{{ url_for('static', filename='script.js', v=7) }}"></script>
+        <script src="{{ url_for('static', filename='script.js', v=10) }}"></script>
     </body>
 </html>

@@ -4,14 +4,19 @@
             Cursus<span class="nav-mark">✒</span>
         </a>
         <nav class="nav-links">
+            <div class="lang-switch" role="group" aria-label="{{ _('Cambia lingua') }}">
+                {% for cod in LANGUAGES %}
+                <a class="lang-btn{% if get_locale() == cod %} is-active{% endif %}" href="{{ url_for('set_lang', lang=cod, prossima=request.full_path) }}" title="{{ LANGUAGE_NAMES[cod] }}">{{ cod|upper }}</a>
+                {% endfor %}
+            </div>
             {% if session.get('utente') %}
             <span class="nav-user">{{ session.get('utente') }}</span>
-            <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
-            <a class="nav-link" href="{{ url_for('cv_nuovo') }}">Nuovo CV</a>
-            <a class="nav-link nav-link-outline" href="{{ url_for('logout') }}">Esci</a>
+            <a class="nav-link" href="{{ url_for('dashboard') }}">{{ _('Dashboard') }}</a>
+            <a class="nav-link" href="{{ url_for('cv_nuovo') }}">{{ _('Nuovo CV') }}</a>
+            <a class="nav-link nav-link-outline" href="{{ url_for('logout') }}">{{ _('Esci') }}</a>
             {% else %}
-            <a class="nav-link" href="{{ url_for('login') }}">Accedi</a>
-            <a class="nav-link nav-link-solid" href="{{ url_for('register') }}">Registrati</a>
+            <a class="nav-link" href="{{ url_for('login') }}">{{ _('Accedi') }}</a>
+            <a class="nav-link nav-link-solid" href="{{ url_for('register') }}">{{ _('Registrati') }}</a>
             {% endif %}
         </nav>
     </div>

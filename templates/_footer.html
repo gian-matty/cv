@@ -1,0 +1,41 @@
+<footer class="site-footer">
+    <span class="footer-watermark" aria-hidden="true">Cursus</span>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a class="footer-logo" href="{% if session.get('utente') %}{{ url_for('dashboard') }}{% else %}{{ url_for('index') }}{% endif %}">
+                Cursus<span class="nav-mark">✒</span>
+            </a>
+            <p>{{ _('Cinque template professionali, un solo form. Fatti per essere letti.') }}</p>
+        </div>
+        <nav class="footer-col" aria-label="{{ _('Esplora') }}">
+            <h4>{{ _('Esplora') }}</h4>
+            {% if session.get('utente') %}
+            <a href="{{ url_for('dashboard') }}">{{ _('Dashboard') }}</a>
+            <a href="{{ url_for('cv_nuovo') }}">{{ _('Nuovo CV') }}</a>
+            <a href="{{ url_for('logout') }}">{{ _('Esci') }}</a>
+            {% else %}
+            <a href="{{ url_for('index') }}">{{ _('Home') }}</a>
+            <a href="{{ url_for('login') }}">{{ _('Accedi') }}</a>
+            <a href="{{ url_for('register') }}">{{ _('Registrati') }}</a>
+            {% endif %}
+        </nav>
+        <nav class="footer-col" aria-label="{{ _('Template') }}">
+            <h4>{{ _('Template') }}</h4>
+            {% for key, name in template_options.items() %}
+            <a href="{{ url_for('esempi', template=key) }}">{{ _(name) }}</a>
+            {% endfor %}
+        </nav>
+        <div class="footer-col footer-cta">
+            <h4>{{ _('Pronto a iniziare?') }}</h4>
+            {% if session.get('utente') %}
+            <a class="btn-primary btn-sm" href="{{ url_for('dashboard') }}">{{ _('Dashboard') }}</a>
+            {% else %}
+            <a class="btn-primary btn-sm" href="{{ url_for('register') }}">{{ _('Registrati e inizia') }}</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <button type="button" class="footer-top" id="footer-top" title="{{ _('Torna su') }}"><span aria-hidden="true">↑</span></button>
+        <p class="footer-copy">© {{ anno }} Cursus · {{ _('Curricula fatti per essere letti') }}</p>
+    </div>
+</footer>

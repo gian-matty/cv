@@ -1,27 +1,27 @@
 <!doctype html>
-<html lang="it">
+<html lang="{{ get_locale() }}">
     <head>
         {% from '_macros.html' import head %}
-        {{ head('CV di ' ~ dati.nome ~ ' ' ~ dati.cognome, 'Curriculum di ' ~ dati.nome ~ ' ' ~ dati.cognome ~ ' realizzato con Cursus.') }}
+        {{ head(_('CV di') ~ ' ' ~ dati.nome ~ ' ' ~ dati.cognome, _('Curriculum di') ~ ' ' ~ dati.nome ~ ' ' ~ dati.cognome ~ ' ' ~ _('realizzato con Cursus.')) }}
     </head>
-    <body class="cv-page template-{{ template_cv }}{% if anteprima %} cv-anteprima{% endif %}">
+    <body class="cv-page{% if anteprima %} cv-anteprima tema-chiaro{% endif %} template-{{ template_cv }}">
 
         {% if not anteprima %}{% include '_nav.html' %}{% endif %}
 
         {% macro sezione(title, value, classe='') -%}
-        {% if value %}<section class="cv-section {{ classe }}"><h2>{{ title }}</h2><p>{{ value }}</p></section>{% endif %}
+        {% if value %}<section class="cv-section {{ classe }}"><h2>{{ _(title) }}</h2><p>{{ value }}</p></section>{% endif %}
         {%- endmacro %}
 
         {% macro esperienza_professionale(classe='') -%}
         {% if dati.ultimo_ruolo %}
         <section class="cv-section {{ classe }}">
-            <h2>Esperienza Professionale</h2>
+            <h2>{{ _('Esperienza Professionale') }}</h2>
             <p>{{ dati.ultimo_ruolo }} · {{ dati.azienda }} ({{ dati.periodo_lavoro }}){% if dati.settore_lavoro %} · {{ dati.settore_lavoro }}{% endif %}</p>
             {% if dati.descrizione_lavoro %}
             <p class="cv-sub">{{ dati.descrizione_lavoro }}</p>
             {% endif %}
             {% if dati.risultati_raggiunti %}
-            <p class="cv-sub"><strong>Risultati raggiunti:</strong> {{ dati.risultati_raggiunti }}</p>
+            <p class="cv-sub"><strong>{{ _('Risultati raggiunti:') }}</strong> {{ dati.risultati_raggiunti }}</p>
             {% endif %}
         </section>
         {% endif %}
@@ -30,8 +30,8 @@
         {% macro istruzione() -%}
         {% if dati.titolo_studio %}
         <section class="cv-section">
-            <h2>Istruzione</h2>
-            <p>{{ dati.titolo_studio|join(', ') }} — {{ dati.anno_diploma }}{% if dati.istituto_formazione %} · {{ dati.istituto_formazione }}{% endif %}{% if dati.voto_formazione %} · Voto: {{ dati.voto_formazione }}{% endif %}{% if dati.tesi_titolo %} · Tesi: {{ dati.tesi_titolo }}{% endif %}</p>
+            <h2>{{ _('Istruzione') }}</h2>
+            <p>{{ dati.titolo_studio|join(', ') }} — {{ dati.anno_diploma }}{% if dati.istituto_formazione %} · {{ dati.istituto_formazione }}{% endif %}{% if dati.voto_formazione %} · {{ _('Voto:') }} {{ dati.voto_formazione }}{% endif %}{% if dati.tesi_titolo %} · {{ _('Tesi:') }} {{ dati.tesi_titolo }}{% endif %}</p>
         </section>
         {% endif %}
         {%- endmacro %}
@@ -39,20 +39,20 @@
         {% macro voci(titolo, etichette, in_sidebar=false) -%}
         {% set presenti = [] %}
         {% for etichetta, valore in etichette %}
-        {% if valore %}{% set _ = presenti.append((etichetta, valore)) %}{% endif %}
+        {% if valore %}{% set _tmp = presenti.append((etichetta, valore)) %}{% endif %}
         {% endfor %}
         {% if presenti %}
-        {% if in_sidebar %}<h2>{{ titolo }}</h2><p>{% for etichetta, valore in presenti %}<strong>{{ etichetta }}:</strong> {{ valore }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
-        {% else %}<section class="cv-section"><h2>{{ titolo }}</h2><p>{% for etichetta, valore in presenti %}<strong>{{ etichetta }}:</strong> {{ valore }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p></section>
+        {% if in_sidebar %}<h2>{{ _(titolo) }}</h2><p>{% for etichetta, valore in presenti %}<strong>{{ _(etichetta) }}:</strong> {{ valore }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
+        {% else %}<section class="cv-section"><h2>{{ _(titolo) }}</h2><p>{% for etichetta, valore in presenti %}<strong>{{ _(etichetta) }}:</strong> {{ valore }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p></section>
         {% endif %}
         {% endif %}
         {%- endmacro %}
 
         {% if template_cv == 'executive' %}
-        <main class="cv-card">
+        <main class="cv-card tema-chiaro">
             <aside class="cv-sidebar">
                 {% if dati.foto_profilo %}
-                <img class="cv-photo" src="{{ dati.foto_profilo }}" alt="Foto di {{ dati.nome }} {{ dati.cognome }}" />
+                <img class="cv-photo" src="{{ dati.foto_profilo }}" alt="{{ _('Foto di') }} {{ dati.nome }} {{ dati.cognome }}" />
                 {% endif %}
 
                 <div class="cv-meta">
@@ -68,22 +68,22 @@
                 {{ voci('Dati Anagrafici', [('Data di nascita', dati.data_nascita), ('Luogo di nascita', dati.luogo_nascita), ('Nazionalità', dati.nazionalita), ('Codice fiscale', dati.codice_fiscale), ('Patente', dati.patente)], true) }}
 
                 {% if dati.competenze_tecniche %}
-                <h2>Competenze Tecniche</h2>
+                <h2>{{ _('Competenze Tecniche') }}</h2>
                 <p>{{ dati.competenze_tecniche }}</p>
                 {% endif %}
 
                 {% if dati.strumenti_software %}
-                <h2>Strumenti e Software</h2>
+                <h2>{{ _('Strumenti e Software') }}</h2>
                 <p>{{ dati.strumenti_software }}</p>
                 {% endif %}
 
                 {% if dati.competenze_trasversali %}
-                <h2>Competenze Trasversali</h2>
+                <h2>{{ _('Competenze Trasversali') }}</h2>
                 <p>{{ dati.competenze_trasversali }}</p>
                 {% endif %}
 
                 {% if dati.lingue %}
-                <h2>Lingue</h2>
+                <h2>{{ _('Lingue') }}</h2>
                 <p>{{ dati.lingue }}</p>
                 {% endif %}
             </aside>
@@ -98,7 +98,7 @@
 
                 {% if dati.descrizione %}
                 <section class="cv-section">
-                    <h2>Profilo</h2>
+                    <h2>{{ _('Profilo') }}</h2>
                     <p>{{ dati.descrizione }}</p>
                 </section>
                 {% endif %}
@@ -107,7 +107,7 @@
 
                 {% if dati.corsi_certificazioni %}
                 <section class="cv-section">
-                    <h2>Corsi e Certificazioni</h2>
+                    <h2>{{ _('Corsi e Certificazioni') }}</h2>
                     <p>{{ dati.corsi_certificazioni }}</p>
                 </section>
                 {% endif %}
@@ -116,35 +116,35 @@
 
                 {% if dati.esperienze_precedenti %}
                 <section class="cv-section">
-                    <h2>Esperienze Precedenti</h2>
+                    <h2>{{ _('Esperienze Precedenti') }}</h2>
                     <p>{{ dati.esperienze_precedenti }}</p>
                 </section>
                 {% endif %}
 
                 {% if dati.progetti %}
                 <section class="cv-section">
-                    <h2>Progetti</h2>
+                    <h2>{{ _('Progetti') }}</h2>
                     <p>{{ dati.progetti }}</p>
                 </section>
                 {% endif %}
 
                 {% if dati.volontariato %}
                 <section class="cv-section">
-                    <h2>Volontariato</h2>
+                    <h2>{{ _('Volontariato') }}</h2>
                     <p>{{ dati.volontariato }}</p>
                 </section>
                 {% endif %}
 
                 {% if dati.hobby %}
                 <section class="cv-section">
-                    <h2>Interessi</h2>
+                    <h2>{{ _('Interessi') }}</h2>
                     <p>{{ dati.hobby }}</p>
                 </section>
                 {% endif %}
 
                 {% if dati.referenze %}
                 <section class="cv-section">
-                    <h2>Referenze</h2>
+                    <h2>{{ _('Referenze') }}</h2>
                     <p>{{ dati.referenze }}</p>
                 </section>
                 {% endif %}
@@ -156,10 +156,10 @@
         </main>
 
         {% elif template_cv == 'editorial' %}
-        <main class="cv-card">
+        <main class="cv-card tema-chiaro">
             <header class="cv-head">
                 {% if dati.foto_profilo %}
-                <img class="cv-photo" src="{{ dati.foto_profilo }}" alt="Foto di {{ dati.nome }} {{ dati.cognome }}" />
+                <img class="cv-photo" src="{{ dati.foto_profilo }}" alt="{{ _('Foto di') }} {{ dati.nome }} {{ dati.cognome }}" />
                 {% endif %}
                 <div class="cv-identity">
                     <h1>{{ dati.nome }} {{ dati.cognome }}</h1>
@@ -178,7 +178,7 @@
 
             {% if dati.descrizione %}
             <section class="cv-section">
-                <h2>Profilo</h2>
+                <h2>{{ _('Profilo') }}</h2>
                 <p>{{ dati.descrizione }}</p>
             </section>
             {% endif %}
@@ -186,28 +186,28 @@
             <div class="cv-sections-grid">
                 {% if dati.competenze_tecniche %}
                 <section class="cv-section">
-                    <h2>Competenze Tecniche</h2>
+                    <h2>{{ _('Competenze Tecniche') }}</h2>
                     <p>{{ dati.competenze_tecniche }}</p>
                 </section>
                 {% endif %}
 
                 {% if dati.strumenti_software %}
                 <section class="cv-section">
-                    <h2>Strumenti e Software</h2>
+                    <h2>{{ _('Strumenti e Software') }}</h2>
                     <p>{{ dati.strumenti_software }}</p>
                 </section>
                 {% endif %}
 
                 {% if dati.competenze_trasversali %}
                 <section class="cv-section">
-                    <h2>Competenze Trasversali</h2>
+                    <h2>{{ _('Competenze Trasversali') }}</h2>
                     <p>{{ dati.competenze_trasversali }}</p>
                 </section>
                 {% endif %}
 
                 {% if dati.lingue %}
                 <section class="cv-section">
-                    <h2>Lingue</h2>
+                    <h2>{{ _('Lingue') }}</h2>
                     <p>{{ dati.lingue }}</p>
                 </section>
                 {% endif %}
@@ -216,7 +216,7 @@
 
                 {% if dati.corsi_certificazioni %}
                 <section class="cv-section">
-                    <h2>Corsi e Certificazioni</h2>
+                    <h2>{{ _('Corsi e Certificazioni') }}</h2>
                     <p>{{ dati.corsi_certificazioni }}</p>
                 </section>
                 {% endif %}
@@ -225,35 +225,35 @@
 
                 {% if dati.esperienze_precedenti %}
                 <section class="cv-section cv-section-full">
-                    <h2>Esperienze Precedenti</h2>
+                    <h2>{{ _('Esperienze Precedenti') }}</h2>
                     <p>{{ dati.esperienze_precedenti }}</p>
                 </section>
                 {% endif %}
 
                 {% if dati.progetti %}
                 <section class="cv-section">
-                    <h2>Progetti</h2>
+                    <h2>{{ _('Progetti') }}</h2>
                     <p>{{ dati.progetti }}</p>
                 </section>
                 {% endif %}
 
                 {% if dati.volontariato %}
                 <section class="cv-section">
-                    <h2>Volontariato</h2>
+                    <h2>{{ _('Volontariato') }}</h2>
                     <p>{{ dati.volontariato }}</p>
                 </section>
                 {% endif %}
 
                 {% if dati.hobby %}
                 <section class="cv-section">
-                    <h2>Hobby e Interessi</h2>
+                    <h2>{{ _('Hobby e Interessi') }}</h2>
                     <p>{{ dati.hobby }}</p>
                 </section>
                 {% endif %}
 
                 {% if dati.referenze %}
                 <section class="cv-section">
-                    <h2>Referenze</h2>
+                    <h2>{{ _('Referenze') }}</h2>
                     <p>{{ dati.referenze }}</p>
                 </section>
                 {% endif %}
@@ -265,10 +265,10 @@
         </main>
 
         {% elif template_cv == 'creative' %}
-        <main class="cv-card">
+        <main class="cv-card tema-chiaro">
             <header class="cv-head">
                 {% if dati.foto_profilo %}
-                <img class="cv-photo" src="{{ dati.foto_profilo }}" alt="Foto di {{ dati.nome }} {{ dati.cognome }}" />
+                <img class="cv-photo" src="{{ dati.foto_profilo }}" alt="{{ _('Foto di') }} {{ dati.nome }} {{ dati.cognome }}" />
                 {% endif %}
                 <div class="cv-identity">
                     <p class="eyebrow">CURRICULUM VITAE · {{ template_name|upper }}</p>
@@ -290,14 +290,14 @@
 
             {% if dati.descrizione %}
             <section class="cv-section">
-                <h2>Profilo</h2>
+                <h2>{{ _('Profilo') }}</h2>
                 <p>{{ dati.descrizione }}</p>
             </section>
             {% endif %}
 
             {% if dati.competenze_tecniche %}
             <section class="cv-section">
-                <h2>Competenze Tecniche</h2>
+                <h2>{{ _('Competenze Tecniche') }}</h2>
                 <p>{{ dati.competenze_tecniche }}</p>
             </section>
             {% endif %}
@@ -306,14 +306,14 @@
 
             {% if dati.competenze_trasversali %}
             <section class="cv-section">
-                <h2>Competenze Trasversali</h2>
+                <h2>{{ _('Competenze Trasversali') }}</h2>
                 <p>{{ dati.competenze_trasversali }}</p>
             </section>
             {% endif %}
 
             {% if dati.lingue %}
             <section class="cv-section">
-                <h2>Lingue</h2>
+                <h2>{{ _('Lingue') }}</h2>
                 <p>{{ dati.lingue }}</p>
             </section>
             {% endif %}
@@ -322,7 +322,7 @@
 
             {% if dati.corsi_certificazioni %}
             <section class="cv-section">
-                <h2>Corsi e Certificazioni</h2>
+                <h2>{{ _('Corsi e Certificazioni') }}</h2>
                 <p>{{ dati.corsi_certificazioni }}</p>
             </section>
             {% endif %}
@@ -331,35 +331,35 @@
 
             {% if dati.esperienze_precedenti %}
             <section class="cv-section">
-                <h2>Esperienze Precedenti</h2>
+                <h2>{{ _('Esperienze Precedenti') }}</h2>
                 <p>{{ dati.esperienze_precedenti }}</p>
             </section>
             {% endif %}
 
             {% if dati.progetti %}
             <section class="cv-section">
-                <h2>Progetti</h2>
+                <h2>{{ _('Progetti') }}</h2>
                 <p>{{ dati.progetti }}</p>
             </section>
             {% endif %}
 
             {% if dati.volontariato %}
             <section class="cv-section">
-                <h2>Volontariato</h2>
+                <h2>{{ _('Volontariato') }}</h2>
                 <p>{{ dati.volontariato }}</p>
             </section>
             {% endif %}
 
             {% if dati.hobby %}
             <section class="cv-section">
-                <h2>Hobby e Interessi</h2>
+                <h2>{{ _('Hobby e Interessi') }}</h2>
                 <p>{{ dati.hobby }}</p>
             </section>
             {% endif %}
 
             {% if dati.referenze %}
             <section class="cv-section">
-                <h2>Referenze</h2>
+                <h2>{{ _('Referenze') }}</h2>
                 <p>{{ dati.referenze }}</p>
             </section>
             {% endif %}
@@ -370,7 +370,7 @@
         </main>
 
         {% elif template_cv == 'minimal' %}
-        <main class="cv-card">
+        <main class="cv-card tema-chiaro">
             <header class="cv-head">
                 <div class="cv-identity">
                     <h1>{{ dati.nome }} {{ dati.cognome }}</h1>
@@ -386,7 +386,7 @@
                     </div>
                 </div>
                 {% if dati.foto_profilo %}
-                <img class="cv-photo" src="{{ dati.foto_profilo }}" alt="Foto di {{ dati.nome }} {{ dati.cognome }}" />
+                <img class="cv-photo" src="{{ dati.foto_profilo }}" alt="{{ _('Foto di') }} {{ dati.nome }} {{ dati.cognome }}" />
                 {% endif %}
             </header>
 
@@ -394,14 +394,14 @@
 
             {% if dati.descrizione %}
             <section class="cv-section">
-                <h2>Profilo</h2>
+                <h2>{{ _('Profilo') }}</h2>
                 <p>{{ dati.descrizione }}</p>
             </section>
             {% endif %}
 
             {% if dati.competenze_tecniche %}
             <section class="cv-section">
-                <h2>Competenze Tecniche</h2>
+                <h2>{{ _('Competenze Tecniche') }}</h2>
                 <p>{{ dati.competenze_tecniche }}</p>
             </section>
             {% endif %}
@@ -410,14 +410,14 @@
 
             {% if dati.competenze_trasversali %}
             <section class="cv-section">
-                <h2>Competenze Trasversali</h2>
+                <h2>{{ _('Competenze Trasversali') }}</h2>
                 <p>{{ dati.competenze_trasversali }}</p>
             </section>
             {% endif %}
 
             {% if dati.lingue %}
             <section class="cv-section">
-                <h2>Lingue</h2>
+                <h2>{{ _('Lingue') }}</h2>
                 <p>{{ dati.lingue }}</p>
             </section>
             {% endif %}
@@ -426,7 +426,7 @@
 
             {% if dati.corsi_certificazioni %}
             <section class="cv-section">
-                <h2>Corsi e Certificazioni</h2>
+                <h2>{{ _('Corsi e Certificazioni') }}</h2>
                 <p>{{ dati.corsi_certificazioni }}</p>
             </section>
             {% endif %}
@@ -435,35 +435,35 @@
 
             {% if dati.esperienze_precedenti %}
             <section class="cv-section">
-                <h2>Esperienze Precedenti</h2>
+                <h2>{{ _('Esperienze Precedenti') }}</h2>
                 <p>{{ dati.esperienze_precedenti }}</p>
             </section>
             {% endif %}
 
             {% if dati.progetti %}
             <section class="cv-section">
-                <h2>Progetti</h2>
+                <h2>{{ _('Progetti') }}</h2>
                 <p>{{ dati.progetti }}</p>
             </section>
             {% endif %}
 
             {% if dati.volontariato %}
             <section class="cv-section">
-                <h2>Volontariato</h2>
+                <h2>{{ _('Volontariato') }}</h2>
                 <p>{{ dati.volontariato }}</p>
             </section>
             {% endif %}
 
             {% if dati.hobby %}
             <section class="cv-section">
-                <h2>Hobby e Interessi</h2>
+                <h2>{{ _('Hobby e Interessi') }}</h2>
                 <p>{{ dati.hobby }}</p>
             </section>
             {% endif %}
 
             {% if dati.referenze %}
             <section class="cv-section">
-                <h2>Referenze</h2>
+                <h2>{{ _('Referenze') }}</h2>
                 <p>{{ dati.referenze }}</p>
             </section>
             {% endif %}
@@ -474,7 +474,7 @@
         </main>
 
         {% else %}
-        <main class="cv-card">
+        <main class="cv-card tema-chiaro">
             <header class="cv-head">
                 <div class="cv-identity">
                     <p class="eyebrow">CURRICULUM VITAE · {{ template_name|upper }}</p>
@@ -487,7 +487,7 @@
                     </div>
                 </div>
                 {% if dati.foto_profilo %}
-                <img class="cv-photo" src="{{ dati.foto_profilo }}" alt="Foto di {{ dati.nome }} {{ dati.cognome }}" />
+                <img class="cv-photo" src="{{ dati.foto_profilo }}" alt="{{ _('Foto di') }} {{ dati.nome }} {{ dati.cognome }}" />
                 {% endif %}
             </header>
 
@@ -497,14 +497,14 @@
 
             {% if dati.descrizione %}
             <section class="cv-section">
-                <h2>Profilo</h2>
+                <h2>{{ _('Profilo') }}</h2>
                 <p>{{ dati.descrizione }}</p>
             </section>
             {% endif %}
 
             {% if dati.competenze_tecniche %}
             <section class="cv-section">
-                <h2>Competenze Tecniche</h2>
+                <h2>{{ _('Competenze Tecniche') }}</h2>
                 <p>{{ dati.competenze_tecniche }}</p>
             </section>
             {% endif %}
@@ -513,14 +513,14 @@
 
             {% if dati.competenze_trasversali %}
             <section class="cv-section">
-                <h2>Competenze Trasversali</h2>
+                <h2>{{ _('Competenze Trasversali') }}</h2>
                 <p>{{ dati.competenze_trasversali }}</p>
             </section>
             {% endif %}
 
             {% if dati.lingue %}
             <section class="cv-section">
-                <h2>Lingue</h2>
+                <h2>{{ _('Lingue') }}</h2>
                 <p>{{ dati.lingue }}</p>
             </section>
             {% endif %}
@@ -529,7 +529,7 @@
 
             {% if dati.corsi_certificazioni %}
             <section class="cv-section">
-                <h2>Corsi e Certificazioni</h2>
+                <h2>{{ _('Corsi e Certificazioni') }}</h2>
                 <p>{{ dati.corsi_certificazioni }}</p>
             </section>
             {% endif %}
@@ -538,35 +538,35 @@
 
             {% if dati.esperienze_precedenti %}
             <section class="cv-section">
-                <h2>Esperienze Precedenti</h2>
+                <h2>{{ _('Esperienze Precedenti') }}</h2>
                 <p>{{ dati.esperienze_precedenti }}</p>
             </section>
             {% endif %}
 
             {% if dati.progetti %}
             <section class="cv-section">
-                <h2>Progetti</h2>
+                <h2>{{ _('Progetti') }}</h2>
                 <p>{{ dati.progetti }}</p>
             </section>
             {% endif %}
 
             {% if dati.volontariato %}
             <section class="cv-section">
-                <h2>Volontariato</h2>
+                <h2>{{ _('Volontariato') }}</h2>
                 <p>{{ dati.volontariato }}</p>
             </section>
             {% endif %}
 
             {% if dati.hobby %}
             <section class="cv-section">
-                <h2>Hobby e Interessi</h2>
+                <h2>{{ _('Hobby e Interessi') }}</h2>
                 <p>{{ dati.hobby }}</p>
             </section>
             {% endif %}
 
             {% if dati.referenze %}
             <section class="cv-section">
-                <h2>Referenze</h2>
+                <h2>{{ _('Referenze') }}</h2>
                 <p>{{ dati.referenze }}</p>
             </section>
             {% endif %}
@@ -578,10 +578,11 @@
         {% endif %}
 
         {% if not anteprima %}
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cambia modalità tema">
+        {% include '_footer.html' %}
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="{{ _('Cambia modalità tema') }}">
             <span class="theme-icon">☾</span>
         </button>
         {% endif %}
-        <script src="{{ url_for('static', filename='script.js', v=7) }}"></script>
+        <script src="{{ url_for('static', filename='script.js', v=10) }}"></script>
     </body>
 </html>

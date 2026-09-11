@@ -1,22 +1,22 @@
 <!doctype html>
-<html lang="it">
+<html lang="{{ get_locale() }}">
     <head>
         {% from '_macros.html' import head %}
-        {{ head('Dashboard', 'Gestisci i tuoi curriculum in cinque template professionali.') }}
+        {{ head(_('Dashboard'), _('Gestisci i tuoi curriculum in cinque template professionali.')) }}
     </head>
     <body>
 
         {% include '_nav.html' %}
 
         <header class="page-header">
-            <p class="eyebrow">La tua area di lavoro</p>
-            <h1>I tuoi curriculum</h1>
-            <p>Crea un nuovo curriculum o modifica uno di quelli già compilati.</p>
+            <p class="eyebrow">{{ _('La tua area di lavoro') }}</p>
+            <h1>{{ _('I tuoi curriculum') }}</h1>
+            <p>{{ _('Crea un nuovo curriculum o modifica uno di quelli già compilati.') }}</p>
         </header>
 
         <main class="dashboard-main">
             <div class="dashboard-actions">
-                <a class="btn-primary" href="{{ url_for('cv_nuovo') }}">+ Nuovo CV</a>
+                <a class="btn-primary" href="{{ url_for('cv_nuovo') }}">+ {{ _('Nuovo CV') }}</a>
             </div>
 
             {% if cvs %}
@@ -29,27 +29,29 @@
                     <p class="dash-badge">{{ template_options.get(cv.template_cv, cv.template_cv) }}</p>
                     <h3 class="dash-name">{{ cv.nome }} {{ cv.cognome }}</h3>
                     <p class="dash-role">{{ cv.titolo_professionale }}</p>
-                    <p class="dash-meta">Ultima modifica: {{ cv.modificato }}</p>
+                    <p class="dash-meta">{{ _('Ultima modifica:') }} {{ cv.modificato }}</p>
                     <div class="dash-actions">
-                        <a class="link-button" href="{{ url_for('cv_modifica', cv_id=cv.id) }}">Modifica</a>
-                        <a class="link-button" href="{{ url_for('cv_anteprima', cv_id=cv.id) }}">Anteprima</a>
+                        <a class="link-button" href="{{ url_for('cv_modifica', cv_id=cv.id) }}">{{ _('Modifica') }}</a>
+                        <a class="link-button" href="{{ url_for('cv_anteprima', cv_id=cv.id) }}">{{ _('Anteprima') }}</a>
                     </div>
                 </article>
                 {% endfor %}
             </div>
             {% else %}
             <div class="dash-empty glass">
-                <p class="eyebrow">Ancora niente</p>
-                <h2>Non hai ancora curriculum</h2>
-                <p>Compila i dati e scegli uno dei 5 template: il tuo primo CV è a pochi passi.</p>
-                <a class="btn-primary" href="{{ url_for('cv_nuovo') }}">Crea il tuo primo CV</a>
+                <p class="eyebrow">{{ _('Ancora niente') }}</p>
+                <h2>{{ _('Non hai ancora curriculum') }}</h2>
+                <p>{{ _('Compila i dati e scegli uno dei 5 template: il tuo primo CV è a pochi passi.') }}</p>
+                <a class="btn-primary" href="{{ url_for('cv_nuovo') }}">{{ _('Crea il tuo primo CV') }}</a>
             </div>
             {% endif %}
         </main>
 
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cambia modalità tema">
+        {% include '_footer.html' %}
+
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="{{ _('Cambia modalità tema') }}">
             <span class="theme-icon">☾</span>
         </button>
-        <script src="{{ url_for('static', filename='script.js', v=7) }}"></script>
+        <script src="{{ url_for('static', filename='script.js', v=10) }}"></script>
     </body>
 </html>

@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="it">
+<html lang="{{ get_locale() }}">
     <head>
         {% from '_macros.html' import head %}
-        {{ head('Accedi', 'Accedi al tuo spazio Cursus per gestire i tuoi curriculum.') }}
+        {{ head(_('Accedi'), _('Accedi al tuo spazio Cursus per gestire i tuoi curriculum.')) }}
     </head>
     <body class="auth-page">
 
@@ -10,32 +10,30 @@
 
         <main class="auth-main">
             <section class="auth-card glass">
-                <p class="eyebrow">Bentornato</p>
-                <h1>Accedi a Cursus</h1>
-                <p class="auth-sub">Ritrova i tuoi curriculum e riprendi da dove avevi lasciato.</p>
+                <p class="eyebrow">{{ _('Bentornato') }}</p>
+                <h1>{{ _('Accedi a Cursus') }}</h1>
+                <p class="auth-sub">{{ _('Ritrova i tuoi curriculum e riprendi da dove avevi lasciato.') }}</p>
 
                 {% if errore %}
                 <p class="auth-error" role="alert">{{ errore }}</p>
                 {% endif %}
 
                 <form method="POST" action="{{ url_for('login') }}" class="auth-form">
-                    <label>Email<input type="email" name="email" placeholder="nome@esempio.it" required autofocus /></label>
-                    <label>Password<input type="password" name="password" placeholder="••••••••" required /></label>
-                    <button type="submit">Entra</button>
-                    <p class="auth-hint">Demo: <strong>demo@cursus.it</strong> / <strong>demo123</strong></p>
+                    <label>{{ _('Email') }}<input type="email" name="email" placeholder="nome@esempio.it" required autofocus /></label>
+                    <label>{{ _('Password') }}<input type="password" name="password" placeholder="••••••••" required /></label>
+                    <button type="submit">{{ _('Entra') }}</button>
+                    <p class="auth-hint">{{ _('Demo:') }} <strong>demo@cursus.it</strong> / <strong>demo123</strong></p>
                 </form>
 
-                <p class="auth-switch">Non hai un account? <a href="{{ url_for('register') }}">Registrati</a></p>
+                <p class="auth-switch">{{ _('Non hai un account?') }} <a href="{{ url_for('register') }}">{{ _('Registrati') }}</a></p>
             </section>
         </main>
 
-        <footer class="site-footer">
-            <p>Cursus · Curricula fatti per essere letti</p>
-        </footer>
+        {% include '_footer.html' %}
 
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cambia modalità tema">
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="{{ _('Cambia modalità tema') }}">
             <span class="theme-icon">☾</span>
         </button>
-        <script src="{{ url_for('static', filename='script.js', v=7) }}"></script>
+        <script src="{{ url_for('static', filename='script.js', v=10) }}"></script>
     </body>
 </html>

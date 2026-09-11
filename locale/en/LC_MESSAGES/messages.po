@@ -1,0 +1,1120 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Cursus\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Cursus\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "(facoltativa)"
+msgstr "(optional)"
+
+msgid "(facoltativa, max 5 MB)"
+msgstr "(optional, max 5 MB)"
+
+msgid "+1"
+msgstr "+1"
+
+msgid "+20"
+msgstr "+20"
+
+msgid "+212"
+msgstr "+212"
+
+msgid "+216"
+msgstr "+216"
+
+msgid "+30"
+msgstr "+30"
+
+msgid "+31"
+msgstr "+31"
+
+msgid "+32"
+msgstr "+32"
+
+msgid "+33"
+msgstr "+33"
+
+msgid "+34"
+msgstr "+34"
+
+msgid "+351"
+msgstr "+351"
+
+msgid "+353"
+msgstr "+353"
+
+msgid "+355"
+msgstr "+355"
+
+msgid "+356"
+msgstr "+356"
+
+msgid "+357"
+msgstr "+357"
+
+msgid "+358"
+msgstr "+358"
+
+msgid "+380"
+msgstr "+380"
+
+msgid "+381"
+msgstr "+381"
+
+msgid "+385"
+msgstr "+385"
+
+msgid "+39"
+msgstr "+39"
+
+msgid "+40"
+msgstr "+40"
+
+msgid "+41"
+msgstr "+41"
+
+msgid "+43"
+msgstr "+43"
+
+msgid "+44"
+msgstr "+44"
+
+msgid "+45"
+msgstr "+45"
+
+msgid "+46"
+msgstr "+46"
+
+msgid "+47"
+msgstr "+47"
+
+msgid "+48"
+msgstr "+48"
+
+msgid "+49"
+msgstr "+49"
+
+msgid "+52"
+msgstr "+52"
+
+msgid "+54"
+msgstr "+54"
+
+msgid "+55"
+msgstr "+55"
+
+msgid "+61"
+msgstr "+61"
+
+msgid "+81"
+msgstr "+81"
+
+msgid "+86"
+msgstr "+86"
+
+msgid "+90"
+msgstr "+90"
+
+msgid "+91"
+msgstr "+91"
+
+msgid "+971"
+msgstr "+971"
+
+msgid "Accedi"
+msgstr "Log in"
+
+msgid "Accedi a Cursus"
+msgstr "Log in to Cursus"
+
+msgid "Accedi al tuo spazio Cursus per gestire i tuoi curriculum."
+msgstr "Log in to your Cursus space to manage your CVs."
+
+msgid "Addetto alle Vendite / Commesso"
+msgstr "Sales Assistant"
+
+msgid "Altro"
+msgstr "Other"
+
+msgid "Ancora niente"
+msgstr "Nothing yet"
+
+msgid "Anni di esperienza"
+msgstr "Years of experience"
+
+msgid "Anno di conseguimento"
+msgstr "Year obtained"
+
+msgid "Anteprima"
+msgstr "Preview"
+
+msgid "Anteprima del CV"
+msgstr "CV Preview"
+
+msgid "Anteprima della foto profilo"
+msgstr "Profile photo preview"
+
+msgid "Attività, organizzazione e periodo..."
+msgstr "Activities, organisation and period..."
+
+msgid "Azienda"
+msgstr "Company"
+
+msgid "Bentornato"
+msgstr "Welcome back"
+
+msgid "Breve descrizione del tuo profilo professionale..."
+msgstr "Brief description of your professional profile..."
+
+msgid "Business Analyst"
+msgstr "Business Analyst"
+
+msgid "CAP"
+msgstr "Postcode"
+
+msgid "CV di"
+msgstr "CV of"
+
+msgid "Cambia lingua"
+msgstr "Change language"
+
+msgid "Cambia modalità tema"
+msgstr "Toggle theme"
+
+msgid "Cameriere / Barman"
+msgstr "Waiter / Bartender"
+
+msgid "Carica una foto o trascinala qui"
+msgstr "Upload a photo or drag it here"
+
+msgid "Cellulare"
+msgstr "Mobile"
+
+msgid "Cerca il tuo titolo di studio..."
+msgstr "Search for your qualification..."
+
+msgid "Chiudi anteprima"
+msgstr "Close preview"
+
+msgid "Cinque template professionali, un solo form. Fatti per essere letti."
+msgstr "Five professional templates, a single form. Made to be read."
+
+msgid "Città"
+msgstr "City"
+
+msgid "Città, Paese"
+msgstr "City, Country"
+
+msgid "Codice fiscale"
+msgstr "Tax code"
+
+msgid "Cognome"
+msgstr "Last name"
+
+msgid "Collaborazione / Progetto"
+msgstr "Collaboration / Project"
+
+msgid "Commerciale / Sales Account"
+msgstr "Sales Executive / Account Manager"
+
+msgid "Competenze Tecniche"
+msgstr "Technical Skills"
+
+msgid "Competenze Trasversali"
+msgstr "Soft Skills"
+
+msgid "Competenze e Altre Informazioni"
+msgstr "Skills and Other Information"
+
+msgid "Competenze tecniche"
+msgstr "Technical skills"
+
+msgid "Competenze trasversali"
+msgstr "Soft skills"
+
+msgid "Compila i dati e scegli uno dei 5 template: il tuo primo CV è a pochi passi."
+msgstr "Fill in your details and choose one of the 5 templates: your first CV is just a few steps away."
+
+msgid "Compila il profilo con le informazioni che vuoi valorizzare nel tuo curriculum."
+msgstr "Fill in the profile with the information you want to highlight in your CV."
+
+msgid "Compila un unico form e genera il tuo curriculum in 5 template professionali."
+msgstr "Fill in a single form and generate your CV in 5 professional templates."
+
+msgid "Compila una volta, scegli tra cinque template studiati per la stampa e"
+msgstr "Fill in once, choose from five print-ready templates and"
+
+msgid "Compilazione CV"
+msgstr "CV Completion"
+
+msgid "Conferma password"
+msgstr "Confirm password"
+
+msgid "Consulente Aziendale"
+msgstr "Business Consultant"
+
+msgid "Contabile / Impiegato Amministrativo"
+msgstr "Accountant / Administrative Clerk"
+
+msgid "Content Creator / Copywriter"
+msgstr "Content Creator / Copywriter"
+
+msgid "Controllo Qualità"
+msgstr "Quality Control"
+
+msgid "Corsi e Certificazioni"
+msgstr "Courses and Certifications"
+
+msgid "Corsi, certificazioni e formazione aggiuntiva"
+msgstr "Courses, certifications and additional training"
+
+msgid "Costruiamo il tuo prossimo passo"
+msgstr "Let's build your next step"
+
+msgid "Crea il tuo account"
+msgstr "Create your account"
+
+msgid "Crea il tuo primo CV"
+msgstr "Create your first CV"
+
+msgid "Crea un account Cursus e inizia a costruire il tuo curriculum."
+msgstr "Create a Cursus account and start building your CV."
+
+msgid "Crea un curriculum professionale in cinque template pronti per la stampa."
+msgstr "Create a professional CV in five print-ready templates."
+
+msgid "Crea un nuovo curriculum o modifica uno di quelli già compilati."
+msgstr "Create a new CV or edit one you have already completed."
+
+msgid "Cuoco / Chef"
+msgstr "Cook / Chef"
+
+msgid "Curricula fatti per essere letti"
+msgstr "CVs made to be read"
+
+msgid "Curriculum di"
+msgstr "CV of"
+
+msgid "Cybersecurity Specialist"
+msgstr "Cybersecurity Specialist"
+
+msgid "Da concordare"
+msgstr "To be agreed"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Data Analyst / Data Scientist"
+msgstr "Data Analyst / Data Scientist"
+
+msgid "Data di nascita"
+msgstr "Date of birth"
+
+msgid "Dati Anagrafici e Contatti"
+msgstr "Personal Details and Contacts"
+
+msgid "Demo:"
+msgstr "Demo:"
+
+msgid "Descrivi progetti personali o professionali..."
+msgstr "Describe personal or professional projects..."
+
+msgid "Descrizione delle mansioni"
+msgstr "Job description"
+
+msgid "DevOps Engineer"
+msgstr "DevOps Engineer"
+
+msgid "Digital Marketing Specialist"
+msgstr "Digital Marketing Specialist"
+
+msgid "Diploma AFAM (Alta Formazione Artistica, Musicale e Coreutica)"
+msgstr "AFAM Diploma (Higher Education in Arts, Music and Dance)"
+
+msgid "Diploma ITS (Istituto Tecnico Superiore - Formazione Terziaria)"
+msgstr "ITS Diploma (Higher Technical Institute - Tertiary Education)"
+
+msgid "Diploma Istituto Tecnico - Agraria, Agroalimentare e Agroindustria"
+msgstr "Technical High School Diploma - Agriculture, Food and Agroindustry"
+
+msgid "Diploma Istituto Tecnico - Amministrazione, Finanza e Marketing (AFM)"
+msgstr "Technical High School Diploma - Business, Finance and Marketing (AFM)"
+
+msgid "Diploma Istituto Tecnico - Chimica, Materiali e Biotecnologie"
+msgstr "Technical High School Diploma - Chemistry, Materials and Biotechnology"
+
+msgid "Diploma Istituto Tecnico - Costruzioni, Ambiente e Territorio (Geometra)"
+msgstr "Technical High School Diploma - Construction, Environment and Land Surveying"
+
+msgid "Diploma Istituto Tecnico - Elettronica ed Elettrotecnica"
+msgstr "Technical High School Diploma - Electronics and Electrical Engineering"
+
+msgid "Diploma Istituto Tecnico - Grafica e Comunicazione"
+msgstr "Technical High School Diploma - Graphics and Communication"
+
+msgid "Diploma Istituto Tecnico - Informatica e Telecomunicazioni"
+msgstr "Technical High School Diploma - Computer Science and Telecommunications"
+
+msgid "Diploma Istituto Tecnico - Meccanica, Meccatronica ed Energia"
+msgstr "Technical High School Diploma - Mechanical Engineering, Mechatronics and Energy"
+
+msgid "Diploma Istituto Tecnico - Relazioni Internazionali per il Marketing (RIM)"
+msgstr "Technical High School Diploma - International Marketing and Relations (RIM)"
+
+msgid "Diploma Istituto Tecnico - Sistema Moda"
+msgstr "Technical High School Diploma - Fashion System"
+
+msgid "Diploma Istituto Tecnico - Sistemi Informativi Aziendali (SIA)"
+msgstr "Technical High School Diploma - Business Information Systems (SIA)"
+
+msgid "Diploma Istituto Tecnico - Trasporti e Logistica"
+msgstr "Technical High School Diploma - Transport and Logistics"
+
+msgid "Diploma Istituto Tecnico - Turismo"
+msgstr "Technical High School Diploma - Tourism"
+
+msgid "Diploma Liceo Artistico"
+msgstr "Arts High School Diploma"
+
+msgid "Diploma Liceo Classico"
+msgstr "Classical Studies High School Diploma"
+
+msgid "Diploma Liceo Linguistico"
+msgstr "Languages High School Diploma"
+
+msgid "Diploma Liceo Musicale e Coreutico"
+msgstr "Music and Dance High School Diploma"
+
+msgid "Diploma Liceo Scientifico"
+msgstr "Science High School Diploma"
+
+msgid "Diploma Liceo Scientifico - Opzione Scienze Applicate"
+msgstr "Science High School Diploma - Applied Sciences"
+
+msgid "Diploma Liceo Scientifico - Sezione ad Indirizzo Sportivo"
+msgstr "Science High School Diploma - Sports Section"
+
+msgid "Diploma Liceo delle Scienze Umane"
+msgstr "Human Sciences High School Diploma"
+
+msgid "Diploma Liceo delle Scienze Umane - Opzione Economico-Sociale"
+msgstr "Human Sciences High School Diploma - Economic and Social Studies"
+
+msgid "Diploma di Tecnico Professionale (IeFP - 4 anni)"
+msgstr "Vocational Technical Diploma (IeFP - 4 years)"
+
+msgid "Disponibilità ad iniziare"
+msgstr "Availability to start"
+
+msgid "Dopo preavviso"
+msgstr "After notice period"
+
+msgid "Dottorato di Ricerca (Ph.D.)"
+msgstr "Doctorate (Ph.D.)"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Entra"
+msgstr "Enter"
+
+msgid "Es. 105/110"
+msgstr "e.g. 105/110"
+
+msgid "Es. 20100"
+msgstr "e.g. 20100"
+
+msgid "Es. 2021 - Presente"
+msgstr "e.g. 2021 - Present"
+
+msgid "Es. 2022"
+msgstr "e.g. 2022"
+
+msgid "Es. 5"
+msgstr "e.g. 5"
+
+msgid "Es. B"
+msgstr "e.g. B"
+
+msgid "Es. Figma, Photoshop, SAP, Office"
+msgstr "e.g. Figma, Photoshop, SAP, Office"
+
+msgid "Es. Giulia"
+msgstr "e.g. Giulia"
+
+msgid "Es. IT, Sanità, Retail"
+msgstr "e.g. IT, Healthcare, Retail"
+
+msgid "Es. Italiana"
+msgstr "e.g. Italian"
+
+msgid "Es. Italiano C2"
+msgstr "e.g. Italian C2"
+
+msgid "Es. Product Designer"
+msgstr "e.g. Product Designer"
+
+msgid "Es. Python, SQL, Excel"
+msgstr "e.g. Python, SQL, Excel"
+
+msgid "Es. Riduzione costi del 20%, lancio di 3 prodotti..."
+msgstr "e.g. 20% cost reduction, launch of 3 products..."
+
+msgid "Es. Rossi"
+msgstr "e.g. Rossi"
+
+msgid "Es. fotografia, trekking"
+msgstr "e.g. photography, hiking"
+
+msgid "Es. leadership, problem solving, team working"
+msgstr "e.g. leadership, problem solving, teamwork"
+
+msgid "Esci"
+msgstr "Log out"
+
+msgid "Esperienza Professionale"
+msgstr "Professional Experience"
+
+msgid "Esperienze Lavorative"
+msgstr "Work Experience"
+
+msgid "Esperienze Precedenti"
+msgstr "Previous Experience"
+
+msgid "Esperienze precedenti"
+msgstr "Previous experience"
+
+msgid "Esplora"
+msgstr "Explore"
+
+msgid "Foto di"
+msgstr "Photo of"
+
+msgid "Foto profilo"
+msgstr "Profile photo"
+
+msgid "Freelance / Consulenza"
+msgstr "Freelance / Consulting"
+
+msgid "Freelancer / Libero Professionista"
+msgstr "Freelancer / Self-employed"
+
+msgid "Genera CV"
+msgstr "Generate CV"
+
+msgid "Gestisci i tuoi curriculum in cinque template professionali."
+msgstr "Manage your CVs in five professional templates."
+
+msgid "Graphic Designer"
+msgstr "Graphic Designer"
+
+msgid "Hai già un account?"
+msgstr "Already have an account?"
+
+msgid "Ho già un account"
+msgstr "I already have an account"
+
+msgid "Hobby e Interessi"
+msgstr "Hobbies and Interests"
+
+msgid "Hobby e interessi"
+msgstr "Hobbies and interests"
+
+
+msgid "Home"
+msgstr "Home"
+
+msgid "I tuoi curriculum"
+msgstr "Your CVs"
+
+msgid "Il tuo curriculum,"
+msgstr "Your CV,"
+
+msgid "Il tuo curriculum, con stile"
+msgstr "Your CV, with style"
+
+msgid "Immediata"
+msgstr "Immediate"
+
+msgid "In 30 secondi sei dentro. I tuoi CV resteranno solo tuoi."
+msgstr "You are in within 30 seconds. Your CVs stay yours alone."
+
+msgid "Indirizzo"
+msgstr "Address"
+
+msgid "Inizia a digitare un comune o paese..."
+msgstr "Start typing a city or country..."
+
+msgid "Interessi"
+msgstr "Interests"
+
+msgid "Istituto / università"
+msgstr "Institution / university"
+
+msgid "Istruzione"
+msgstr "Education"
+
+msgid "Istruzione e Formazione"
+msgstr "Education and Training"
+
+msgid "La tua area di lavoro"
+msgstr "Your workspace"
+
+msgid "Laurea Magistrale a Ciclo Unico in Architettura e Ingegneria Edile-Architettura (LM-4 c.u.)"
+msgstr "Master's Degree (Single Cycle) in Architecture and Building Engineering-Architecture (LM-4 c.u.)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Chimica e Tecnologia Farmaceutiche - CTF (LM-13 c.u.)"
+msgstr "Master's Degree (Single Cycle) in Pharmaceutical Chemistry and Technology - CTF (LM-13 c.u.)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Conservazione e Restauro dei Beni Culturali (LMR/02)"
+msgstr "Master's Degree (Single Cycle) in Conservation and Restoration of Cultural Heritage (LMR/02)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Farmacia (LM-13 c.u.)"
+msgstr "Master's Degree (Single Cycle) in Pharmacy (LM-13 c.u.)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Giurisprudenza (LMG/01)"
+msgstr "Master's Degree (Single Cycle) in Law (LMG/01)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Medicina Veterinaria (LM-42)"
+msgstr "Master's Degree (Single Cycle) in Veterinary Medicine (LM-42)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Medicina e Chirurgia (LM-41)"
+msgstr "Master's Degree (Single Cycle) in Medicine and Surgery (LM-41)"
+
+msgid "Laurea Magistrale a Ciclo Unico in Odontoiatria e Protesi Dentaria (LM-46)"
+msgstr "Master's Degree (Single Cycle) in Dentistry and Dental Prosthetics (LM-46)"
+
+msgid "Laurea Magistrale in Antropologia ed Etnologia (LM-1)"
+msgstr "Master's Degree in Anthropology and Ethnology (LM-1)"
+
+msgid "Laurea Magistrale in Archeologia (LM-2)"
+msgstr "Master's Degree in Archaeology (LM-2)"
+
+msgid "Laurea Magistrale in Biologia (LM-6)"
+msgstr "Master's Degree in Biology (LM-6)"
+
+msgid "Laurea Magistrale in Biotecnologie Mediche, Veterinarie e Farmaceutiche (LM-9)"
+msgstr "Master's Degree in Medical, Veterinary and Pharmaceutical Biotechnology (LM-9)"
+
+msgid "Laurea Magistrale in Data Science e Gestione dell'Informazione (LM-91)"
+msgstr "Master's Degree in Data Science and Information Management (LM-91)"
+
+msgid "Laurea Magistrale in Economia e Management / Scienze Economico-Aziendali (LM-77)"
+msgstr "Master's Degree in Economics and Management / Business and Economics (LM-77)"
+
+msgid "Laurea Magistrale in Finance / Finanza (LM-16)"
+msgstr "Master's Degree in Finance (LM-16)"
+
+msgid "Laurea Magistrale in Fisica e Astrofisica (LM-17)"
+msgstr "Master's Degree in Physics and Astrophysics (LM-17)"
+
+msgid "Laurea Magistrale in Informatica (LM-18)"
+msgstr "Master's Degree in Computer Science (LM-18)"
+
+msgid "Laurea Magistrale in Ingegneria Aerospaziale e Astronautica (LM-20)"
+msgstr "Master's Degree in Aerospace and Astronautical Engineering (LM-20)"
+
+msgid "Laurea Magistrale in Ingegneria Biomedica (LM-21)"
+msgstr "Master's Degree in Biomedical Engineering (LM-21)"
+
+msgid "Laurea Magistrale in Ingegneria Chimica (LM-22)"
+msgstr "Master's Degree in Chemical Engineering (LM-22)"
+
+msgid "Laurea Magistrale in Ingegneria Civile (LM-23)"
+msgstr "Master's Degree in Civil Engineering (LM-23)"
+
+msgid "Laurea Magistrale in Ingegneria Elettrica (LM-28)"
+msgstr "Master's Degree in Electrical Engineering (LM-28)"
+
+msgid "Laurea Magistrale in Ingegneria Elettronica (LM-29)"
+msgstr "Master's Degree in Electronic Engineering (LM-29)"
+
+msgid "Laurea Magistrale in Ingegneria Gestionale (LM-31)"
+msgstr "Master's Degree in Management Engineering (LM-31)"
+
+msgid "Laurea Magistrale in Ingegneria Informatica (LM-32)"
+msgstr "Master's Degree in Computer Engineering (LM-32)"
+
+msgid "Laurea Magistrale in Ingegneria Meccanica (LM-33)"
+msgstr "Master's Degree in Mechanical Engineering (LM-33)"
+
+msgid "Laurea Magistrale in Ingegneria Meccatronica (LM-33)"
+msgstr "Master's Degree in Mechatronic Engineering (LM-33)"
+
+msgid "Laurea Magistrale in Ingegneria Navale (LM-34)"
+msgstr "Master's Degree in Naval Engineering (LM-34)"
+
+msgid "Laurea Magistrale in Ingegneria Nucleare (LM-36)"
+msgstr "Master's Degree in Nuclear Engineering (LM-36)"
+
+msgid "Laurea Magistrale in Ingegneria dei Materiali (LM-53)"
+msgstr "Master's Degree in Materials Engineering (LM-53)"
+
+msgid "Laurea Magistrale in Ingegneria delle Telecomunicazioni (LM-27)"
+msgstr "Master's Degree in Telecommunications Engineering (LM-27)"
+
+msgid "Laurea Magistrale in Intelligenza Artificiale / AI & Robotics (LM-18 / LM-32)"
+msgstr "Master's Degree in Artificial Intelligence / AI & Robotics (LM-18 / LM-32)"
+
+msgid "Laurea Magistrale in Lingue e Letterature Moderne (LM-37)"
+msgstr "Master's Degree in Modern Languages and Literatures (LM-37)"
+
+msgid "Laurea Magistrale in Matematica (LM-40)"
+msgstr "Master's Degree in Mathematics (LM-40)"
+
+msgid "Laurea Magistrale in Psicologia (LM-51)"
+msgstr "Master's Degree in Psychology (LM-51)"
+
+msgid "Laurea Magistrale in Relazioni Internazionali (LM-52)"
+msgstr "Master's Degree in International Relations (LM-52)"
+
+msgid "Laurea Magistrale in Scienze Chimiche (LM-54)"
+msgstr "Master's Degree in Chemical Sciences (LM-54)"
+
+msgid "Laurea Magistrale in Scienze Economiche (LM-56)"
+msgstr "Master's Degree in Economics (LM-56)"
+
+msgid "Laurea Magistrale in Scienze Filosofiche (LM-78)"
+msgstr "Master's Degree in Philosophy (LM-78)"
+
+msgid "Laurea Magistrale in Scienze Politiche (LM-62)"
+msgstr "Master's Degree in Political Science (LM-62)"
+
+msgid "Laurea Magistrale in Scienze Storiche (LM-84)"
+msgstr "Master's Degree in History (LM-84)"
+
+msgid "Laurea Magistrale in Scienze della Comunicazione Pubblica, d'Impresa e Pubblicità (LM-59)"
+msgstr "Master's Degree in Public, Corporate and Advertising Communication (LM-59)"
+
+msgid "Laurea Magistrale in Scienze della Formazione Continua (LM-57)"
+msgstr "Master's Degree in Continuing Education Sciences (LM-57)"
+
+msgid "Laurea Magistrale in Scienze delle Pubbliche Amministrazioni (LM-63)"
+msgstr "Master's Degree in Public Administration Sciences (LM-63)"
+
+msgid "Laurea Magistrale in Sicurezza Informatica / Cybersecurity (LM-66)"
+msgstr "Master's Degree in Computer Security / Cybersecurity (LM-66)"
+
+msgid "Laurea Magistrale in Statistica (LM-82)"
+msgstr "Master's Degree in Statistics (LM-82)"
+
+msgid "Laurea Magistrale in Traduzione Specialistica ed Interpretariato (LM-94)"
+msgstr "Master's Degree in Specialised Translation and Interpreting (LM-94)"
+
+msgid "Laurea Triennale in Architettura / Scienze dell'Architettura (L-17)"
+msgstr "Bachelor's Degree in Architecture / Architectural Sciences (L-17)"
+
+msgid "Laurea Triennale in Beni Culturali (L-1)"
+msgstr "Bachelor's Degree in Cultural Heritage (L-1)"
+
+msgid "Laurea Triennale in Biotecnologie (L-2)"
+msgstr "Bachelor's Degree in Biotechnology (L-2)"
+
+msgid "Laurea Triennale in Design (L-4)"
+msgstr "Bachelor's Degree in Design (L-4)"
+
+msgid "Laurea Triennale in Discipline delle Arti, della Musica e dello Spettacolo - DAMS (L-3)"
+msgstr "Bachelor's Degree in Arts, Music and Performing Arts - DAMS (L-3)"
+
+msgid "Laurea Triennale in Filosofia (L-5)"
+msgstr "Bachelor's Degree in Philosophy (L-5)"
+
+msgid "Laurea Triennale in Fisica (L-30)"
+msgstr "Bachelor's Degree in Physics (L-30)"
+
+msgid "Laurea Triennale in Geografia (L-6)"
+msgstr "Bachelor's Degree in Geography (L-6)"
+
+msgid "Laurea Triennale in Giurisprudenza / Scienze dei Servizi Giuridici (L-14)"
+msgstr "Bachelor's Degree in Law / Legal Services Sciences (L-14)"
+
+msgid "Laurea Triennale in Informatica / Scienze e Tecnologie Informatiche (L-31)"
+msgstr "Bachelor's Degree in Computer Science / Computer Science and Technology (L-31)"
+
+msgid "Laurea Triennale in Ingegneria Civile e Ambientale (L-7)"
+msgstr "Bachelor's Degree in Civil and Environmental Engineering (L-7)"
+
+msgid "Laurea Triennale in Ingegneria Industriale (L-9)"
+msgstr "Bachelor's Degree in Industrial Engineering (L-9)"
+
+msgid "Laurea Triennale in Ingegneria dell'Informazione (L-8)"
+msgstr "Bachelor's Degree in Information Engineering (L-8)"
+
+msgid "Laurea Triennale in Lettere / Lettere e Filosofia (L-10)"
+msgstr "Bachelor's Degree in Humanities / Humanities and Philosophy (L-10)"
+
+msgid "Laurea Triennale in Lingue e Culture Moderne (L-11)"
+msgstr "Bachelor's Degree in Modern Languages and Cultures (L-11)"
+
+msgid "Laurea Triennale in Matematica (L-35)"
+msgstr "Bachelor's Degree in Mathematics (L-35)"
+
+msgid "Laurea Triennale in Mediazione Linguistica (L-12)"
+msgstr "Bachelor's Degree in Interpreting and Translation (L-12)"
+
+msgid "Laurea Triennale in Psicologia / Scienze e Tecniche Psicologiche (L-24)"
+msgstr "Bachelor's Degree in Psychology / Psychological Sciences and Techniques (L-24)"
+
+msgid "Laurea Triennale in Scienza della Formazione Primaria"
+msgstr "Bachelor's Degree in Primary Education"
+
+msgid "Laurea Triennale in Scienza della Nutrizione / Scienze della Nutrizione (L-26)"
+msgstr "Bachelor's Degree in Nutrition / Nutritional Sciences (L-26)"
+
+msgid "Laurea Triennale in Scienze Biologiche (L-13)"
+msgstr "Bachelor's Degree in Biological Sciences (L-13)"
+
+msgid "Laurea Triennale in Scienze Chimiche (L-27)"
+msgstr "Bachelor's Degree in Chemical Sciences (L-27)"
+
+msgid "Laurea Triennale in Scienze Economiche (L-33)"
+msgstr "Bachelor's Degree in Economics (L-33)"
+
+msgid "Laurea Triennale in Scienze Geologiche (L-34)"
+msgstr "Bachelor's Degree in Geological Sciences (L-34)"
+
+msgid "Laurea Triennale in Scienze Politiche e delle Relazioni Internazionali (L-36)"
+msgstr "Bachelor's Degree in Political Science and International Relations (L-36)"
+
+msgid "Laurea Triennale in Scienze Sociali / Servizio Sociale (L-39)"
+msgstr "Bachelor's Degree in Social Sciences / Social Work (L-39)"
+
+msgid "Laurea Triennale in Scienze Statistiche (L-41)"
+msgstr "Bachelor's Degree in Statistical Sciences (L-41)"
+
+msgid "Laurea Triennale in Scienze dell'Economia e della Gestione Aziendale (L-18)"
+msgstr "Bachelor's Degree in Business Economics and Management (L-18)"
+
+msgid "Laurea Triennale in Scienze dell'Educazione e della Formazione (L-19)"
+msgstr "Bachelor's Degree in Education and Training Sciences (L-19)"
+
+msgid "Laurea Triennale in Scienze della Comunicazione (L-20)"
+msgstr "Bachelor's Degree in Communication Sciences (L-20)"
+
+msgid "Laurea Triennale in Scienze delle Attività Motorie e Sportive (L-22)"
+msgstr "Bachelor's Degree in Sport and Exercise Sciences (L-22)"
+
+msgid "Laurea Triennale in Scienze e Tecnologie Agrarie e Forestali (L-25)"
+msgstr "Bachelor's Degree in Agricultural and Forestry Sciences and Technology (L-25)"
+
+msgid "Laurea Triennale in Scienze e Tecnologie Alimentari (L-26)"
+msgstr "Bachelor's Degree in Food Science and Technology (L-26)"
+
+msgid "Laurea Triennale in Scienze e Tecnologie Farmaceutiche (L-29)"
+msgstr "Bachelor's Degree in Pharmaceutical Science and Technology (L-29)"
+
+msgid "Laurea Triennale in Scienze e Tecnologie per l'Ambiente e la Natura (L-32)"
+msgstr "Bachelor's Degree in Environmental and Natural Sciences and Technology (L-32)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Fisioterapia (L/SNT2)"
+msgstr "Bachelor's Degree in Healthcare Professions - Physiotherapy (L/SNT2)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Igiene Dentale (L/SNT3)"
+msgstr "Bachelor's Degree in Healthcare Professions - Dental Hygiene (L/SNT3)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Infermieristica (L/SNT1)"
+msgstr "Bachelor's Degree in Healthcare Professions - Nursing (L/SNT1)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Logopedia (L/SNT2)"
+msgstr "Bachelor's Degree in Healthcare Professions - Speech Therapy (L/SNT2)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Ostetricia (L/SNT1)"
+msgstr "Bachelor's Degree in Healthcare Professions - Midwifery (L/SNT1)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Prevenzione nell'Ambiente e nei Luoghi di Lavoro (L/SNT4)"
+msgstr "Bachelor's Degree in Healthcare Professions - Environmental and Workplace Health Prevention (L/SNT4)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Radiologia / Tecniche di Radiologia (L/SNT3)"
+msgstr "Bachelor's Degree in Healthcare Professions - Radiology / Radiography (L/SNT3)"
+
+msgid "Laurea Triennale nelle Professioni Sanitarie - Tecniche di Laboratorio (L/SNT3)"
+msgstr "Bachelor's Degree in Healthcare Professions - Medical Laboratory Techniques (L/SNT3)"
+
+msgid "Licenza Media / Scuola Secondaria di Primo Grado"
+msgstr "Lower Secondary School Diploma"
+
+msgid "Lingue"
+msgstr "Languages"
+
+msgid "Lingue conosciute"
+msgstr "Languages spoken"
+
+msgid "Luogo di nascita"
+msgstr "Place of birth"
+
+msgid "Magazziniere / Responsabile Logistica"
+msgstr "Warehouse Worker / Logistics Coordinator"
+
+msgid "Master Universitario di Primo Livello"
+msgstr "First-level University Master"
+
+msgid "Master Universitario di Secondo Livello"
+msgstr "Second-level University Master"
+
+msgid "Minimo 6 caratteri"
+msgstr "Minimum 6 characters"
+
+msgid "Modifica"
+msgstr "Edit"
+
+msgid "Nazionalità"
+msgstr "Nationality"
+
+msgid "Nome"
+msgstr "First name"
+
+msgid "Nome azienda"
+msgstr "Company name"
+
+msgid "Nome dell'istituto"
+msgstr "Institution name"
+
+msgid "Nome, ruolo e contatto (facoltativo)..."
+msgstr "Name, role and contact (optional)..."
+
+msgid "Non hai ancora curriculum"
+msgstr "You have no CVs yet"
+
+msgid "Non hai un account?"
+msgstr "Don't have an account?"
+
+msgid "Nuovo CV"
+msgstr "New CV"
+
+msgid "Obiettivo professionale"
+msgstr "Professional objective"
+
+msgid "Operaio Specializzato"
+msgstr "Skilled Worker"
+
+msgid "Operatore Customer Care / Call Center"
+msgstr "Customer Care / Call Centre Operator"
+
+msgid "PR & Communication Specialist"
+msgstr "PR & Communication Specialist"
+
+msgid "Part-time"
+msgstr "Part-time"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Patente"
+msgstr "Driving licence"
+
+msgid "Periodo"
+msgstr "Period"
+
+msgid "Portfolio / sito web"
+msgstr "Portfolio / website"
+
+msgid "Potrai cambiare stile senza modificare i contenuti."
+msgstr "You can change the style without modifying the content."
+
+msgid "Prima volta qui?"
+msgstr "First time here?"
+
+msgid "Profilo"
+msgstr "Profile"
+
+msgid "Profilo Personale"
+msgstr "Personal Profile"
+
+msgid "Profilo professionale"
+msgstr "Professional profile"
+
+msgid "Progetti"
+msgstr "Projects"
+
+msgid "Progetti rilevanti"
+msgstr "Relevant projects"
+
+msgid "Project Manager"
+msgstr "Project Manager"
+
+msgid "Quale posizione cerchi e dove vuoi arrivare (facoltativo)"
+msgstr "What position are you looking for and where do you want to end up (optional)"
+
+msgid "Pronto a iniziare?"
+msgstr "Ready to start?"
+
+msgid "Qualifica Professionale triennale (IeFP)"
+msgstr "Three-year Vocational Qualification (IeFP)"
+
+msgid "RSSGLL00A01F205X"
+msgstr "RSSGLL00A01F205X"
+
+msgid "Receptionist / Addetto all'Accoglienza"
+msgstr "Receptionist"
+
+msgid "Referenze"
+msgstr "References"
+
+msgid "Registrati"
+msgstr "Sign up"
+
+msgid "Registrati e inizia"
+msgstr "Sign up and get started"
+
+msgid "Responsabile Risorse Umane (HR Manager)"
+msgstr "Human Resources Manager"
+
+msgid "Responsabilità e risultati ottenuti..."
+msgstr "Responsibilities and results achieved..."
+
+msgid "Rimuovi foto"
+msgstr "Remove photo"
+
+msgid "Ripeti la password"
+msgstr "Repeat password"
+
+msgid "Risultati e obiettivi raggiunti"
+msgstr "Results and objectives achieved"
+
+msgid "Risultati raggiunti:"
+msgstr "Achievements:"
+
+msgid "Ritrova i tuoi curriculum e riprendi da dove avevi lasciato."
+msgstr "Find your CVs and pick up where you left off."
+
+msgid "Ruolo, azienda, periodo e principali attività..."
+msgstr "Role, company, period and main activities..."
+
+msgid "SEO/SEM Specialist"
+msgstr "SEO/SEM Specialist"
+
+msgid "Scarica / Salva PDF"
+msgstr "Download / Save PDF"
+
+msgid "Scarica PDF"
+msgstr "Download PDF"
+
+msgid "Scegli il template del tuo CV"
+msgstr "Choose your CV template"
+
+msgid "Scuola di Specializzazione (Area Medica / Legale / Beni Culturali)"
+msgstr "Specialisation School (Medical / Legal / Cultural Heritage)"
+
+msgid "Seleziona i titoli di studio posseduti:"
+msgstr "Select your qualifications:"
+
+msgid "Seleziona la tua professione..."
+msgstr "Select your profession..."
+
+msgid "Seleziona..."
+msgstr "Select..."
+
+msgid "Settore / industria"
+msgstr "Sector / industry"
+
+msgid "Sito #1 per il tuo CV"
+msgstr "Site #1 for your CV"
+
+msgid "Social Media Manager"
+msgstr "Social Media Manager"
+
+msgid "Specifica altro titolo di studio..."
+msgstr "Specify other qualification..."
+
+msgid "Specifica la tua professione..."
+msgstr "Specify your profession..."
+
+msgid "Strumenti e Software"
+msgstr "Tools and Software"
+
+msgid "Strumenti e software"
+msgstr "Tools and software"
+
+msgid "Studente / Neolaureato"
+msgstr "Student / Recent Graduate"
+
+msgid "Sviluppatore Software / Software Engineer"
+msgstr "Software Developer / Software Engineer"
+
+msgid "System Administrator / Sistemista"
+msgstr "System Administrator"
+
+msgid "Tecnico Elettricista / Idraulico"
+msgstr "Electrician / Plumber"
+
+msgid "Telefono"
+msgstr "Phone"
+
+msgid "Tempo determinato"
+msgstr "Fixed-term contract"
+
+msgid "Template"
+msgstr "Templates"
+
+msgid "Tempo indeterminato"
+msgstr "Permanent contract"
+
+msgid "Tesi:"
+msgstr "Thesis:"
+
+msgid "Tipo di contratto desiderato"
+msgstr "Desired contract type"
+
+msgid "Tirocinio / Stage"
+msgstr "Internship"
+
+msgid "Titolo della tesi (se laureato/a)"
+msgstr "Thesis title (if graduated)"
+
+msgid "Titolo di tesi"
+msgstr "Thesis title"
+
+msgid "UI/UX Designer"
+msgstr "UI/UX Designer"
+
+
+msgid "Torna su"
+msgstr "Back to top"
+
+msgid "Ultima modifica:"
+msgstr "Last modified:"
+
+msgid "Ultimo ruolo ricoperto"
+msgstr "Most recent role"
+
+msgid "Una voce per riga..."
+msgstr "One entry per line..."
+
+msgid "Via e numero civico"
+msgstr "Street and house number"
+
+msgid "Volontariato"
+msgstr "Volunteering"
+
+msgid "Volontariato e associazioni"
+msgstr "Volunteering and associations"
+
+msgid "Voto / valutazione"
+msgstr "Grade / rating"
+
+msgid "Voto:"
+msgstr "Grade:"
+
+msgid "Web Developer (Front-end / Back-end / Full-stack)"
+msgstr "Web Developer (Front-end / Back-end / Full-stack)"
+
+msgid "carattere"
+msgstr "character"
+
+msgid "con"
+msgstr "with"
+
+msgid "nome@email.it"
+msgstr "name@email.com"
+
+msgid "porta il tuo percorso professionale dove merita."
+msgstr "take your professional career where it deserves to be."
+
+msgid "realizzato con Cursus."
+msgstr "made with Cursus."
+
