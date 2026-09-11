@@ -1,13 +1,17 @@
 import base64
 import os
-from flask import Flask, render_template, request, redirect, url_for
+from datetime import date
+from functools import wraps
+from flask import Flask, render_template, request, redirect, url_for, abort, session
 from dotenv import load_dotenv
 
 load_dotenv()
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
+app.secret_key = os.getenv('SECRET_KEY', 'cursus-demo-secret')
 GEOAPIFY_KEY = os.getenv('GEOAPIFY_API_KEY')
+SITE_NAME = 'Cursus'
 
 TITOLI_STUDIO = [
     # --- Scuola dell'Obbligo e Qualifiche Professionali ---
@@ -136,6 +140,7 @@ TITOLI_STUDIO = [
     "Laurea Magistrale in Scienze Economiche (LM-56)",
     "Laurea Magistrale in Scienze Filosofiche (LM-78)",
     "Laurea Magistrale in Scienze Storiche (LM-84)",
+    "Laurea Magistrale in Statistica (LM-82)",
     "Laurea Magistrale in Scienze Politiche (LM-62)",
     "Laurea Magistrale in Sicurezza Informatica / Cybersecurity (LM-66)",
     "Laurea Magistrale in Traduzione Specialistica ed Interpretariato (LM-94)",
@@ -159,16 +164,326 @@ TEMPLATE_OPTIONS = {
 }
 
 
+MOCK_CVS = [
+    {
+        'id': 1,
+        'nome': 'Giulia', 'cognome': 'Rossi',
+        'email': 'giulia.rossi@example.it', 'prefisso': '+39', 'telefono': '3331234567',
+        'citta': 'Milano', 'cap': '20121', 'indirizzo': 'Via Dante 12',
+        'data_nascita': '1998-05-14', 'luogo_nascita': 'Torino, Italia', 'nazionalita': 'Italiana',
+        'codice_fiscale': 'RSSGLI98M54L219P',
+        'linkedin': 'https://linkedin.com/in/giuliarossi', 'portfolio': 'https://giuliarossi.dev', 'github': 'https://github.com/giuliarossi',
+        'titolo_professionale': 'Web Developer (Front-end / Back-end / Full-stack)',
+        'descrizione': 'Web developer con 4 anni di esperienza in progetti web, specializzata in interfacce moderne, accessibili e ad alte prestazioni.',
+        'obiettivo_professionale': 'Entrare in un team di prodotto per costruire esperienze digitali di qualità e crescere come sviluppatrice senior.',
+        'anni_esperienza': '4', 'contratto_desiderato': 'Tempo indeterminato', 'disponibilita_immediata': 'Dopo preavviso',
+        'titolo_studio': ['Diploma Istituto Tecnico - Informatica e Telecomunicazioni'],
+        'anno_diploma': '2020', 'istituto_formazione': 'ITIS C. Zuccante, Venezia', 'voto_formazione': '92/100', 'tesi_titolo': '',
+        'corsi_certificazioni': 'React e TypeScript (Corso online) · AWS Cloud Practitioner',
+        'ultimo_ruolo': 'Front-end Developer', 'azienda': 'StudioNova', 'periodo_lavoro': '2022 - Presente', 'settore_lavoro': 'IT',
+        'descrizione_lavoro': 'Sviluppo di applicazioni React/TypeScript per clienti enterprise, collaborando con i team di design e prodotto.',
+        'risultati_raggiunti': 'Riduzione del 35% dei tempi di caricamento delle pagine principali.',
+        'esperienze_precedenti': 'Junior Developer, WebAgency Roma (2021-2022): sviluppo di siti vetrina e piccole web app.',
+        'progetti': 'Dashdo, app open source di gestione spese in React',
+        'volontariato': 'Volontaria di programmazione per l\'associazione CodingForGood (2021-oggi)',
+        'competenze_tecniche': 'JavaScript, TypeScript, React, Node.js, SQL',
+        'competenze_trasversali': 'Team working, problem solving, comunicazione, autonomia',
+        'strumenti_software': 'Git, GitHub, Figma, VS Code, Docker',
+        'lingue': 'Italiano C2, Inglese B1',
+        'patente': 'B', 'hobby': 'fotografia, trekking, cucina',
+        'referenze': 'Silvia Neri - Head of Product @ StudioNova, +39 333 000 0000',
+        'foto_profilo': 'https://randomuser.me/api/portraits/women/44.jpg', 'template_cv': 'aurora', 'modificato': '2026-09-08',
+    },
+    {
+        'id': 2,
+        'nome': 'Marco', 'cognome': 'Bianchi',
+        'email': 'marco.bianchi@example.it', 'prefisso': '+39', 'telefono': '3279876543',
+        'citta': 'Bologna', 'cap': '40121', 'indirizzo': 'Via Rizzoli 21',
+        'data_nascita': '1996-02-20', 'luogo_nascita': 'Bologna, Italia', 'nazionalita': 'Italiana',
+        'codice_fiscale': 'BNCMRC96B20A944H',
+        'linkedin': 'https://linkedin.com/in/marcobianchi', 'portfolio': 'https://marcobianchi.it', 'github': 'https://github.com/marcobianchi',
+        'titolo_professionale': 'Data Analyst / Data Scientist',
+        'descrizione': 'Analista dati con esperienza in modellazione statistica e business intelligence per il settore retail e finanziario.',
+        'obiettivo_professionale': 'Una posizione in cui mettere a frutto le capacità analitiche e contribuire alle decisioni basate sui dati.',
+        'anni_esperienza': '6', 'contratto_desiderato': 'Tempo determinato', 'disponibilita_immediata': 'Immediata',
+        'titolo_studio': ['Laurea Magistrale in Statistica (LM-82)', 'Laurea Triennale in Matematica (L-35)'],
+        'anno_diploma': '2021', 'istituto_formazione': 'Università di Bologna', 'voto_formazione': '110/110 e lode', 'tesi_titolo': 'Modelli predittivi per la customer retention',
+        'corsi_certificazioni': 'Google Data Analytics · Certificazione Tableau Desktop Specialist',
+        'ultimo_ruolo': 'Data Analyst', 'azienda': 'DataCorp Italia', 'periodo_lavoro': '2023 - Presente', 'settore_lavoro': 'Consulenza IT',
+        'descrizione_lavoro': 'Dashboard e analisi predittive per clienti retail; gestione pipeline ETL con SQL e Python.',
+        'risultati_raggiunti': 'Aumento del 18% del margine su una linea prodotto grazie alle segnalazioni automatiche.',
+        'esperienze_precedenti': 'Business Analyst, GDO Partner (2021-2023): analisi vendite e forecast di magazzino.',
+        'progetti': 'Portfolio di analisi pubblico su GitHub con dataset open',
+        'volontariato': 'Tutor di statistica per studenti universitari (2022-oggi)',
+        'competenze_tecniche': 'Python, R, SQL, Excel, Spark',
+        'competenze_trasversali': 'Analisi critica, presentazione dei risultati, lavoro in team',
+        'strumenti_software': 'Tableau, Power BI, Jupyter, Git',
+        'lingue': 'Italiano C2, Inglese B2',
+        'patente': 'B', 'hobby': 'scacchi, trail running, lettura',
+        'referenze': 'Davide Serra - CIO @ DataCorp Italia, davide.serra@datacorp.it',
+        'foto_profilo': 'https://randomuser.me/api/portraits/men/32.jpg', 'template_cv': 'minimal', 'modificato': '2026-09-09',
+    },
+    {
+        'id': 3,
+        'nome': 'Sofia', 'cognome': 'Marchetti',
+        'email': 'sofia.marchetti@example.it', 'prefisso': '+39', 'telefono': '3458765432',
+        'citta': 'Firenze', 'cap': '50122', 'indirizzo': 'Borgo San Frediano 8',
+        'data_nascita': '1994-11-02', 'luogo_nascita': 'Firenze, Italia', 'nazionalita': 'Italiana',
+        'codice_fiscale': 'MRCSFO94S42D612L',
+        'linkedin': 'https://linkedin.com/in/sofiamarchetti', 'portfolio': 'https://sofiamarchetti.it', 'github': 'https://github.com/sofiamarchetti',
+        'titolo_professionale': 'Graphic Designer / Art Director',
+        'descrizione': 'Art director con 8 anni di esperienza tra brand identity, editoria e campagne digitali per marchi di moda e cibo.',
+        'obiettivo_professionale': 'Guidare un team creativo in uno studio internazionale e portare una visione editoriale autentica.',
+        'anni_esperienza': '8', 'contratto_desiderato': 'Freelance / Consulenza', 'disponibilita_immediata': 'Immediata',
+        'titolo_studio': ['Laurea Triennale in Design (L-4)', 'Master Universitario di Secondo Livello'],
+        'anno_diploma': '2017', 'istituto_formazione': 'ISIA Firenze', 'voto_formazione': '108/110', 'tesi_titolo': 'Identità visiva per piccoli produttori toscani',
+        'corsi_certificazioni': 'Adobe Creative Cloud Specialist · Masterclass di direzione creativa',
+        'ultimo_ruolo': 'Art Director', 'azienda': 'Studio Meridiana', 'periodo_lavoro': '2021 - Presente', 'settore_lavoro': 'Design & Branding',
+        'descrizione_lavoro': 'Direzione creativa di progetti di branding e packaging; gestione del team grafico e dei clienti.',
+        'risultati_raggiunti': 'Rebranding premiato con due riconoscimenti nazionali e +40% di notorietà del marchio cliente.',
+        'esperienze_precedenti': 'Senior Designer, EDIT Milano (2018-2021): campagne editoriali e digitali per il settore moda.',
+        'progetti': 'Tipografia sperimentale open source, collezione di poster con stampa artigianale',
+        'volontariato': 'Progetti di comunicazione no-profit per musei civici (2020-oggi)',
+        'competenze_tecniche': 'Illustrator, Photoshop, InDesign, Figma, After Effects',
+        'competenze_trasversali': 'Leadership creativa, storytelling visivo, gestione della clientela',
+        'strumenti_software': 'Adobe CC, Figma, Procreate, Notion',
+        'lingue': 'Italiano C2, Inglese C1, Spagnolo B1',
+        'patente': 'B', 'hobby': 'ceramica, fotografia analogica, cicloturismo',
+        'referenze': 'Luca Moretti - Direttore Creativo @ Studio Meridiana, +39 055 000 0000',
+        'foto_profilo': 'https://randomuser.me/api/portraits/women/68.jpg', 'template_cv': 'creative', 'modificato': '2026-09-07',
+    },
+    {
+        'id': 4,
+        'nome': 'Alessandro', 'cognome': 'Conti',
+        'email': 'alessandro.conti@example.it', 'prefisso': '+39', 'telefono': '3394561230',
+        'citta': 'Torino', 'cap': '10100', 'indirizzo': 'Corso Vittorio Emanuele II 33',
+        'data_nascita': '1985-03-17', 'luogo_nascita': 'Torino, Italia', 'nazionalita': 'Italiana',
+        'codice_fiscale': 'CNTLSN85C17L219T',
+        'linkedin': 'https://linkedin.com/in/alessandroconti', 'portfolio': '', 'github': '',
+        'titolo_professionale': 'Chief Operating Officer (COO)',
+        'descrizione': 'Direttore operativo con 15 anni di esperienza nella manifattura: lean management, ottimizzazione delle supply chain e trasformazione digitale dei processi.',
+        'obiettivo_professionale': 'Un ruolo di leadership per guidare la crescita operativa di un gruppo industriale in espansione.',
+        'anni_esperienza': '15', 'contratto_desiderato': 'Tempo indeterminato', 'disponibilita_immediata': 'Dopo preavviso',
+        'titolo_studio': ['Laurea Magistrale in Ingegneria Gestionale (LM-31)'],
+        'anno_diploma': '2009', 'istituto_formazione': 'Politecnico di Torino', 'voto_formazione': '110/110 e lode', 'tesi_titolo': 'Ottimizzazione dei flussi produttivi in ambiente JIT',
+        'corsi_certificazioni': 'Executive MBA · Certificazione Lean Six Sigma Black Belt',
+        'ultimo_ruolo': 'Chief Operating Officer', 'azienda': 'NordVent S.p.A.', 'periodo_lavoro': '2019 - Presente', 'settore_lavoro': 'Manifatturiero',
+        'descrizione_lavoro': 'Responsabile delle operations globali: produzione, logistica, acquisti e qualità su tre stabilimenti.',
+        'risultati_raggiunti': 'Riduzione del 22% dei costi operativi e lead time ridotto di 8 giorni a parità di qualità.',
+        'esperienze_precedenti': 'Plant Manager, Meccanica Vercelli (2014-2019): riorganizzazione completa dello stabilimento.',
+        'progetti': 'Progetto di digitalizzazione delle linee produttive (sensori IoT e MES)',
+        'volontariato': 'Mentor per giovani imprenditori presso la Fondazione Filiera (2021-oggi)',
+        'competenze_tecniche': 'Lean Manufacturing, Supply Chain, Excel avanzato, SAP, Power BI',
+        'competenze_trasversali': 'Gestione dei team, negoziazione, decision making, orientamento ai risultati',
+        'strumenti_software': 'SAP S/4HANA, Microsoft Power BI, Jira, MS Project',
+        'lingue': 'Italiano C2, Inglese C1, Tedesco B1',
+        'patente': 'B', 'hobby': 'vela, economia, bridge',
+        'referenze': 'Anna Ferrero - CFO @ NordVent S.p.A., anna.ferrero@nordvent.it',
+        'foto_profilo': 'https://randomuser.me/api/portraits/men/75.jpg', 'template_cv': 'executive', 'modificato': '2026-09-06',
+    },
+    {
+        'id': 5,
+        'nome': 'Lorenzo', 'cognome': 'Ferrari',
+        'email': 'lorenzo.ferrari@example.it', 'prefisso': '+39', 'telefono': '3476543210',
+        'citta': 'Roma', 'cap': '00187', 'indirizzo': 'Via del Corso 120',
+        'data_nascita': '1990-07-25', 'luogo_nascita': 'Perugia, Italia', 'nazionalita': 'Italiana',
+        'codice_fiscale': 'FRRLNZ90L25G478Q',
+        'linkedin': 'https://linkedin.com/in/lorenzoferrari', 'portfolio': 'https://lorenzoferrari.medium.com', 'github': '',
+        'titolo_professionale': 'Giornalista / Editor',
+        'descrizione': 'Giornalista con 10 anni di esperienza tra testate nazionali e newsletter indipendenti, specializzato in economia e innovazione.',
+        'obiettivo_professionale': 'Dirigere una redazione digitale e costruire un prodotto editoriale sostenibile e di qualità.',
+        'anni_esperienza': '10', 'contratto_desiderato': 'Collaborazione / Progetto', 'disponibilita_immediata': 'Immediata',
+        'titolo_studio': ['Laurea Magistrale in Scienze Politiche (LM-62)', 'Master Universitario di Primo Livello'],
+        'anno_diploma': '2014', 'istituto_formazione': 'Sapienza di Roma', 'voto_formazione': '105/110', 'tesi_titolo': 'Data journalism e nuove redazioni digitali',
+        'corsi_certificazioni': 'Master di giornalismo d\'indagine · Corso di data visualization',
+        'ultimo_ruolo': 'Editor', 'azienda': 'Rivista Meridiano', 'periodo_lavoro': '2020 - Presente', 'settore_lavoro': 'Editoria / Media',
+        'descrizione_lavoro': 'Coordinamento della redazione, editing dei contributi e gestione della newsletter quotidiana.',
+        'risultati_raggiunti': 'Crescita degli abbonati del 60% in due anni e premio giornalistico per l\'inchiesta "Costi nascosti".',
+        'esperienze_precedenti': 'Cronista, Agenzia Nazionale (2016-2020): economia e pubblica amministrazione.',
+        'progetti': 'Newsletter indipendente settimanale con 12.000 iscritti',
+        'volontariato': 'Insegnante volontario di laboratorio di scrittura in un carcere romano (2019-oggi)',
+        'competenze_tecniche': 'Editing, Scrittura giornalistica, SEO, Analisi dati (Excel, R base)',
+        'competenze_trasversali': 'Comunicazione, gestione redazionale, fact-checking, public speaking',
+        'strumenti_software': 'WordPress, Notion, Google Analytics, RSS aggregators',
+        'lingue': 'Italiano C2, Inglese C1, Francese B2',
+        'patente': 'B', 'hobby': 'cestistica, giardinaggio, storia moderna',
+        'referenze': 'Giorgia Rinaldi - Direttrice @ Rivista Meridiano, +39 06 000 0000',
+        'foto_profilo': 'https://randomuser.me/api/portraits/men/11.jpg', 'template_cv': 'editorial', 'modificato': '2026-09-05',
+    },
+]
+
+USERS = {
+    'demo@cursus.it': {'nome': 'Demo', 'password': 'demo123'},
+}
+
+
+def trova_cv(cv_id):
+    for i, rec in enumerate(MOCK_CVS):
+        if rec.get('id') == cv_id:
+            return i
+    return None
+
+
+def cv_vuoto():
+    return {
+        'nome': '', 'cognome': '', 'email': '', 'prefisso': '+39', 'telefono': '',
+        'citta': '', 'cap': '', 'indirizzo': '', 'data_nascita': '', 'luogo_nascita': '',
+        'nazionalita': '', 'codice_fiscale': '', 'linkedin': '', 'portfolio': '', 'github': '',
+        'titolo_professionale': '', 'descrizione': '', 'obiettivo_professionale': '',
+        'anni_esperienza': '', 'contratto_desiderato': '', 'disponibilita_immediata': '',
+        'titolo_studio': [], 'anno_diploma': '', 'istituto_formazione': '', 'voto_formazione': '',
+        'tesi_titolo': '', 'corsi_certificazioni': '', 'ultimo_ruolo': '', 'azienda': '',
+        'periodo_lavoro': '', 'settore_lavoro': '', 'descrizione_lavoro': '',
+        'risultati_raggiunti': '', 'esperienze_precedenti': '', 'progetti': '',
+        'volontariato': '', 'competenze_tecniche': '', 'competenze_trasversali': '',
+        'strumenti_software': '', 'lingue': '', 'patente': '', 'hobby': '', 'referenze': '',
+        'foto_profilo': '', 'template_cv': 'aurora',
+    }
+
+
+@app.after_request
+def senza_cache(resp):
+    resp.headers['Cache-Control'] = 'no-store'
+    return resp
+
+
+def login_richiesto(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        if not session.get('utente'):
+            return redirect(url_for('login', prossima=request.path))
+        return f(*args, **kwargs)
+    return wrapper
+
+
+ESEMPI = {
+    rec['template_cv']: {
+        'nome': f"{rec['nome']} {rec['cognome']}",
+        'foto': rec['foto_profilo']
+    } for rec in MOCK_CVS
+}
+
+
 @app.route('/')
-def home():
+def index():
+    return render_template('landing.html', template_options=TEMPLATE_OPTIONS, esempi=ESEMPI)
+
+
+@app.route('/esempi/<template>')
+def esempi(template):
+    for rec in MOCK_CVS:
+        if rec.get('template_cv') == template:
+            return render_template(
+                'cv.html',
+                dati=rec,
+                template_cv=template,
+                template_name=TEMPLATE_OPTIONS[template],
+                anteprima=True
+            )
+    abort(404)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if session.get('utente'):
+        return redirect(url_for('dashboard'))
+    errore = None
+    if request.method == 'POST':
+        email = request.form.get('email', '').strip().lower()
+        password = request.form.get('password', '')
+        utente = USERS.get(email)
+        if utente and utente['password'] == password:
+            session['utente'] = email
+            prossima = request.args.get('prossima')
+            return redirect(prossima or url_for('dashboard'))
+        errore = 'Email o password non corretti.'
+    return render_template('login.html', errore=errore)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if session.get('utente'):
+        return redirect(url_for('dashboard'))
+    errore = None
+    if request.method == 'POST':
+        nome = request.form.get('nome', '').strip()
+        email = request.form.get('email', '').strip().lower()
+        password = request.form.get('password', '')
+        conferma = request.form.get('conferma', '')
+        if not nome or not email or not password:
+            errore = 'Compila tutti i campi.'
+        elif password != conferma:
+            errore = 'Le password non coincidono.'
+        elif email in USERS:
+            errore = 'Esiste già un account con questa email.'
+        else:
+            USERS[email] = {'nome': nome, 'password': password}
+            session['utente'] = email
+            return redirect(url_for('dashboard'))
+    return render_template('register.html', errore=errore)
+
+
+@app.route('/logout')
+def logout():
+    session.pop('utente', None)
+    return redirect(url_for('index'))
+
+
+@app.route('/dashboard')
+@login_richiesto
+def dashboard():
+    return render_template(
+        'dashboard.html',
+        cvs=MOCK_CVS,
+        template_options=TEMPLATE_OPTIONS
+    )
+
+@app.route('/cv/nuovo')
+@login_richiesto
+def cv_nuovo():
     return render_template(
         'form.html',
+        dati=cv_vuoto(),
+        cv_id=None,
         geoapify_key=GEOAPIFY_KEY,
         titoli_studio=TITOLI_STUDIO,
         template_options=TEMPLATE_OPTIONS
     )
 
+@app.route('/cv/<int:cv_id>/modifica')
+@login_richiesto
+def cv_modifica(cv_id):
+    idx = trova_cv(cv_id)
+    if idx is None:
+        abort(404)
+    return render_template(
+        'form.html',
+        dati=MOCK_CVS[idx],
+        cv_id=cv_id,
+        geoapify_key=GEOAPIFY_KEY,
+        titoli_studio=TITOLI_STUDIO,
+        template_options=TEMPLATE_OPTIONS
+    )
+
+@app.route('/cv/<int:cv_id>')
+@login_richiesto
+def cv_anteprima(cv_id):
+    idx = trova_cv(cv_id)
+    if idx is None:
+        abort(404)
+    rec = MOCK_CVS[idx]
+    template_cv = rec.get('template_cv', 'aurora')
+    if template_cv not in TEMPLATE_OPTIONS:
+        template_cv = 'aurora'
+    return render_template(
+        'cv.html',
+        dati=rec,
+        template_cv=template_cv,
+        template_name=TEMPLATE_OPTIONS[template_cv]
+    )
+
 @app.route('/genera_cv', methods=['POST'])
+@login_richiesto
 def genera_cv():
     titolo = request.form.get('titolo_professionale', '').strip()
     if titolo == 'Altro':
@@ -185,7 +500,7 @@ def genera_cv():
     foto_profilo = None
     if foto and foto.filename:
         if not foto.mimetype or not foto.mimetype.startswith('image/'):
-            return redirect(url_for('home'))
+            return redirect(url_for('dashboard'))
         foto_profilo = (
             f"data:{foto.mimetype};base64,"
             f"{base64.b64encode(foto.read()).decode('ascii')}"
@@ -244,6 +559,19 @@ def genera_cv():
     if template_cv not in TEMPLATE_OPTIONS:
         template_cv = 'aurora'
     
+    cv_id = request.form.get('cv_id', '').strip()
+    if cv_id.isdigit():
+        idx = trova_cv(int(cv_id))
+        if idx is not None:
+            if not dati_cv['foto_profilo']:
+                dati_cv['foto_profilo'] = MOCK_CVS[idx].get('foto_profilo')
+            MOCK_CVS[idx] = {
+                **dati_cv,
+                'id': int(cv_id),
+                'template_cv': template_cv,
+                'modificato': date.today().isoformat(),
+            }
+
     campi_obbligatori = (
         'nome', 'cognome', 'email', 'telefono', 'citta',
         'titolo_professionale', 'descrizione', 'anno_diploma',
@@ -251,7 +579,7 @@ def genera_cv():
         'descrizione_lavoro', 'competenze_tecniche', 'lingue', 'hobby'
     )
     if not titoli_selezionati or any(not dati_cv[campo_nome] for campo_nome in campi_obbligatori):
-        return redirect(url_for('home'))
+        return redirect(url_for('dashboard'))
 
     return render_template(
         'cv.html',

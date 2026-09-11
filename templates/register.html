@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="it">
+    <head>
+        {% from '_macros.html' import head %}
+        {{ head('Registrati', 'Crea un account Cursus e inizia a costruire il tuo curriculum.') }}
+    </head>
+    <body class="auth-page">
+
+        {% include '_nav.html' %}
+
+        <main class="auth-main">
+            <section class="auth-card glass">
+                <p class="eyebrow">Prima volta qui?</p>
+                <h1>Crea il tuo account</h1>
+                <p class="auth-sub">In 30 secondi sei dentro. I tuoi CV resteranno solo tuoi.</p>
+
+                {% if errore %}
+                <p class="auth-error" role="alert">{{ errore }}</p>
+                {% endif %}
+
+                <form method="POST" action="{{ url_for('register') }}" class="auth-form">
+                    <label>Nome<input type="text" name="nome" placeholder="Es. Giulia" required autofocus /></label>
+                    <label>Email<input type="email" name="email" placeholder="nome@esempio.it" required /></label>
+                    <label>Password<input type="password" name="password" placeholder="Minimo 6 caratteri" required minlength="6" /></label>
+                    <label>Conferma password<input type="password" name="conferma" placeholder="Ripeti la password" required /></label>
+                    <button type="submit">Registrati</button>
+                </form>
+
+                <p class="auth-switch">Hai già un account? <a href="{{ url_for('login') }}">Accedi</a></p>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>Cursus · Curricula fatti per essere letti</p>
+        </footer>
+
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cambia modalità tema">
+            <span class="theme-icon">☾</span>
+        </button>
+        <script src="{{ url_for('static', filename='script.js', v=7) }}"></script>
+    </body>
+</html>

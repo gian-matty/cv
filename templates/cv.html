@@ -1,17 +1,12 @@
 <!doctype html>
 <html lang="it">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Curriculum di {{ dati.nome }} {{ dati.cognome }}" />
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>" />
-        <title>CV di {{ dati.nome }} {{ dati.cognome }}</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+        {% from '_macros.html' import head %}
+        {{ head('CV di ' ~ dati.nome ~ ' ' ~ dati.cognome, 'Curriculum di ' ~ dati.nome ~ ' ' ~ dati.cognome ~ ' realizzato con Cursus.') }}
     </head>
-    <body class="cv-page template-{{ template_cv }}">
+    <body class="cv-page template-{{ template_cv }}{% if anteprima %} cv-anteprima{% endif %}">
+
+        {% if not anteprima %}{% include '_nav.html' %}{% endif %}
 
         {% macro sezione(title, value, classe='') -%}
         {% if value %}<section class="cv-section {{ classe }}"><h2>{{ title }}</h2><p>{{ value }}</p></section>{% endif %}
@@ -23,10 +18,10 @@
             <h2>Esperienza Professionale</h2>
             <p>{{ dati.ultimo_ruolo }} · {{ dati.azienda }} ({{ dati.periodo_lavoro }}){% if dati.settore_lavoro %} · {{ dati.settore_lavoro }}{% endif %}</p>
             {% if dati.descrizione_lavoro %}
-            <p style="margin-top: 8px">{{ dati.descrizione_lavoro }}</p>
+            <p class="cv-sub">{{ dati.descrizione_lavoro }}</p>
             {% endif %}
             {% if dati.risultati_raggiunti %}
-            <p style="margin-top: 8px"><strong>Risultati raggiunti:</strong> {{ dati.risultati_raggiunti }}</p>
+            <p class="cv-sub"><strong>Risultati raggiunti:</strong> {{ dati.risultati_raggiunti }}</p>
             {% endif %}
         </section>
         {% endif %}
@@ -41,16 +36,18 @@
         {% endif %}
         {%- endmacro %}
 
-        {% macro sezione_gruppo(etichetta, valori, in_sidebar=false) -%}
-        {% set presenti = valori|select|list %}
+        {% macro voci(titolo, etichette, in_sidebar=false) -%}
+        {% set presenti = [] %}
+        {% for etichetta, valore in etichette %}
+        {% if valore %}{% set _ = presenti.append((etichetta, valore)) %}{% endif %}
+        {% endfor %}
         {% if presenti %}
-        {% if in_sidebar %}<h2>{{ etichetta }}</h2><p>{{ presenti|join(', ') }}</p>
-        {% else %}<section class="cv-section"><h2>{{ etichetta }}</h2><p>{{ presenti|join(', ') }}</p></section>
+        {% if in_sidebar %}<h2>{{ titolo }}</h2><p>{% for etichetta, valore in presenti %}<strong>{{ etichetta }}:</strong> {{ valore }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
+        {% else %}<section class="cv-section"><h2>{{ titolo }}</h2><p>{% for etichetta, valore in presenti %}<strong>{{ etichetta }}:</strong> {{ valore }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p></section>
         {% endif %}
         {% endif %}
         {%- endmacro %}
 
-        {# ── Executive: layout con sidebar ────────────────────────────── #}
         {% if template_cv == 'executive' %}
         <main class="cv-card">
             <aside class="cv-sidebar">
@@ -67,6 +64,8 @@
                     {% if dati.portfolio %}<span>{{ dati.portfolio }}</span>{% endif %}
                     {% if dati.github %}<span>{{ dati.github }}</span>{% endif %}
                 </div>
+
+                {{ voci('Dati Anagrafici', [('Data di nascita', dati.data_nascita), ('Luogo di nascita', dati.luogo_nascita), ('Nazionalità', dati.nazionalita), ('Codice fiscale', dati.codice_fiscale), ('Patente', dati.patente)], true) }}
 
                 {% if dati.competenze_tecniche %}
                 <h2>Competenze Tecniche</h2>
@@ -87,14 +86,6 @@
                 <h2>Lingue</h2>
                 <p>{{ dati.lingue }}</p>
                 {% endif %}
-
-                {% if dati.patente %}
-                <h2>Patente</h2>
-                <p>{{ dati.patente }}</p>
-                {% endif %}
-
-                {{ sezione_gruppo('Dati Personali', [dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.codice_fiscale], true) }}
-                {{ sezione_gruppo('Disponibilità', [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata], true) }}
             </aside>
 
             <div class="cv-main">
@@ -112,7 +103,14 @@
                 </section>
                 {% endif %}
 
-                {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
+                {{ istruzione() }}
+
+                {% if dati.corsi_certificazioni %}
+                <section class="cv-section">
+                    <h2>Corsi e Certificazioni</h2>
+                    <p>{{ dati.corsi_certificazioni }}</p>
+                </section>
+                {% endif %}
 
                 {{ esperienza_professionale() }}
 
@@ -130,15 +128,6 @@
                 </section>
                 {% endif %}
 
-                {{ istruzione() }}
-
-                {% if dati.corsi_certificazioni %}
-                <section class="cv-section">
-                    <h2>Corsi e Certificazioni</h2>
-                    <p>{{ dati.corsi_certificazioni }}</p>
-                </section>
-                {% endif %}
-
                 {% if dati.volontariato %}
                 <section class="cv-section">
                     <h2>Volontariato</h2>
@@ -153,11 +142,19 @@
                 </section>
                 {% endif %}
 
-                <a class="cv-back" href="{{ url_for('home') }}">&#8592; Modifica il CV</a>
+                {% if dati.referenze %}
+                <section class="cv-section">
+                    <h2>Referenze</h2>
+                    <p>{{ dati.referenze }}</p>
+                </section>
+                {% endif %}
+
+                {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
+
+                {{ voci('Disponibilità e Contratto', [('Anni di esperienza', dati.anni_esperienza), ('Tipo di contratto desiderato', dati.contratto_desiderato), ('Disponibilità ad iniziare', dati.disponibilita_immediata)]) }}
             </div>
         </main>
 
-        {# ── Editorial: layout a griglia con sezioni affiancate ───────── #}
         {% elif template_cv == 'editorial' %}
         <main class="cv-card">
             <header class="cv-head">
@@ -175,6 +172,10 @@
                 </div>
             </header>
 
+            {{ voci('Dati Anagrafici', [('Data di nascita', dati.data_nascita), ('Luogo di nascita', dati.luogo_nascita), ('Nazionalità', dati.nazionalita), ('Codice fiscale', dati.codice_fiscale), ('Indirizzo', dati.indirizzo), ('Patente', dati.patente)]) }}
+
+            {{ voci('Contatti Online', [('LinkedIn', dati.linkedin), ('Portfolio', dati.portfolio), ('GitHub', dati.github)]) }}
+
             {% if dati.descrizione %}
             <section class="cv-section">
                 <h2>Profilo</h2>
@@ -182,15 +183,32 @@
             </section>
             {% endif %}
 
-            {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
-
             <div class="cv-sections-grid">
-                {{ esperienza_professionale('cv-section-full') }}
+                {% if dati.competenze_tecniche %}
+                <section class="cv-section">
+                    <h2>Competenze Tecniche</h2>
+                    <p>{{ dati.competenze_tecniche }}</p>
+                </section>
+                {% endif %}
 
-                {% if dati.esperienze_precedenti %}
-                <section class="cv-section cv-section-full">
-                    <h2>Esperienze Precedenti</h2>
-                    <p>{{ dati.esperienze_precedenti }}</p>
+                {% if dati.strumenti_software %}
+                <section class="cv-section">
+                    <h2>Strumenti e Software</h2>
+                    <p>{{ dati.strumenti_software }}</p>
+                </section>
+                {% endif %}
+
+                {% if dati.competenze_trasversali %}
+                <section class="cv-section">
+                    <h2>Competenze Trasversali</h2>
+                    <p>{{ dati.competenze_trasversali }}</p>
+                </section>
+                {% endif %}
+
+                {% if dati.lingue %}
+                <section class="cv-section">
+                    <h2>Lingue</h2>
+                    <p>{{ dati.lingue }}</p>
                 </section>
                 {% endif %}
 
@@ -203,31 +221,12 @@
                 </section>
                 {% endif %}
 
-                {% if dati.competenze_tecniche %}
-                <section class="cv-section">
-                    <h2>Competenze Tecniche</h2>
-                    <p>{{ dati.competenze_tecniche }}</p>
-                </section>
-                {% endif %}
+                {{ esperienza_professionale('cv-section-full') }}
 
-                {% if dati.competenze_trasversali %}
-                <section class="cv-section">
-                    <h2>Competenze Trasversali</h2>
-                    <p>{{ dati.competenze_trasversali }}</p>
-                </section>
-                {% endif %}
-
-                {% if dati.strumenti_software %}
-                <section class="cv-section">
-                    <h2>Strumenti e Software</h2>
-                    <p>{{ dati.strumenti_software }}</p>
-                </section>
-                {% endif %}
-
-                {% if dati.lingue %}
-                <section class="cv-section">
-                    <h2>Lingue</h2>
-                    <p>{{ dati.lingue }}</p>
+                {% if dati.esperienze_precedenti %}
+                <section class="cv-section cv-section-full">
+                    <h2>Esperienze Precedenti</h2>
+                    <p>{{ dati.esperienze_precedenti }}</p>
                 </section>
                 {% endif %}
 
@@ -244,19 +243,27 @@
                     <p>{{ dati.volontariato }}</p>
                 </section>
                 {% endif %}
+
+                {% if dati.hobby %}
+                <section class="cv-section">
+                    <h2>Hobby e Interessi</h2>
+                    <p>{{ dati.hobby }}</p>
+                </section>
+                {% endif %}
+
+                {% if dati.referenze %}
+                <section class="cv-section">
+                    <h2>Referenze</h2>
+                    <p>{{ dati.referenze }}</p>
+                </section>
+                {% endif %}
             </div>
 
-            {{ sezione_gruppo('Dati Personali', [dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.codice_fiscale, dati.indirizzo]) }}
-            {{ sezione_gruppo('Disponibilità', [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata]) }}
-            {{ sezione_gruppo('Patente', [dati.patente]) }}
-            {{ sezione_gruppo('Hobby e Interessi', [dati.hobby]) }}
-            {{ sezione_gruppo('Referenze', [dati.referenze]) }}
-            {{ sezione_gruppo('Contatti Online', [dati.linkedin, dati.portfolio, dati.github]) }}
+            {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
 
-            <a class="cv-back" href="{{ url_for('home') }}">&#8592; Modifica il CV</a>
+            {{ voci('Disponibilità e Contratto', [('Anni di esperienza', dati.anni_esperienza), ('Tipo di contratto desiderato', dati.contratto_desiderato), ('Disponibilità ad iniziare', dati.disponibilita_immediata)]) }}
         </main>
 
-        {# ── Creative: header colorato ────────────────────────────────── #}
         {% elif template_cv == 'creative' %}
         <main class="cv-card">
             <header class="cv-head">
@@ -264,7 +271,7 @@
                 <img class="cv-photo" src="{{ dati.foto_profilo }}" alt="Foto di {{ dati.nome }} {{ dati.cognome }}" />
                 {% endif %}
                 <div class="cv-identity">
-                    <p class="eyebrow" style="color: rgba(255,255,255,0.6)">CURRICULUM VITAE · {{ template_name|upper }}</p>
+                    <p class="eyebrow">CURRICULUM VITAE · {{ template_name|upper }}</p>
                     <h1>{{ dati.nome }} {{ dati.cognome }}</h1>
                     <p class="cv-role">{{ dati.titolo_professionale }}</p>
                     <div class="cv-meta">
@@ -279,6 +286,8 @@
                 </div>
             </header>
 
+            {{ voci('Dati Anagrafici', [('Data di nascita', dati.data_nascita), ('Luogo di nascita', dati.luogo_nascita), ('Nazionalità', dati.nazionalita), ('Codice fiscale', dati.codice_fiscale), ('Patente', dati.patente)]) }}
+
             {% if dati.descrizione %}
             <section class="cv-section">
                 <h2>Profilo</h2>
@@ -286,14 +295,26 @@
             </section>
             {% endif %}
 
-            {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
-
-            {{ esperienza_professionale() }}
-
-            {% if dati.esperienze_precedenti %}
+            {% if dati.competenze_tecniche %}
             <section class="cv-section">
-                <h2>Esperienze Precedenti</h2>
-                <p>{{ dati.esperienze_precedenti }}</p>
+                <h2>Competenze Tecniche</h2>
+                <p>{{ dati.competenze_tecniche }}</p>
+            </section>
+            {% endif %}
+
+            {{ sezione('Strumenti e Software', dati.strumenti_software) }}
+
+            {% if dati.competenze_trasversali %}
+            <section class="cv-section">
+                <h2>Competenze Trasversali</h2>
+                <p>{{ dati.competenze_trasversali }}</p>
+            </section>
+            {% endif %}
+
+            {% if dati.lingue %}
+            <section class="cv-section">
+                <h2>Lingue</h2>
+                <p>{{ dati.lingue }}</p>
             </section>
             {% endif %}
 
@@ -306,26 +327,12 @@
             </section>
             {% endif %}
 
-            {% if dati.competenze_tecniche %}
-            <section class="cv-section">
-                <h2>Competenze Tecniche</h2>
-                <p>{{ dati.competenze_tecniche }}</p>
-            </section>
-            {% endif %}
+            {{ esperienza_professionale() }}
 
-            {% if dati.competenze_trasversali %}
+            {% if dati.esperienze_precedenti %}
             <section class="cv-section">
-                <h2>Competenze Trasversali</h2>
-                <p>{{ dati.competenze_trasversali }}</p>
-            </section>
-            {% endif %}
-
-            {{ sezione('Strumenti e Software', dati.strumenti_software) }}
-
-            {% if dati.lingue %}
-            <section class="cv-section">
-                <h2>Lingue</h2>
-                <p>{{ dati.lingue }}</p>
+                <h2>Esperienze Precedenti</h2>
+                <p>{{ dati.esperienze_precedenti }}</p>
             </section>
             {% endif %}
 
@@ -343,17 +350,25 @@
             </section>
             {% endif %}
 
-            {{ sezione_gruppo('Dati Personali', [dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.codice_fiscale, dati.indirizzo]) }}
-            {{ sezione_gruppo('Disponibilità', [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata]) }}
-            {{ sezione_gruppo('Patente', [dati.patente]) }}
-            {{ sezione_gruppo('Hobby e Interessi', [dati.hobby]) }}
-            {{ sezione_gruppo('Referenze', [dati.referenze]) }}
-            {{ sezione_gruppo('Contatti Online', [dati.linkedin, dati.portfolio, dati.github]) }}
+            {% if dati.hobby %}
+            <section class="cv-section">
+                <h2>Hobby e Interessi</h2>
+                <p>{{ dati.hobby }}</p>
+            </section>
+            {% endif %}
 
-            <a class="cv-back" href="{{ url_for('home') }}">&#8592; Modifica il CV</a>
+            {% if dati.referenze %}
+            <section class="cv-section">
+                <h2>Referenze</h2>
+                <p>{{ dati.referenze }}</p>
+            </section>
+            {% endif %}
+
+            {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
+
+            {{ voci('Disponibilità e Contratto', [('Anni di esperienza', dati.anni_esperienza), ('Tipo di contratto desiderato', dati.contratto_desiderato), ('Disponibilità ad iniziare', dati.disponibilita_immediata)]) }}
         </main>
 
-        {# ── Minimal: solo linee e spazio ─────────────────────────────── #}
         {% elif template_cv == 'minimal' %}
         <main class="cv-card">
             <header class="cv-head">
@@ -375,30 +390,12 @@
                 {% endif %}
             </header>
 
+            {{ voci('Dati Anagrafici', [('Data di nascita', dati.data_nascita), ('Luogo di nascita', dati.luogo_nascita), ('Nazionalità', dati.nazionalita), ('Codice fiscale', dati.codice_fiscale), ('Patente', dati.patente)]) }}
+
             {% if dati.descrizione %}
             <section class="cv-section">
                 <h2>Profilo</h2>
                 <p>{{ dati.descrizione }}</p>
-            </section>
-            {% endif %}
-
-            {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
-
-            {{ esperienza_professionale() }}
-
-            {% if dati.esperienze_precedenti %}
-            <section class="cv-section">
-                <h2>Esperienze Precedenti</h2>
-                <p>{{ dati.esperienze_precedenti }}</p>
-            </section>
-            {% endif %}
-
-            {{ istruzione() }}
-
-            {% if dati.corsi_certificazioni %}
-            <section class="cv-section">
-                <h2>Corsi e Certificazioni</h2>
-                <p>{{ dati.corsi_certificazioni }}</p>
             </section>
             {% endif %}
 
@@ -425,6 +422,24 @@
             </section>
             {% endif %}
 
+            {{ istruzione() }}
+
+            {% if dati.corsi_certificazioni %}
+            <section class="cv-section">
+                <h2>Corsi e Certificazioni</h2>
+                <p>{{ dati.corsi_certificazioni }}</p>
+            </section>
+            {% endif %}
+
+            {{ esperienza_professionale() }}
+
+            {% if dati.esperienze_precedenti %}
+            <section class="cv-section">
+                <h2>Esperienze Precedenti</h2>
+                <p>{{ dati.esperienze_precedenti }}</p>
+            </section>
+            {% endif %}
+
             {% if dati.progetti %}
             <section class="cv-section">
                 <h2>Progetti</h2>
@@ -439,17 +454,25 @@
             </section>
             {% endif %}
 
-            {{ sezione_gruppo('Dati Personali', [dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.codice_fiscale, dati.indirizzo]) }}
-            {{ sezione_gruppo('Disponibilità', [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata]) }}
-            {{ sezione_gruppo('Patente', [dati.patente]) }}
-            {{ sezione_gruppo('Hobby e Interessi', [dati.hobby]) }}
-            {{ sezione_gruppo('Referenze', [dati.referenze]) }}
-            {{ sezione_gruppo('Contatti Online', [dati.linkedin, dati.portfolio, dati.github]) }}
+            {% if dati.hobby %}
+            <section class="cv-section">
+                <h2>Hobby e Interessi</h2>
+                <p>{{ dati.hobby }}</p>
+            </section>
+            {% endif %}
 
-            <a class="cv-back" href="{{ url_for('home') }}">&#8592; Modifica il CV</a>
+            {% if dati.referenze %}
+            <section class="cv-section">
+                <h2>Referenze</h2>
+                <p>{{ dati.referenze }}</p>
+            </section>
+            {% endif %}
+
+            {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
+
+            {{ voci('Disponibilità e Contratto', [('Anni di esperienza', dati.anni_esperienza), ('Tipo di contratto desiderato', dati.contratto_desiderato), ('Disponibilità ad iniziare', dati.disponibilita_immediata)]) }}
         </main>
 
-        {# ── Aurora: default classico ─────────────────────────────────── #}
         {% else %}
         <main class="cv-card">
             <header class="cv-head">
@@ -468,6 +491,10 @@
                 {% endif %}
             </header>
 
+            {{ voci('Dati Anagrafici', [('Data di nascita', dati.data_nascita), ('Luogo di nascita', dati.luogo_nascita), ('Nazionalità', dati.nazionalita), ('Codice fiscale', dati.codice_fiscale), ('Indirizzo', dati.indirizzo), ('Patente', dati.patente)]) }}
+
+            {{ voci('Contatti Online', [('LinkedIn', dati.linkedin), ('Portfolio', dati.portfolio), ('GitHub', dati.github)]) }}
+
             {% if dati.descrizione %}
             <section class="cv-section">
                 <h2>Profilo</h2>
@@ -475,7 +502,28 @@
             </section>
             {% endif %}
 
-            {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
+            {% if dati.competenze_tecniche %}
+            <section class="cv-section">
+                <h2>Competenze Tecniche</h2>
+                <p>{{ dati.competenze_tecniche }}</p>
+            </section>
+            {% endif %}
+
+            {{ sezione('Strumenti e Software', dati.strumenti_software) }}
+
+            {% if dati.competenze_trasversali %}
+            <section class="cv-section">
+                <h2>Competenze Trasversali</h2>
+                <p>{{ dati.competenze_trasversali }}</p>
+            </section>
+            {% endif %}
+
+            {% if dati.lingue %}
+            <section class="cv-section">
+                <h2>Lingue</h2>
+                <p>{{ dati.lingue }}</p>
+            </section>
+            {% endif %}
 
             {{ istruzione() }}
 
@@ -509,39 +557,31 @@
             </section>
             {% endif %}
 
-            {% if dati.competenze_tecniche %}
+            {% if dati.hobby %}
             <section class="cv-section">
-                <h2>Competenze Tecniche</h2>
-                <p>{{ dati.competenze_tecniche }}</p>
+                <h2>Hobby e Interessi</h2>
+                <p>{{ dati.hobby }}</p>
             </section>
             {% endif %}
 
-            {{ sezione('Strumenti e Software', dati.strumenti_software) }}
-
-            {% if dati.competenze_trasversali %}
+            {% if dati.referenze %}
             <section class="cv-section">
-                <h2>Competenze Trasversali</h2>
-                <p>{{ dati.competenze_trasversali }}</p>
+                <h2>Referenze</h2>
+                <p>{{ dati.referenze }}</p>
             </section>
             {% endif %}
 
-            {% if dati.lingue %}
-            <section class="cv-section">
-                <h2>Lingue</h2>
-                <p>{{ dati.lingue }}</p>
-            </section>
-            {% endif %}
+            {{ sezione('Obiettivo', dati.obiettivo_professionale) }}
 
-            {{ sezione_gruppo('Dati Personali', [dati.data_nascita, dati.luogo_nascita, dati.nazionalita, dati.codice_fiscale, dati.indirizzo]) }}
-            {{ sezione_gruppo('Disponibilità', [dati.anni_esperienza, dati.contratto_desiderato, dati.disponibilita_immediata]) }}
-            {{ sezione_gruppo('Patente', [dati.patente]) }}
-            {{ sezione_gruppo('Hobby e Interessi', [dati.hobby]) }}
-            {{ sezione_gruppo('Referenze', [dati.referenze]) }}
-            {{ sezione_gruppo('Contatti Online', [dati.linkedin, dati.portfolio, dati.github]) }}
-
-            <a class="cv-back" href="{{ url_for('home') }}">&#8592; Modifica il CV</a>
+            {{ voci('Disponibilità e Contratto', [('Anni di esperienza', dati.anni_esperienza), ('Tipo di contratto desiderato', dati.contratto_desiderato), ('Disponibilità ad iniziare', dati.disponibilita_immediata)]) }}
         </main>
         {% endif %}
 
+        {% if not anteprima %}
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Cambia modalità tema">
+            <span class="theme-icon">☾</span>
+        </button>
+        {% endif %}
+        <script src="{{ url_for('static', filename='script.js', v=7) }}"></script>
     </body>
 </html>

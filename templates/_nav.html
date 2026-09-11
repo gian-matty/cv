@@ -1,0 +1,18 @@
+<header class="site-nav">
+    <div class="nav-inner">
+        <a class="nav-brand" href="{% if session.get('utente') %}{{ url_for('dashboard') }}{% else %}{{ url_for('index') }}{% endif %}">
+            Cursus<span class="nav-mark">✒</span>
+        </a>
+        <nav class="nav-links">
+            {% if session.get('utente') %}
+            <span class="nav-user">{{ session.get('utente') }}</span>
+            <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a class="nav-link" href="{{ url_for('cv_nuovo') }}">Nuovo CV</a>
+            <a class="nav-link nav-link-outline" href="{{ url_for('logout') }}">Esci</a>
+            {% else %}
+            <a class="nav-link" href="{{ url_for('login') }}">Accedi</a>
+            <a class="nav-link nav-link-solid" href="{{ url_for('register') }}">Registrati</a>
+            {% endif %}
+        </nav>
+    </div>
+</header>

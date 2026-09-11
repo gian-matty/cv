@@ -238,14 +238,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (selectTitolo) {
         selectTitolo.addEventListener('change', () => {
-            if (selectTitolo.value === 'Altro') {
-                boxAltro.style.display = 'block';
-                inputAltro.required = true;
-            } else {
-                boxAltro.style.display = 'none';
-                inputAltro.required = false;
-                inputAltro.value = '';
-            }
+            const on = selectTitolo.value === 'Altro';
+            boxAltro.classList.toggle('is-open', on);
+            inputAltro.required = on;
+            if (!on) inputAltro.value = '';
         });
     }
 
@@ -256,14 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
     checkboxes.forEach(cb => {
         if (cb.value === 'Altro') {
             cb.addEventListener('change', () => {
-                if (cb.checked) {
-                    boxAltroTitolo.style.display = 'block';
-                    inputAltroTitolo.required = true;
-                } else {
-                    boxAltroTitolo.style.display = 'none';
-                    inputAltroTitolo.required = false;
-                    inputAltroTitolo.value = '';
-                }
+                const on = cb.checked;
+                boxAltroTitolo.classList.toggle('is-open', on);
+                inputAltroTitolo.required = on;
+                if (!on) inputAltroTitolo.value = '';
             });
         }
     });
@@ -321,4 +313,102 @@ document.addEventListener('DOMContentLoaded', () => {
     abilitaRigheDinamiche(document.getElementById('lingue-container'), 'lingue');
     abilitaRigheDinamiche(document.getElementById('patente-container'), 'patente');
     abilitaRigheDinamiche(document.getElementById('hobby-container'), 'hobby');
+
+    const form = document.querySelector('form');
+    if (form) {
+        let primoInvalido = null;
+        let timerScroll;
+        form.addEventListener('invalid', (e) => {
+            if (!primoInvalido) primoInvalido = e.target;
+            clearTimeout(timerScroll);
+            timerScroll = setTimeout(() => {
+                if (primoInvalido && !form.checkValidity()) {
+                    primoInvalido.scrollIntoView({ block: 'center' });
+                    try { primoInvalido.focus({ preventScroll: true }); } catch (err) { primoInvalido.focus(); }
+                }
+                primoInvalido = null;
+            }, 60);
+        }, true);
+        form.addEventListener('submit', () => { primoInvalido = null; });
+    }
+
+    const scena3d = document.getElementById('hero3d-scene');
+    const traccia3d = document.getElementById('hero3d');
+
+    if (scena3d && traccia3d) {
+        const almenoTouch = matchMedia('(pointer: coarse)').matches;
+        const riduci = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (almenoTouch || riduci) {
+            scena3d.style.setProperty('--advance', '-60px');
+            scena3d.style.setProperty('--tilt-x', '8deg');
+            scena3d.style.setProperty('--tilt-y', '-4deg');
+        } else {
+            let progresso = 0;
+            let obiettivo = 0;
+            let raf = null;
+
+            const aggiorna = () => {
+                const avanzamento = traccia3d.offsetHeight - window.innerHeight;
+                const p = Math.min(1, Math.max(0, (window.scrollY - traccia3d.offsetTop) / (avanzamento || 1)));
+                obiettivo = p;
+
+                progresso += (obiettivo - progresso) * 0.09;
+                if (Math.abs(obiettivo - progresso) > 0.0005) {
+                    scena3d.style.setProperty('--advance', `${-420 + progresso * 1120}px`);
+                    scena3d.style.setProperty('--tilt-x', `${14 - progresso * 17}deg`);
+                    scena3d.style.setProperty('--tilt-y', `${-6 + progresso * 4}deg`);
+                    raf = requestAnimationFrame(aggiorna);
+                } else {
+                    raf = null;
+                }
+            };
+
+            const suScroll = () => {
+                if (raf === null) raf = requestAnimationFrame(aggiorna);
+            };
+
+            window.addEventListener('scroll', suScroll, { passive: true });
+            suScroll();
+        }
+    }
+
+    const anteprimaDialog = document.getElementById('anteprima-dialog');
+    const anteprimaFrame = document.getElementById('anteprima-frame');
+
+    if (anteprimaDialog && anteprimaFrame) {
+        const anteprimaNome = document.getElementById('anteprima-nome');
+        const chiudiAnteprima = () => {
+            if (anteprimaDialog.open) anteprimaDialog.close();
+        };
+
+        document.querySelectorAll('.hero3d-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+                anteprimaFrame.src = card.getAttribute('href');
+                if (anteprimaNome) anteprimaNome.textContent = card.dataset.nome || '';
+                anteprimaDialog.showModal();
+            });
+        });
+
+        const stampaAnteprima = () => {
+            if (anteprimaFrame.contentWindow) anteprimaFrame.contentWindow.print();
+        };
+
+        const chiudiBtn = document.getElementById('anteprima-chiudi');
+        if (chiudiBtn) chiudiBtn.addEventListener('click', chiudiAnteprima);
+
+        anteprimaDialog.addEventListener('click', (e) => {
+            if (e.target === anteprimaDialog) chiudiAnteprima();
+        });
+
+        anteprimaDialog.addEventListener('close', () => {
+            anteprimaFrame.src = 'about:blank';
+        });
+
+        const pdfBtn = document.getElementById('anteprima-pdf');
+        if (pdfBtn) pdfBtn.addEventListener('click', stampaAnteprima);
+
+        const stampaBtn = document.getElementById('anteprima-stampa');
+        if (stampaBtn) stampaBtn.addEventListener('click', stampaAnteprima);
+    }
 });
